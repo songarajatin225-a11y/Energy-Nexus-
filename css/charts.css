@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Energy Nexus — chart chrome
+   All charts are hand-built SVG. This file styles the shared furniture:
+   axes, gridlines, series, bands, legends and the crosshair tooltip.
+   ========================================================================== */
+
+.chart {
+  position: relative;
+  width: 100%;
+}
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* --- axes and grid --- */
+.chart__grid-line {
+  stroke: var(--border-subtle);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.chart__axis-line {
+  stroke: var(--border-default);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.chart__tick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  fill: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+.chart__tick--x { text-anchor: middle; }
+.chart__tick--y { text-anchor: end; }
+.chart__axis-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  fill: var(--text-tertiary);
+}
+
+/* --- series --- */
+.chart__line {
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.chart__line--thin { stroke-width: 1.3; }
+.chart__line--dashed { stroke-dasharray: 4 4; }
+.chart__area { stroke: none; opacity: 0.14; }
+.chart__band { stroke: none; opacity: 0.16; }
+
+.chart__bar { transition: opacity var(--dur-fast) var(--ease-out); }
+.chart__bar:hover { opacity: 0.82; }
+
+/* Reference lines — contracted demand, peak ceilings, thresholds */
+.chart__ref-line {
+  stroke: var(--accent-red);
+  stroke-width: 1;
+  stroke-dasharray: 5 4;
+  opacity: 0.75;
+}
+.chart__ref-label {
+  font-family: var(--font-mono); font-size: 9px;
+  fill: var(--accent-red); letter-spacing: 0.04em;
+}
+
+/* Tariff / period shading behind the plot */
+.chart__period { opacity: 0.4; }
+.chart__period--peak { fill: var(--wash-red); }
+.chart__period--normal { fill: transparent; }
+.chart__period--offpeak { fill: var(--wash-green); }
+
+/* The boundary between measured history and forecast */
+.chart__now-line {
+  stroke: var(--accent-cyan);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.chart__now-label {
+  font-family: var(--font-mono); font-size: 9px;
+  fill: var(--accent-cyan); letter-spacing: var(--tracking-wide);
+}
+
+/* --- crosshair + hover --- */
+.chart__crosshair {
+  stroke: var(--text-tertiary);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.chart[data-hover='true'] .chart__crosshair { opacity: 0.7; }
+
+.chart__hover-dot {
+  stroke: var(--bg-base);
+  stroke-width: 1.8;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.chart[data-hover='true'] .chart__hover-dot { opacity: 1; }
+
+.chart__hit { fill: transparent; cursor: crosshair; }
+
+/* --- tooltip --- */
+.chart-tooltip {
+  position: absolute;
+  z-index: 5;
+  min-width: 152px;
+  padding: var(--sp-3);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -100%) translateY(-10px);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.chart-tooltip[data-open='true'] { opacity: 1; }
+.chart-tooltip__time {
+  font-family: var(--font-mono); font-size: var(--fs-2xs);
+  color: var(--text-tertiary); letter-spacing: var(--tracking-wide);
+  padding-bottom: var(--sp-2); margin-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.chart-tooltip__row {
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-xs); line-height: 1.7;
+}
+.chart-tooltip__swatch { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chart-tooltip__name { color: var(--text-secondary); }
+.chart-tooltip__value {
+  margin-left: auto;
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  font-weight: 550; color: var(--text-primary);
+}
+
+/* --- legend --- */
+.chart-legend {
+  display: flex; flex-wrap: wrap; gap: var(--sp-4);
+  padding: var(--sp-3) 0 0;
+}
+.chart-legend__item {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--fs-xs); color: var(--text-secondary);
+  cursor: pointer; user-select: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.chart-legend__item[aria-pressed='false'] { opacity: 0.38; }
+.chart-legend__swatch { width: 10px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+.chart-legend__swatch--band { height: 9px; opacity: 0.35; }
+.chart-legend__swatch--dashed {
+  height: 0; border-top: 2px dashed currentColor; width: 12px; border-radius: 0;
+}
+
+/* --- sparkline --- */
+.sparkline { display: block; width: 100%; height: 100%; overflow: visible; }
+.sparkline__line { fill: none; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+.sparkline__area { stroke: none; opacity: 0.16; }
+.sparkline__dot { stroke: var(--bg-surface); stroke-width: 1.4; }
+
+/* --- gauge / radial --- */
+.gauge__track { fill: none; stroke: var(--bg-raised); stroke-linecap: round; }
+.gauge__value { fill: none; stroke-linecap: round; transition: stroke-dashoffset var(--dur-slow) var(--ease-out); }
+.gauge__label {
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  fill: var(--text-primary); text-anchor: middle;
+}
+.gauge__sub {
+  font-family: var(--font-mono); font-size: 9px;
+  fill: var(--text-tertiary); text-anchor: middle;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+
+/* --- donut breakdown --- */
+.donut__seg { transition: opacity var(--dur-fast) var(--ease-out); cursor: pointer; }
+.donut__seg:hover { opacity: 0.8; }
+.donut__center-value {
+  font-family: var(--font-mono); font-size: var(--fs-xl); font-weight: 550;
+  fill: var(--text-primary); text-anchor: middle; font-variant-numeric: tabular-nums;
+}
+.donut__center-label {
+  font-family: var(--font-mono); font-size: 9px;
+  fill: var(--text-tertiary); text-anchor: middle;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+
+/* --- heatmap (load profile by hour × day) --- */
+.heat-cell { transition: opacity var(--dur-fast) var(--ease-out); cursor: pointer; }
+.heat-cell:hover { opacity: 0.75; stroke: var(--text-primary); stroke-width: 1; }
+.heat-label {
+  font-family: var(--font-mono); font-size: 9px;
+  fill: var(--text-tertiary);
+}
+
+/* --- chart container furniture --- */
+.chart-panel__toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4); flex-wrap: wrap;
+  padding: var(--sp-3) var(--sp-5);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.chart-panel__body { padding: var(--sp-5); }
+
+/* Draw-in animation for line series on first render */
+@keyframes chart-draw { from { stroke-dashoffset: var(--draw-length, 1200); } to { stroke-dashoffset: 0; } }
+.chart__line--animate {
+  stroke-dasharray: var(--draw-length, 1200);
+  animation: chart-draw 1s var(--ease-out) forwards;
+}

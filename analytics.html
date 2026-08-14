@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy Intelligence · Energy Nexus</title>
+<meta name="description" content="Energy cost, intensity, peak demand, utilisation, carbon and verified savings — with before and after comparison.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Analytics</div>
+        <h1>Energy Intelligence</h1>
+        <p class="page-header__sub" data-an-sub>Cost, intensity, peak, utilisation and carbon — measured against the pre-Nexus baseline.</p>
+      </div>
+      <div class="page-header__actions">
+        <button class="btn" data-export-analytics>Export CSV</button>
+        <a class="btn btn--primary" href="reports.html">Generate report</a>
+      </div>
+    </div>
+
+    <div class="kpi-strip" data-an-kpis style="margin-bottom:var(--sp-5)"></div>
+
+    <!-- Savings engine -->
+    <section class="section" style="margin-top:0">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Nexus Savings</div>
+            <div class="card__desc">How annual energy spend becomes verified customer benefit</div>
+          </div>
+          <span class="pill pill--verified">IPMVP verified</span>
+        </div>
+        <div class="card__body"><div data-savings-waterfall></div></div>
+        <div class="card__footer">
+          <div class="row row--wrap" style="gap:var(--sp-8)" data-savings-notes></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before / after -->
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Before Nexus vs after Nexus</h2>
+          <p class="section__desc">Same site, same production output, measured against an agreed baseline.</p>
+        </div>
+      </div>
+      <div class="grid grid--2">
+        <div class="card">
+          <div class="chart-panel__toolbar">
+            <div>
+              <div class="card__title">Daily load profile</div>
+              <div class="card__desc">Peak flattened, import shifted out of the peak block</div>
+            </div>
+          </div>
+          <div class="chart-panel__body"><div data-before-after-chart></div></div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Measured change</div></div>
+          <div class="card__body card__body--tight" data-before-after-metrics></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modules -->
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Intelligence modules</h2>
+          <p class="section__desc">Each module answers a distinct operational question.</p>
+        </div>
+      </div>
+      <div class="grid grid--2">
+        <div class="card">
+          <div class="chart-panel__toolbar">
+            <div>
+              <div class="card__title">Energy cost and carbon by day</div>
+              <div class="card__desc">30-day trend across the active site</div>
+            </div>
+          </div>
+          <div class="chart-panel__body"><div data-cost-chart></div></div>
+        </div>
+        <div class="card">
+          <div class="chart-panel__toolbar">
+            <div>
+              <div class="card__title">Load intensity by hour and day</div>
+              <div class="card__desc">Where demand actually concentrates</div>
+            </div>
+          </div>
+          <div class="chart-panel__body"><div data-heatmap></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmarking -->
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Estate benchmarking</h2>
+          <p class="section__desc">Sites ranked by savings rate. Comparable sites, comparable baselines.</p>
+        </div>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Site</th><th>Industry</th><th class="num">₹/kWh</th><th class="num">Energy intensity</th>
+        <th class="num">Peak/connected</th><th class="num">Solar share</th><th class="num">Savings</th><th class="num">Carbon</th></tr></thead>
+        <tbody data-benchmark-rows></tbody>
+      </table></div></div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/analytics.js" defer></script>
+</body>
+</html>

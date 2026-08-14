@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help · Energy Nexus</title>
+<meta name="description" content="How to navigate the Energy Nexus prototype, what is real and what is simulated.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Help</div>
+        <h1>Using Energy Nexus</h1>
+        <p class="page-header__sub">What each screen does, which keyboard shortcuts exist, and — importantly — what is simulated.</p>
+      </div>
+    </div>
+
+    <div class="callout callout--warning" style="margin-bottom:var(--sp-6)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>
+      <div><strong>This is a demonstration prototype.</strong> All telemetry, sites, assets, savings and market
+      records are simulated from a deterministic dataset. Nothing connects to real plant equipment, and no
+      figure represents an actual customer.</div>
+    </div>
+
+    <div class="grid grid--sidebar-right">
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Screens</div></div>
+          <div class="table-wrap"><table class="table">
+            <thead><tr><th>Screen</th><th>Answers</th><th>Status</th></tr></thead>
+            <tbody data-help-screens></tbody>
+          </table></div>
+        </div>
+
+        <div class="card">
+          <div class="card__header"><div class="card__title">Reading the interface</div></div>
+          <div class="card__body" data-help-conventions></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Keyboard</div></div>
+          <div class="card__body card__body--tight" data-help-keys></div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Labelling of future capability</div></div>
+          <div class="card__body stack" style="gap:var(--sp-3)">
+            <div class="row" style="gap:var(--sp-3);align-items:flex-start">
+              <span class="pill pill--simulated">SIMULATION</span>
+              <span style="font-size:var(--fs-xs);color:var(--text-secondary)">Modelled only. No mechanism exists today.</span>
+            </div>
+            <div class="row" style="gap:var(--sp-3);align-items:flex-start">
+              <span class="pill pill--pilot">PILOT</span>
+              <span style="font-size:var(--fs-xs);color:var(--text-secondary)">Deliverable under a contracted arrangement in some states.</span>
+            </div>
+            <div class="row" style="gap:var(--sp-3);align-items:flex-start">
+              <span class="pill pill--future">REGULATION DEPENDENT</span>
+              <span style="font-size:var(--fs-xs);color:var(--text-secondary)">Needs policy change and a licensed intermediary.</span>
+            </div>
+            <div class="row" style="gap:var(--sp-3);align-items:flex-start">
+              <span class="pill pill--future">V7 · V9</span>
+              <span style="font-size:var(--fs-xs);color:var(--text-secondary)">Roadmap version, not current capability.</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Support</div></div>
+          <div class="card__body">
+            <p class="text-secondary" style="font-size:var(--fs-sm);line-height:var(--lh-snug)">
+              This prototype runs entirely in the browser from static files and local JSON. There is no
+              backend, no account and no data collection.
+            </p>
+            <a class="btn btn--block" href="index.html" style="margin-top:var(--sp-4)">Back to the overview</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/help.js" defer></script>
+</body>
+</html>

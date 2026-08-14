@@ -1,0 +1,195 @@
+{
+ "meta": {
+  "generator": "tools/generate-data.js",
+  "description": "Industrial cluster network — cluster-first expansion model",
+  "disclaimer": "SIMULATED TELEMETRY — demonstration dataset. Not actual customer data.",
+  "version": 1
+ },
+ "totals": {
+  "sites": 108,
+  "euMW": 1150,
+  "flexMW": 78
+ },
+ "nodes": [
+  {
+   "nodeId": "CL-BLR-HSR",
+   "name": "Bengaluru–Hosur",
+   "state": "Karnataka / Tamil Nadu",
+   "sites": 24,
+   "euMW": 268,
+   "flexMW": 19.4,
+   "priority": 1,
+   "status": "LIVE",
+   "lat": 12.86,
+   "lng": 77.71,
+   "industries": "Electronics, auto components, aerospace"
+  },
+  {
+   "nodeId": "CL-CHN-SPD",
+   "name": "Chennai–Sriperumbudur",
+   "state": "Tamil Nadu",
+   "sites": 19,
+   "euMW": 231,
+   "flexMW": 16.2,
+   "priority": 2,
+   "status": "LIVE",
+   "lat": 12.97,
+   "lng": 79.94,
+   "industries": "Automotive OEM, tier-1, EV assembly"
+  },
+  {
+   "nodeId": "CL-PUN-CHK",
+   "name": "Pune–Chakan",
+   "state": "Maharashtra",
+   "sites": 17,
+   "euMW": 194,
+   "flexMW": 13.1,
+   "priority": 3,
+   "status": "LIVE",
+   "lat": 18.76,
+   "lng": 73.86,
+   "industries": "Automotive, capital goods"
+  },
+  {
+   "nodeId": "CL-AHM-SND",
+   "name": "Ahmedabad–Sanand",
+   "state": "Gujarat",
+   "sites": 14,
+   "euMW": 178,
+   "flexMW": 12.6,
+   "priority": 4,
+   "status": "LIVE",
+   "lat": 22.99,
+   "lng": 72.38,
+   "industries": "Chemicals, pharma, textiles"
+  },
+  {
+   "nodeId": "CL-HYD",
+   "name": "Hyderabad",
+   "state": "Telangana",
+   "sites": 11,
+   "euMW": 106,
+   "flexMW": 7.2,
+   "priority": 5,
+   "status": "LIVE",
+   "lat": 17.39,
+   "lng": 78.49,
+   "industries": "Pharma, electronics, aerospace"
+  },
+  {
+   "nodeId": "CL-NCR",
+   "name": "Noida–Gurugram",
+   "state": "Delhi NCR",
+   "sites": 9,
+   "euMW": 84,
+   "flexMW": 5.1,
+   "priority": 6,
+   "status": "RAMPING",
+   "lat": 28.47,
+   "lng": 77.5,
+   "industries": "EMS, mobile, data centres"
+  },
+  {
+   "nodeId": "CL-CBE",
+   "name": "Coimbatore–Tiruppur",
+   "state": "Tamil Nadu",
+   "sites": 7,
+   "euMW": 52,
+   "flexMW": 3.1,
+   "priority": 7,
+   "status": "RAMPING",
+   "lat": 11.02,
+   "lng": 76.96,
+   "industries": "Textiles, pumps, foundries"
+  },
+  {
+   "nodeId": "CL-JMS",
+   "name": "Jamshedpur–Kolkata",
+   "state": "Jharkhand / West Bengal",
+   "sites": 4,
+   "euMW": 21,
+   "flexMW": 0.9,
+   "priority": 8,
+   "status": "PILOT",
+   "lat": 22.8,
+   "lng": 86.2,
+   "industries": "Metals, heavy engineering"
+  },
+  {
+   "nodeId": "CL-IND",
+   "name": "Indore–Pithampur",
+   "state": "Madhya Pradesh",
+   "sites": 2,
+   "euMW": 12,
+   "flexMW": 0.3,
+   "priority": 9,
+   "status": "PILOT",
+   "lat": 22.72,
+   "lng": 75.86,
+   "industries": "Auto, pharma"
+  },
+  {
+   "nodeId": "CL-KOC",
+   "name": "Kochi–Ernakulam",
+   "state": "Kerala",
+   "sites": 1,
+   "euMW": 4,
+   "flexMW": 0.1,
+   "priority": 10,
+   "status": "PILOT",
+   "lat": 9.93,
+   "lng": 76.27,
+   "industries": "Rubber, food processing"
+  }
+ ],
+ "links": [
+  {
+   "from": "CL-BLR-HSR",
+   "to": "CL-CHN-SPD"
+  },
+  {
+   "from": "CL-BLR-HSR",
+   "to": "CL-CBE"
+  },
+  {
+   "from": "CL-CHN-SPD",
+   "to": "CL-CBE"
+  },
+  {
+   "from": "CL-BLR-HSR",
+   "to": "CL-HYD"
+  },
+  {
+   "from": "CL-HYD",
+   "to": "CL-PUN-CHK"
+  },
+  {
+   "from": "CL-PUN-CHK",
+   "to": "CL-AHM-SND"
+  },
+  {
+   "from": "CL-AHM-SND",
+   "to": "CL-NCR"
+  },
+  {
+   "from": "CL-NCR",
+   "to": "CL-JMS"
+  },
+  {
+   "from": "CL-PUN-CHK",
+   "to": "CL-IND"
+  },
+  {
+   "from": "CL-IND",
+   "to": "CL-AHM-SND"
+  },
+  {
+   "from": "CL-CBE",
+   "to": "CL-KOC"
+  },
+  {
+   "from": "CL-JMS",
+   "to": "CL-HYD"
+  }
+ ]
+}

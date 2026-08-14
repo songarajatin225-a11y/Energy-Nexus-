@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Energy Nexus mark">
+  <defs>
+    <linearGradient id="enxRing" x1="14" y1="6" x2="50" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7DD33F"/>
+      <stop offset="0.45" stop-color="#2FD3C4"/>
+      <stop offset="1" stop-color="#2E8BFF"/>
+    </linearGradient>
+    <linearGradient id="enxMono" x1="18" y1="20" x2="48" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8BE04A"/>
+      <stop offset="0.5" stop-color="#3AD6E8"/>
+      <stop offset="1" stop-color="#2E8BFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Convergence ring: an open topology loop, not a closed badge -->
+  <path d="M46.5 9.8A26 26 0 1 1 17.2 53.6" stroke="url(#enxRing)" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Abstract EN monogram: three feeder bars converging into a routing diagonal -->
+  <path d="M19 24.5h15.5" stroke="url(#enxMono)" stroke-width="4.4" stroke-linecap="round"/>
+  <path d="M19 32h11" stroke="url(#enxMono)" stroke-width="4.4" stroke-linecap="round"/>
+  <path d="M19 39.5h15.5" stroke="url(#enxMono)" stroke-width="4.4" stroke-linecap="round"/>
+  <path d="M38.5 41.5V22.5l8 19V22.5" stroke="url(#enxMono)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Network nodes on the open arc -->
+  <circle cx="46.5" cy="9.8" r="3.1" fill="#7DD33F"/>
+  <circle cx="17.2" cy="53.6" r="3.1" fill="#2E8BFF"/>
+</svg>

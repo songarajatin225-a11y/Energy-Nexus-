@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Energy Nexus</title>
+<meta name="description" content="Appearance, demo mode, accessibility, units and integration settings.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">System</div>
+        <h1>Settings</h1>
+        <p class="page-header__sub">Preferences are stored locally in this browser. Nothing is sent anywhere.</p>
+      </div>
+    </div>
+
+    <div class="grid grid--2">
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Appearance</div></div>
+          <div class="card__body stack" style="gap:var(--sp-5)">
+            <div class="field">
+              <label class="field__label" for="theme-select">Colour theme</label>
+              <select class="select" id="theme-select" data-set-theme>
+                <option value="dark">Dark — industrial control room</option>
+                <option value="light">Light — daylight and print</option>
+              </select>
+              <span class="field__hint">Charts and topology re-render with the new palette immediately.</span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="motion-select">Motion</label>
+              <select class="select" id="motion-select" data-set-motion>
+                <option value="on">Full motion</option>
+                <option value="off">Reduced motion</option>
+              </select>
+              <span class="field__hint">Reduced motion stops flow animation, pulses and counters. Your OS preference is respected automatically.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__header"><div class="card__title">Demo mode</div></div>
+          <div class="card__body stack" style="gap:var(--sp-4)">
+            <div class="row row--between">
+              <div style="flex:1">
+                <div style="font-size:var(--fs-sm);font-weight:550">Stream simulated telemetry</div>
+                <div class="text-tertiary" style="font-size:var(--fs-xs);margin-top:2px">
+                  Advances the telemetry cursor so profiles, flows and KPIs move.
+                </div>
+              </div>
+              <button class="switch" data-set-demo aria-pressed="true" aria-label="Toggle demo mode">
+                <span class="switch__track"><span class="switch__thumb"></span></span>
+              </button>
+            </div>
+            <div class="callout callout--warning">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>
+              <div>All values in this prototype are simulated. No screen shows actual customer data,
+              and no control path reaches real plant equipment.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__header"><div class="card__title">Defaults</div></div>
+          <div class="card__body stack" style="gap:var(--sp-5)">
+            <div class="field">
+              <label class="field__label" for="site-default">Default site</label>
+              <select class="select" id="site-default" data-set-site></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="org-default">Organisation</label>
+              <select class="select" id="org-default" data-set-org>
+                <option>Nexus Industrial Group</option>
+                <option>Southern Auto Cluster</option>
+                <option>Demo Tenant</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Units and formats</div></div>
+          <div class="card__body card__body--tight" data-units></div>
+        </div>
+
+        <div class="card">
+          <div class="card__header">
+            <div>
+              <div class="card__title">Integrations</div>
+              <div class="card__desc">Protocol adapters in the energy data layer</div>
+            </div>
+          </div>
+          <div class="card__body card__body--tight" data-integrations></div>
+        </div>
+
+        <div class="card">
+          <div class="card__header"><div class="card__title">Reset</div></div>
+          <div class="card__body">
+            <p class="text-secondary" style="font-size:var(--fs-sm);margin-bottom:var(--sp-4)">
+              Clears locally stored preferences — theme, demo mode, default site — and reloads.
+            </p>
+            <button class="btn btn--danger" data-reset>Reset local preferences</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/settings.js" defer></script>
+</body>
+</html>

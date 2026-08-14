@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus Market · Energy Nexus</title>
+<meta name="description" content="Simulated flexibility and energy market: supply, demand, price discovery and settlement. Regulation dependent.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">V7 · Later-stage capability</div>
+        <h1>Nexus Market</h1>
+        <p class="page-header__sub">Price discovery and settlement across flexibility, surplus solar and thermal capacity — shown here as a working simulation.</p>
+      </div>
+      <div class="page-header__actions">
+        <span class="pill pill--future">Roadmap V7</span>
+        <button class="btn" data-export-market>Export CSV</button>
+      </div>
+    </div>
+
+    <div class="callout callout--warning" style="margin-bottom:var(--sp-5)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>
+      <div><strong>This is not a live exchange.</strong> Every record on this screen is simulated. Regulated
+      energy transactions require a licensed intermediary, and physical trading between private parties
+      depends on open-access and state-level frameworks that differ by jurisdiction. Each row is labelled
+      with the regime it would need. Nothing here settles real money.</div>
+    </div>
+
+    <div class="kpi-strip" data-market-kpis style="margin-bottom:var(--sp-5)"></div>
+
+    <div class="grid grid--2" style="margin-bottom:var(--sp-5)">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Supply</div>
+            <div class="card__desc">What the network can offer</div>
+          </div>
+          <span class="pill pill--online" data-supply-total>—</span>
+        </div>
+        <div class="card__body card__body--tight" data-supply></div>
+      </div>
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Demand</div>
+            <div class="card__desc">Who would buy it</div>
+          </div>
+        </div>
+        <div class="card__body card__body--tight" data-demand></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-5)">
+      <div class="chart-panel__toolbar">
+        <div>
+          <div class="card__title">Order book depth</div>
+          <div class="card__desc">Cumulative bid and offer volume by price</div>
+        </div>
+        <span class="pill pill--simulated">Simulation</span>
+      </div>
+      <div class="chart-panel__body"><div data-depth-chart></div></div>
+    </div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Order book</h2>
+          <p class="section__desc">Every record carries the regulatory regime it would require to become real.</p>
+        </div>
+        <div class="chip-row" data-market-filters></div>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Record</th><th>Side</th><th>Product</th><th class="num">MW</th><th class="num">₹/kWh</th>
+        <th class="num">Duration</th><th>Location</th><th>Settlement</th><th>Regime</th><th>Status</th></tr></thead>
+        <tbody data-market-rows></tbody>
+      </table></div></div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/market.js" defer></script>
+</body>
+</html>

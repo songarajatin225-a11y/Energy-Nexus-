@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Command Center · Energy Nexus</title>
+<meta name="description" content="Real-time intelligence across your industrial energy network.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="app">
+  <main class="page" id="main">
+
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Energy Nexus OS</div>
+        <h1>Energy Command Center</h1>
+        <p class="page-header__sub">Real-time intelligence across your industrial energy network.</p>
+      </div>
+      <div class="page-header__actions">
+        <a class="btn" href="reports.html">Executive report</a>
+        <a class="btn btn--primary" href="optimisation.html">Open optimisation studio</a>
+      </div>
+    </div>
+
+    <!-- Hero KPIs -->
+    <section aria-label="Estate key metrics">
+      <div class="kpi-strip" data-kpi-strip></div>
+    </section>
+
+    <!-- Live energy flow -->
+    <section class="section" aria-labelledby="flow-title">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title" id="flow-title">Real-time energy flow</div>
+            <div class="card__desc" data-flow-site>Site topology · live</div>
+          </div>
+          <div class="row" style="gap:var(--sp-2)">
+            <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>Streaming</span>
+            <a class="btn btn--sm" href="digital-twin.html">Full digital twin</a>
+          </div>
+        </div>
+        <div class="topology" data-topology></div>
+        <div class="telemetry-ribbon" data-ribbon></div>
+      </div>
+    </section>
+
+    <!-- Profile + agent -->
+    <section class="section grid grid--sidebar-right" aria-label="Energy profile and agent">
+      <div class="card">
+        <div class="chart-panel__toolbar">
+          <div>
+            <div class="card__title">Energy profile</div>
+            <div class="card__desc">Grid, solar, BESS and load against tariff blocks</div>
+          </div>
+          <div class="segmented" role="group" aria-label="Time range" data-range>
+            <button aria-pressed="false" data-range-btn="1H">1H</button>
+            <button aria-pressed="false" data-range-btn="6H">6H</button>
+            <button aria-pressed="true"  data-range-btn="24H">24H</button>
+            <button aria-pressed="false" data-range-btn="7D">7D</button>
+            <button aria-pressed="false" data-range-btn="30D">30D</button>
+          </div>
+        </div>
+        <div class="chart-panel__body">
+          <div data-profile-chart></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="agent-panel" data-agent-panel></div>
+        <div class="card">
+          <div class="card__header">
+            <div class="card__title">Autonomy</div>
+            <a class="btn btn--sm btn--ghost" href="agent.html">Manage</a>
+          </div>
+          <div class="card__body card__body--tight" data-autonomy-summary></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Five questions -->
+    <section class="section" aria-labelledby="q-title">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title" id="q-title">What the OS answers, continuously</h2>
+          <p class="section__desc">Every screen resolves to one of these five questions.</p>
+        </div>
+      </div>
+      <div class="questions" data-questions></div>
+    </section>
+
+    <!-- Alerts -->
+    <section class="section" id="alerts" aria-labelledby="alerts-title">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title" id="alerts-title">Alert centre</h2>
+          <p class="section__desc">Ranked by severity, then by financial exposure.</p>
+        </div>
+        <div class="chip-row" data-alert-filters></div>
+      </div>
+      <div class="card"><div data-alert-list></div></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/twin.js" defer></script>
+<script src="js/dashboard.js" defer></script>
+</body>
+</html>

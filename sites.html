@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Industrial Sites · Energy Nexus</title>
+<meta name="description" content="Every industrial site under management, with live demand, generation, savings and agent tier.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Estate</div>
+        <h1>Industrial Sites</h1>
+        <p class="page-header__sub">Eight flagship sites from an estate of 108. Select any site to make it the active context across the OS.</p>
+      </div>
+      <div class="page-header__actions">
+        <div class="segmented" role="group" aria-label="View mode">
+          <button aria-pressed="true" data-view="cards">Cards</button>
+          <button aria-pressed="false" data-view="table">Table</button>
+        </div>
+        <a class="btn btn--primary" href="onboarding.html">Connect a site</a>
+      </div>
+    </div>
+
+    <div class="row row--wrap" style="margin-bottom:var(--sp-5);gap:var(--sp-3)">
+      <div class="search" style="max-width:300px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3"/></svg>
+        <input class="input" type="search" placeholder="Filter by name or location…" data-site-search aria-label="Filter sites">
+      </div>
+      <div class="chip-row" data-cluster-filters></div>
+      <div class="spacer"></div>
+      <select class="select" style="width:auto" data-sort aria-label="Sort sites">
+        <option value="demand">Sort: current demand</option>
+        <option value="load">Sort: connected load</option>
+        <option value="savings">Sort: savings %</option>
+        <option value="health">Sort: health</option>
+        <option value="name">Sort: name</option>
+      </select>
+    </div>
+
+    <div data-sites-view></div>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/sites.js" defer></script>
+</body>
+</html>

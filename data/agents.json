@@ -1,0 +1,312 @@
+{
+ "meta": {
+  "generator": "tools/generate-data.js",
+  "description": "AI Energy Agent decision log with rationale and counterfactuals",
+  "disclaimer": "SIMULATED TELEMETRY — demonstration dataset. Not actual customer data.",
+  "version": 1
+ },
+ "decisions": [
+  {
+   "decisionId": "AID-2000",
+   "title": "Charge BESS from solar surplus",
+   "assetType": "bess",
+   "tier": 2,
+   "why": "Forecast shows 1.4 MW of PV surplus for 42 minutes from 12:20. Charging now displaces evening peak import at ₹10.40/kWh.",
+   "whatHappens": "BESS charges at 1.4 MW, reaching 78% SoC by 13:05.",
+   "expectedValueINR": 18400,
+   "confidencePct": 94,
+   "constraints": [
+    "Production untouched",
+    "Battery reserve 25% held",
+    "Peak limit protected",
+    "Warranty throughput respected"
+   ],
+   "counterfactual": "Surplus is exported at a net-billing rate of ₹3.10/kWh — ₹18,400 of value is forgone.",
+   "status": "EXECUTED",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "minuteOfDay": 496
+  },
+  {
+   "decisionId": "AID-2001",
+   "title": "Discharge BESS into evening peak",
+   "assetType": "bess",
+   "tier": 2,
+   "why": "Maximum demand is forecast to reach 9.8 MW against a 10.2 MVA ceiling during the 18:00 peak block.",
+   "whatHappens": "BESS discharges 1.8 MW for 95 minutes, holding MD at 8.1 MW.",
+   "expectedValueINR": 42800,
+   "confidencePct": 91,
+   "constraints": [
+    "MD ceiling protected",
+    "SoC floor 20% held",
+    "Degradation cost ₹1,240 netted off"
+   ],
+   "counterfactual": "MD excursion probability rises to 68%; a single excursion resets the billing peak for 12 months.",
+   "status": "EXECUTED",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "minuteOfDay": 603
+  },
+  {
+   "decisionId": "AID-2002",
+   "title": "Re-sequence chiller plant",
+   "assetType": "chiller",
+   "tier": 2,
+   "why": "Chiller 2 is at 41% part load where measured CoP falls to 3.4 against 5.1 for single-chiller operation.",
+   "whatHappens": "Chiller 2 stops; chiller 1 ramps to 74%. Chilled-water supply holds at 7 °C.",
+   "expectedValueINR": 31600,
+   "confidencePct": 89,
+   "constraints": [
+    "CHW supply temperature band 6–8 °C",
+    "Process cooling protected",
+    "Compressor start limits respected"
+   ],
+   "counterfactual": "Part-load penalty continues, costing about ₹1,320 per hour until the load rises.",
+   "status": "EXECUTED",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "minuteOfDay": 157
+  },
+  {
+   "decisionId": "AID-2003",
+   "title": "Defer EV charging past peak",
+   "assetType": "ev",
+   "tier": 3,
+   "why": "Nine of fourteen sessions have departure slack beyond 22:00. Deferral avoids the peak tariff block entirely.",
+   "whatHappens": "0.6 MW of charging moves to the 22:15 off-peak window. All vehicles meet departure SoC.",
+   "expectedValueINR": 8600,
+   "confidencePct": 96,
+   "constraints": [
+    "Departure SoC guaranteed",
+    "Connector limits respected",
+    "No impact on production"
+   ],
+   "counterfactual": "Charging completes in the peak block at ₹10.40/kWh instead of ₹5.40/kWh.",
+   "status": "EXECUTED",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "minuteOfDay": 197
+  },
+  {
+   "decisionId": "AID-2004",
+   "title": "Shift grinding line by 90 minutes",
+   "assetType": "production",
+   "tier": 1,
+   "why": "Order-book slack allows the grinding line to start at 19:30 instead of 18:00, avoiding the evening peak.",
+   "whatHappens": "Line 3 start moves to 19:30. Shift pattern and labour cost unchanged.",
+   "expectedValueINR": 74000,
+   "confidencePct": 82,
+   "constraints": [
+    "Order commitments verified",
+    "Changeover cost ₹6,400 netted off",
+    "Labour rules respected"
+   ],
+   "counterfactual": "The line draws 2.1 MW through the most expensive tariff block of the day.",
+   "status": "PENDING APPROVAL",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "minuteOfDay": 683
+  },
+  {
+   "decisionId": "AID-2005",
+   "title": "Pre-cool thermal storage",
+   "assetType": "thermal",
+   "tier": 2,
+   "why": "Ambient conditions give a chiller CoP of 5.2 before 08:00, against 3.9 in the afternoon.",
+   "whatHappens": "Thermal storage charges 3.1 MWh overnight, displacing afternoon chiller load.",
+   "expectedValueINR": 22900,
+   "confidencePct": 87,
+   "constraints": [
+    "Storage temperature limits held",
+    "Process cooling reserve maintained",
+    "No production impact"
+   ],
+   "counterfactual": "Afternoon cooling is met at a CoP of 3.9, costing about ₹22,900 more per day.",
+   "status": "EXECUTED",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "minuteOfDay": 518
+  },
+  {
+   "decisionId": "AID-2006",
+   "title": "Reduce non-critical HVAC for flexibility event",
+   "assetType": "hvac",
+   "tier": 2,
+   "why": "A 2-hour flexibility window clears at ₹4.10/kWh. Office and non-process HVAC can give 0.8 MW.",
+   "whatHappens": "Setpoints rise 1.5 °C in non-process zones for 120 minutes, then recover.",
+   "expectedValueINR": 19700,
+   "confidencePct": 85,
+   "constraints": [
+    "Process zones excluded",
+    "Comfort band 24–25.5 °C",
+    "Recovery time 25 minutes",
+    "Envelope signed by plant head"
+   ],
+   "counterfactual": "The flexibility revenue opportunity lapses unclaimed.",
+   "status": "EXECUTED",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "minuteOfDay": 916
+  },
+  {
+   "decisionId": "AID-2007",
+   "title": "Start DG set for peak avoidance",
+   "assetType": "dg",
+   "tier": 1,
+   "why": "Marginal DG cost is ₹14.20/kWh against a peak grid rate of ₹10.40/kWh.",
+   "whatHappens": "The agent recommends against DG start. Grid import remains the cheaper option.",
+   "expectedValueINR": 0,
+   "confidencePct": 98,
+   "constraints": [
+    "Consent run-hours checked",
+    "Ambient air-quality restriction active",
+    "Marginal cost unfavourable"
+   ],
+   "counterfactual": "No action needed — declining to act is the correct outcome here.",
+   "status": "DECLINED",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "minuteOfDay": 1171
+  },
+  {
+   "decisionId": "AID-2008",
+   "title": "Nominate open-access schedule",
+   "assetType": "grid",
+   "tier": 1,
+   "why": "Day-ahead open-access nomination closes in 3 hours. Forecast load supports a 6 MW block.",
+   "whatHappens": "Recommendation only. A licensed intermediary executes any regulated transaction.",
+   "expectedValueINR": 128000,
+   "confidencePct": 79,
+   "constraints": [
+    "Regulated transaction — permanently human-approved",
+    "Scheduling penalties modelled",
+    "Deviation risk quantified"
+   ],
+   "counterfactual": "The nomination window closes and the block reverts to higher-cost grid supply.",
+   "status": "PENDING APPROVAL",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "minuteOfDay": 1214
+  },
+  {
+   "decisionId": "AID-2009",
+   "title": "Correct power factor",
+   "assetType": "meter",
+   "tier": 2,
+   "why": "PF has drifted to 0.943, below the 0.95 incentive threshold, exposing the site to a penalty.",
+   "whatHappens": "APFC stage 3 switches in, restoring PF to 0.978.",
+   "expectedValueINR": 42000,
+   "confidencePct": 93,
+   "constraints": [
+    "Capacitor switching limits respected",
+    "Harmonic distortion monitored",
+    "No resonance risk"
+   ],
+   "counterfactual": "The PF penalty accrues at roughly ₹3,500 per day.",
+   "status": "EXECUTED",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "minuteOfDay": 877
+  },
+  {
+   "decisionId": "AID-2010",
+   "title": "Hold BESS rack 4 out of dispatch",
+   "assetType": "bess",
+   "tier": 2,
+   "why": "Cell-group voltage divergence on rack 4 exceeds the 28 mV plausibility band.",
+   "whatHappens": "Rack 4 is isolated from the dispatch stack. Available power drops to 4.2 MW.",
+   "expectedValueINR": 0,
+   "confidencePct": 97,
+   "constraints": [
+    "Safety first — available capacity reduced",
+    "OEM inspection raised",
+    "Warranty position preserved"
+   ],
+   "counterfactual": "Continued cycling of a diverging rack risks accelerated degradation and a warranty dispute.",
+   "status": "EXECUTED",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "minuteOfDay": 1192
+  },
+  {
+   "decisionId": "AID-2011",
+   "title": "Apply AHU night setback",
+   "assetType": "hvac",
+   "tier": 2,
+   "why": "Six AHUs held daytime setpoints through the night block, costing 0.4 MW of avoidable load.",
+   "whatHappens": "Night setback schedule is applied from 22:00 to 06:00.",
+   "expectedValueINR": 31200,
+   "confidencePct": 92,
+   "constraints": [
+    "Non-process zones only",
+    "Morning pull-down verified",
+    "Comfort restored by 06:30"
+   ],
+   "counterfactual": "About 3.2 MWh per night is consumed with no occupancy benefit.",
+   "status": "EXECUTED",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "minuteOfDay": 583
+  },
+  {
+   "decisionId": "AID-2012",
+   "title": "Reduce contract demand",
+   "assetType": "grid",
+   "tier": 1,
+   "why": "The rolling 12-month peak is 14% below sanctioned load, so fixed demand charges are over-paid.",
+   "whatHappens": "Recommendation to file a contract-demand reduction with the utility.",
+   "expectedValueINR": 194000,
+   "confidencePct": 76,
+   "constraints": [
+    "Commercial change — human approval required",
+    "Reconnection cost modelled",
+    "Growth headroom retained"
+   ],
+   "counterfactual": "Fixed demand charges continue on unused sanctioned capacity.",
+   "status": "PENDING APPROVAL",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "minuteOfDay": 654
+  },
+  {
+   "decisionId": "AID-2013",
+   "title": "Curtail compressed-air leak load",
+   "assetType": "compressor",
+   "tier": 2,
+   "why": "Off-shift baseline flow is 18% above the commissioning benchmark, indicating a leak.",
+   "whatHappens": "Isolate the zone 4 header off-shift pending a leak survey.",
+   "expectedValueINR": 186000,
+   "confidencePct": 84,
+   "constraints": [
+    "Process air pressure maintained",
+    "Zone 4 has no off-shift demand",
+    "Reversible in 30 seconds"
+   ],
+   "counterfactual": "A continuous 34 kW loss persists, worth about ₹186,000 a year.",
+   "status": "PENDING APPROVAL",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "minuteOfDay": 1151
+  },
+  {
+   "decisionId": "AID-2014",
+   "title": "Re-plan after gateway heartbeat loss",
+   "assetType": "grid",
+   "tier": 2,
+   "why": "Two heartbeats were missed on gateway GW-02 within 15 minutes.",
+   "whatHappens": "Affected assets revert to Tier 1 and hold their last valid safe schedule.",
+   "expectedValueINR": 0,
+   "confidencePct": 99,
+   "constraints": [
+    "Dead-man behaviour triggered",
+    "Last valid schedule held",
+    "Native controllers resume on timeout"
+   ],
+   "counterfactual": "Operating on stale state risks acting on data that no longer reflects the plant.",
+   "status": "EXECUTED",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "minuteOfDay": 432
+  }
+ ]
+}
