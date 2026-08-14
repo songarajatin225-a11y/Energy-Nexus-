@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus Intelligence · Energy Nexus</title>
+<meta name="description" content="The AI-native energy decision engine: a constrained agent that explains every action and escalates when it should not act alone.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Nexus Intelligence</div>
+        <h1>AI-native energy decision engine</h1>
+        <p class="page-header__sub">A persistent, constrained agent owns the energy decisions of each site, quantifies the value of every action, and escalates anything it should not do alone.</p>
+      </div>
+      <div class="page-header__actions">
+        <a class="btn" href="safety.html">Safety envelope</a>
+        <a class="btn btn--primary" href="optimisation.html">Optimisation studio</a>
+      </div>
+    </div>
+
+    <div class="grid grid--sidebar-right">
+      <div class="stack">
+        <div class="agent-panel" data-agent-hero></div>
+
+        <div class="card">
+          <div class="card__header">
+            <div>
+              <div class="card__title">Decision queue</div>
+              <div class="card__desc">Ranked by expected value. Tier 1 actions wait for a human.</div>
+            </div>
+            <div class="chip-row" data-decision-filters></div>
+          </div>
+          <div data-decision-list></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Autonomy tiers</div></div>
+          <div class="card__body">
+            <div class="autonomy-ladder" data-autonomy-ladder></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__header"><div class="card__title">Decision scope</div></div>
+          <div class="card__body card__body--tight" data-agent-scope></div>
+        </div>
+
+        <div class="callout callout--warning">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z"/></svg>
+          <div><strong>Two decisions never become autonomous.</strong> Diesel dispatch carries statutory and
+          consent-condition exposure. Regulated energy transactions carry counterparty and settlement
+          liability. Both remain recommend-and-approve at every tier.</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">What the agent weighs</h2>
+          <p class="section__desc">Each decision class, the inputs it considers, and the tier at which it may act.</p>
+        </div>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Decision</th><th>What the agent weighs</th><th>Autonomy tier</th></tr></thead>
+        <tbody data-decision-matrix></tbody>
+      </table></div></div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/agent.js" defer></script>
+</body>
+</html>

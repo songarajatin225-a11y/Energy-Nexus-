@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Twin · Energy Nexus</title>
+<meta name="description" content="A machine-readable, continuously reconciled model of the site: topology, assets, constraints and commercial context.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Site model</div>
+        <h1>Digital Twin</h1>
+        <p class="page-header__sub" data-twin-sub>A continuously reconciled model of the plant — topology, asset behaviour, constraints, commercial terms and carbon.</p>
+      </div>
+      <div class="page-header__actions">
+        <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>Reconciled 15s ago</span>
+        <a class="btn" href="assets.html">Asset centre</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-5)">
+      <div class="card__header">
+        <div>
+          <div class="card__title">Single-line topology</div>
+          <div class="card__desc">Select any node to inspect live state, constraints and control permission.</div>
+        </div>
+        <div class="chip-row" data-twin-layers></div>
+      </div>
+      <div class="topology" data-twin-topology></div>
+      <div class="telemetry-ribbon" data-twin-ribbon></div>
+    </div>
+
+    <div class="grid grid--sidebar-right">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Model contents</div>
+            <div class="card__desc">What the twin holds, and how fresh each layer is</div>
+          </div>
+        </div>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>Layer</th><th>Contents</th><th>Source</th><th>Freshness</th><th>Status</th></tr></thead>
+          <tbody data-model-layers></tbody>
+        </table></div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Constraint register</div></div>
+          <div class="card__body card__body--tight" data-constraints></div>
+          <div class="card__footer">
+            <span class="text-tertiary" style="font-size:var(--fs-xs)">Signed at commissioning · enforced in optimiser, edge and interlocks</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Reconciliation</div></div>
+          <div class="card__body card__body--tight" data-reconciliation></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Connected assets</h2>
+          <p class="section__desc">Every asset in the twin for this site.</p>
+        </div>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Asset</th><th>Type</th><th class="num">Rated</th><th class="num">Utilisation</th><th class="num">Health</th><th>Control</th><th>Status</th></tr></thead>
+        <tbody data-twin-assets></tbody>
+      </table></div></div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/twin.js" defer></script>
+<script src="js/digital-twin.js" defer></script>
+</body>
+</html>

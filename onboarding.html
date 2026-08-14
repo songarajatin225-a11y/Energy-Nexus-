@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect a Site · Energy Nexus</title>
+<meta name="description" content="Seven steps from a disconnected plant to a live energy twin.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Onboarding</div>
+        <h1>Connect a Site</h1>
+        <p class="page-header__sub">Seven steps from a disconnected plant to a live energy twin. Typical elapsed time is four to six weeks.</p>
+      </div>
+      <div class="page-header__actions">
+        <span class="pill pill--simulated">Guided demo</span>
+      </div>
+    </div>
+
+    <div class="wizard-steps" style="margin-bottom:var(--sp-6)" data-wizard-steps></div>
+
+    <div class="grid grid--sidebar-right">
+      <div class="card" data-wizard-panel></div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Progress</div></div>
+          <div class="card__body">
+            <div class="bar" style="margin-bottom:var(--sp-3)">
+              <div class="bar__fill" data-wizard-bar style="width:0%"></div>
+            </div>
+            <div class="row row--between">
+              <span class="text-tertiary" style="font-size:var(--fs-xs)">Step <span data-step-num>1</span> of 7</span>
+              <span class="num" data-step-pct style="font-size:var(--fs-xs)">14%</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">What commissioning produces</div></div>
+          <div class="card__body">
+            <ul class="constraint-list" data-commissioning-outputs></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/onboarding.js" defer></script>
+</body>
+</html>

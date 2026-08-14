@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy Assets · Energy Nexus</title>
+<meta name="description" content="Every connected energy asset across the estate, with live telemetry, control permission and health.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Asset centre</div>
+        <h1>Energy Assets</h1>
+        <p class="page-header__sub">Every asset in the estate digital twin, with live telemetry and control permission.</p>
+      </div>
+      <div class="page-header__actions">
+        <button class="btn" data-export-assets>Export CSV</button>
+        <a class="btn btn--primary" href="digital-twin.html">Open twin</a>
+      </div>
+    </div>
+
+    <div class="kpi-strip" data-asset-kpis style="margin-bottom:var(--sp-5)"></div>
+
+    <div class="row row--wrap" style="margin-bottom:var(--sp-4);gap:var(--sp-3)">
+      <div class="search" style="max-width:280px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.3-4.3"/></svg>
+        <input class="input" type="search" placeholder="Search assets or IDs…" data-asset-search aria-label="Search assets">
+      </div>
+      <div class="spacer"></div>
+      <select class="select" style="width:auto" data-site-filter aria-label="Filter by site">
+        <option value="ALL">All sites</option>
+      </select>
+      <select class="select" style="width:auto" data-status-filter aria-label="Filter by status">
+        <option value="ALL">All statuses</option>
+        <option value="ONLINE">Online</option>
+        <option value="WARNING">Warning</option>
+        <option value="OFFLINE">Offline</option>
+      </select>
+    </div>
+
+    <div class="chip-row" style="margin-bottom:var(--sp-4)" data-type-filters></div>
+
+    <div class="card"><div class="table-wrap"><table class="table">
+      <thead><tr>
+        <th>Asset</th><th>Site</th><th>Type</th><th class="num">Rated</th>
+        <th class="num">Utilisation</th><th class="num">Health</th><th>Telemetry</th><th>Control</th><th>Status</th>
+      </tr></thead>
+      <tbody data-asset-rows></tbody>
+    </table></div></div>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/twin.js" defer></script>
+<script src="js/assets.js" defer></script>
+</body>
+</html>

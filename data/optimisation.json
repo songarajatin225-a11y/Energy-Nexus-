@@ -1,0 +1,470 @@
+{
+ "meta": {
+  "generator": "tools/generate-data.js",
+  "description": "Optimisation runs with before/after energy mix",
+  "disclaimer": "SIMULATED TELEMETRY — demonstration dataset. Not actual customer data.",
+  "version": 1
+ },
+ "runs": [
+  {
+   "runId": "OPT-3000",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "minuteOfDay": 1032,
+   "before": {
+    "gridMW": 8.2,
+    "solarMW": 1.9,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 6.89,
+    "solarMW": 2.26,
+    "bessMW": 1.31,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 11237,
+   "peakReductionMW": 1.31,
+   "carbonReductionTCO2e": 0.22,
+   "objective": "Peak",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3001",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "minuteOfDay": 1098,
+   "before": {
+    "gridMW": 5.55,
+    "solarMW": 1.27,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 4.53,
+    "solarMW": 1.58,
+    "bessMW": 1.02,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 7212,
+   "peakReductionMW": 1.02,
+   "carbonReductionTCO2e": 0.17,
+   "objective": "Peak",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3002",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "minuteOfDay": 981,
+   "before": {
+    "gridMW": 11.52,
+    "solarMW": 3.03,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 9.74,
+    "solarMW": 3.69,
+    "bessMW": 1.78,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 11318,
+   "peakReductionMW": 1.78,
+   "carbonReductionTCO2e": 0.3,
+   "objective": "Carbon",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3003",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "minuteOfDay": 644,
+   "before": {
+    "gridMW": 9.32,
+    "solarMW": 1.87,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 7.46,
+    "solarMW": 2.35,
+    "bessMW": 1.86,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 13306,
+   "peakReductionMW": 1.86,
+   "carbonReductionTCO2e": 0.32,
+   "objective": "Peak",
+   "status": "SIMULATED"
+  },
+  {
+   "runId": "OPT-3004",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "minuteOfDay": 974,
+   "before": {
+    "gridMW": 16.11,
+    "solarMW": 4.04,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 12.5,
+    "solarMW": 5.12,
+    "bessMW": 3.61,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 24413,
+   "peakReductionMW": 3.61,
+   "carbonReductionTCO2e": 0.62,
+   "objective": "Blended",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3005",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "minuteOfDay": 1328,
+   "before": {
+    "gridMW": 6.71,
+    "solarMW": 1.37,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 5.67,
+    "solarMW": 1.59,
+    "bessMW": 1.04,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 8912,
+   "peakReductionMW": 1.04,
+   "carbonReductionTCO2e": 0.18,
+   "objective": "Carbon",
+   "status": "SIMULATED"
+  },
+  {
+   "runId": "OPT-3006",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "minuteOfDay": 336,
+   "before": {
+    "gridMW": 7.61,
+    "solarMW": 1.85,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 6.44,
+    "solarMW": 2.32,
+    "bessMW": 1.17,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 6468,
+   "peakReductionMW": 1.17,
+   "carbonReductionTCO2e": 0.2,
+   "objective": "Peak",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3007",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "minuteOfDay": 379,
+   "before": {
+    "gridMW": 5.06,
+    "solarMW": 1.29,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 4.04,
+    "solarMW": 1.6,
+    "bessMW": 1.02,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 8555,
+   "peakReductionMW": 1.02,
+   "carbonReductionTCO2e": 0.17,
+   "objective": "Peak",
+   "status": "SIMULATED"
+  },
+  {
+   "runId": "OPT-3008",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "minuteOfDay": 1285,
+   "before": {
+    "gridMW": 8.25,
+    "solarMW": 2.37,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 6.49,
+    "solarMW": 2.76,
+    "bessMW": 1.76,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 13247,
+   "peakReductionMW": 1.76,
+   "carbonReductionTCO2e": 0.3,
+   "objective": "Blended",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3009",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "minuteOfDay": 1428,
+   "before": {
+    "gridMW": 5.5,
+    "solarMW": 1.36,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 4.53,
+    "solarMW": 1.61,
+    "bessMW": 0.97,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 5664,
+   "peakReductionMW": 0.97,
+   "carbonReductionTCO2e": 0.17,
+   "objective": "Blended",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3010",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "minuteOfDay": 1331,
+   "before": {
+    "gridMW": 11.23,
+    "solarMW": 3.59,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 9.36,
+    "solarMW": 4.35,
+    "bessMW": 1.87,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 11349,
+   "peakReductionMW": 1.87,
+   "carbonReductionTCO2e": 0.32,
+   "objective": "Peak",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3011",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "minuteOfDay": 1270,
+   "before": {
+    "gridMW": 9.37,
+    "solarMW": 1.77,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 7.87,
+    "solarMW": 2.03,
+    "bessMW": 1.5,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 10749,
+   "peakReductionMW": 1.5,
+   "carbonReductionTCO2e": 0.26,
+   "objective": "Cost",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3012",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "minuteOfDay": 251,
+   "before": {
+    "gridMW": 15,
+    "solarMW": 4.03,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 12.23,
+    "solarMW": 4.75,
+    "bessMW": 2.77,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 19658,
+   "peakReductionMW": 2.77,
+   "carbonReductionTCO2e": 0.47,
+   "objective": "Cost",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3013",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "minuteOfDay": 170,
+   "before": {
+    "gridMW": 6.78,
+    "solarMW": 1.42,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 5.41,
+    "solarMW": 1.83,
+    "bessMW": 1.37,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 8897,
+   "peakReductionMW": 1.37,
+   "carbonReductionTCO2e": 0.23,
+   "objective": "Peak",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3014",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "minuteOfDay": 941,
+   "before": {
+    "gridMW": 6.79,
+    "solarMW": 1.56,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 5.31,
+    "solarMW": 1.86,
+    "bessMW": 1.48,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 8512,
+   "peakReductionMW": 1.48,
+   "carbonReductionTCO2e": 0.25,
+   "objective": "Peak",
+   "status": "SIMULATED"
+  },
+  {
+   "runId": "OPT-3015",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "minuteOfDay": 1351,
+   "before": {
+    "gridMW": 4.78,
+    "solarMW": 1.12,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 3.9,
+    "solarMW": 1.4,
+    "bessMW": 0.88,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 5065,
+   "peakReductionMW": 0.88,
+   "carbonReductionTCO2e": 0.15,
+   "objective": "Blended",
+   "status": "SIMULATED"
+  },
+  {
+   "runId": "OPT-3016",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "minuteOfDay": 146,
+   "before": {
+    "gridMW": 7.63,
+    "solarMW": 2.11,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 6.1,
+    "solarMW": 2.52,
+    "bessMW": 1.53,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 11890,
+   "peakReductionMW": 1.53,
+   "carbonReductionTCO2e": 0.26,
+   "objective": "Cost",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3017",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "minuteOfDay": 13,
+   "before": {
+    "gridMW": 5.78,
+    "solarMW": 1.63,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 4.72,
+    "solarMW": 2.11,
+    "bessMW": 1.06,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 6673,
+   "peakReductionMW": 1.06,
+   "carbonReductionTCO2e": 0.18,
+   "objective": "Blended",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3018",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "minuteOfDay": 410,
+   "before": {
+    "gridMW": 12.78,
+    "solarMW": 3.04,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 10.25,
+    "solarMW": 3.77,
+    "bessMW": 2.53,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 13999,
+   "peakReductionMW": 2.53,
+   "carbonReductionTCO2e": 0.43,
+   "objective": "Cost",
+   "status": "APPLIED"
+  },
+  {
+   "runId": "OPT-3019",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "minuteOfDay": 1418,
+   "before": {
+    "gridMW": 9.84,
+    "solarMW": 1.9,
+    "bessMW": 0,
+    "dgMW": 0
+   },
+   "after": {
+    "gridMW": 7.79,
+    "solarMW": 2.36,
+    "bessMW": 2.05,
+    "dgMW": 0
+   },
+   "savingINRPerDay": 14008,
+   "peakReductionMW": 2.05,
+   "carbonReductionTCO2e": 0.35,
+   "objective": "Peak",
+   "status": "SIMULATED"
+  }
+ ]
+}

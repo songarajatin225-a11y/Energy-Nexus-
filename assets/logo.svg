@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 64" fill="none" role="img" aria-label="Energy Nexus">
+  <defs>
+    <linearGradient id="lgRing" x1="14" y1="6" x2="50" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7DD33F"/>
+      <stop offset="0.45" stop-color="#2FD3C4"/>
+      <stop offset="1" stop-color="#2E8BFF"/>
+    </linearGradient>
+    <linearGradient id="lgNexus" x1="196" y1="20" x2="404" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2E8BFF"/>
+      <stop offset="0.55" stop-color="#2FD3C4"/>
+      <stop offset="1" stop-color="#7DD33F"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <path d="M46.5 9.8A26 26 0 1 1 17.2 53.6" stroke="url(#lgRing)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M19 24.5h15.5M19 32h11M19 39.5h15.5" stroke="url(#lgRing)" stroke-width="4.4" stroke-linecap="round"/>
+    <path d="M38.5 41.5V22.5l8 19V22.5" stroke="url(#lgRing)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="46.5" cy="9.8" r="3.1" fill="#7DD33F"/>
+    <circle cx="17.2" cy="53.6" r="3.1" fill="#2E8BFF"/>
+  </g>
+
+  <text x="84" y="42" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="27" font-weight="700"
+        letter-spacing="1.6" fill="currentColor">ENERGY</text>
+  <text x="212" y="42" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="27" font-weight="700"
+        letter-spacing="1.6" fill="url(#lgNexus)">NEXUS</text>
+</svg>

@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Energy Nexus — responsive behaviour
+   Mobile is a re-composition of the OS, not a shrunken desktop:
+   the sidebar becomes a drawer, KPIs become a swipe rail, the topology
+   simplifies, and agent actions move within thumb reach.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Large desktop → standard desktop
+   -------------------------------------------------------------------------- */
+@media (max-width: 1500px) {
+  .kpi-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid--sidebar-right { grid-template-columns: minmax(0, 1fr) 320px; }
+}
+
+@media (max-width: 1280px) {
+  .grid--sidebar-right,
+  .grid--sidebar-left { grid-template-columns: minmax(0, 1fr); }
+  .grid--6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .questions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: var(--sp-10); padding: var(--sp-16) var(--sp-6) var(--sp-12); }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet — 768 to 1439
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  :root { --sidebar-w: 216px; }
+
+  .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agent-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agent-metric:nth-child(2) { border-right: none; }
+  .agent-metric:nth-child(-n + 2) { border-bottom: 1px solid var(--border-subtle); }
+  .compare { grid-template-columns: minmax(0, 1fr); gap: var(--sp-3); }
+  .compare__arrow { transform: rotate(90deg); height: 26px; }
+  .landing-section, .landing-cta { padding-left: var(--sp-6); padding-right: var(--sp-6); }
+  .landing-nav { padding: 0 var(--sp-5); }
+
+  /* The staircase flattens — the ascent metaphor breaks below this width. */
+  .roadmap__step { margin-top: 0 !important; }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile — below 768
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  :root { --topbar-h: 52px; }
+
+  /* Sidebar becomes an off-canvas drawer. */
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .app[data-sidebar='collapsed'] { grid-template-columns: minmax(0, 1fr); }
+
+  .sidebar {
+    position: fixed; top: 0; bottom: 0; left: 0;
+    width: 274px;
+    transform: translateX(-100%);
+    transition: transform var(--dur-slow) var(--ease-out);
+    box-shadow: var(--shadow-lg);
+  }
+  .app[data-mobile-nav='open'] .sidebar { transform: translateX(0); }
+  /* Labels must always show in the drawer, even if desktop state was collapsed. */
+  .app[data-sidebar='collapsed'] .sidebar__wordmark,
+  .app[data-sidebar='collapsed'] .nav-item__label,
+  .app[data-sidebar='collapsed'] .nav-item__badge,
+  .app[data-sidebar='collapsed'] .sidebar__group-label { display: revert; }
+  .app[data-sidebar='collapsed'] .nav-item { justify-content: flex-start; padding: 10px var(--sp-3); }
+  .app[data-sidebar='collapsed'] .sidebar__brand { justify-content: flex-start; padding: 0 var(--sp-4); }
+  .nav-item { padding: 10px var(--sp-3); }
+
+  .page { padding: var(--sp-4) var(--sp-4) var(--sp-16); }
+
+  /* Topbar sheds everything but identity and the essentials. */
+  .topbar { padding: 0 var(--sp-4); gap: var(--sp-2); }
+  .topbar__clock,
+  .topbar [data-topbar-optional] { display: none; }
+  .topbar .search { min-width: 0; }
+
+  .page-header { flex-direction: column; align-items: stretch; gap: var(--sp-4); }
+  .page-header h1 { font-size: 1.375rem; }
+  .page-header__actions { width: 100%; }
+
+  /* KPIs become a horizontally scrollable rail with snap points. */
+  .kpi-strip {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--sp-3);
+    margin: 0 calc(var(--sp-4) * -1);
+    padding: 0 var(--sp-4) var(--sp-2);
+    -webkit-overflow-scrolling: touch;
+  }
+  .kpi { flex: 0 0 62vw; scroll-snap-align: start; }
+  .kpi__value { font-size: 1.75rem; }
+
+  /* Everything stacks. */
+  .grid--2, .grid--3, .grid--4, .grid--6,
+  .questions, .feature-grid,
+  .site-card__metrics { grid-template-columns: minmax(0, 1fr); }
+  .site-card__metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .agent-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agent-insight { font-size: var(--fs-md); padding: var(--sp-4); }
+  /* Agent actions become full-width, thumb-reachable targets. */
+  .agent-actions { padding: var(--sp-4); }
+  .agent-actions .btn { flex: 1 1 calc(50% - var(--sp-1)); height: 42px; }
+
+  .drawer { width: 100vw; }
+  .modal { max-height: 92vh; }
+  .modal-backdrop { padding: var(--sp-3); align-items: flex-end; }
+
+  .toast-stack { left: var(--sp-3); right: var(--sp-3); bottom: var(--sp-3); }
+  .toast { min-width: 0; max-width: none; }
+
+  .table thead th, .table tbody td { padding: var(--sp-3); }
+  .table thead th { position: static; }
+
+  /* Charts get taller relative to width so the trend stays readable. */
+  .chart-panel__toolbar { padding: var(--sp-3) var(--sp-4); }
+  .chart-panel__body { padding: var(--sp-4) var(--sp-3); }
+
+  /* Headers stack instead of squeezing the title into a two-word column. */
+  .card__header,
+  .chart-panel__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+  .card__header > .row,
+  .chart-panel__toolbar > .row,
+  .card__header > .chip-row { flex-wrap: wrap; }
+
+  /* The single-line diagram stays legible by scrolling rather than shrinking.
+     Squeezing 1060 units into 340px makes every label unreadable. */
+  .topology { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .topology svg { min-width: 660px; }
+  .network-map { overflow-x: auto; }
+  .network-map svg { min-width: 520px; }
+  .telemetry-ribbon { gap: var(--sp-4); padding: var(--sp-3) var(--sp-4); }
+
+  .hero { padding: var(--sp-12) var(--sp-4) var(--sp-10); }
+  .hero__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+  .hero__cta .btn { flex: 1; }
+  .landing-section, .landing-cta { padding: var(--sp-12) var(--sp-4); }
+  .landing-nav { padding: 0 var(--sp-4); }
+  .landing-nav__links { display: none; }
+
+  .safety-hero { flex-direction: column; text-align: center; gap: var(--sp-4); padding: var(--sp-5); }
+
+  .waterfall { min-height: 190px; gap: var(--sp-1); }
+  .waterfall__label { font-size: 8px; }
+
+  .ladder__rung { padding: var(--sp-3) var(--sp-4); }
+
+  .dl { grid-template-columns: minmax(0, 1fr); gap: var(--sp-1); }
+  .dl dd { text-align: left; padding-bottom: var(--sp-2); }
+}
+
+@media (max-width: 400px) {
+  .kpi { flex-basis: 78vw; }
+  .site-card__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* --------------------------------------------------------------------------
+   Print — reports must survive a printer
+   -------------------------------------------------------------------------- */
+@media print {
+  .sidebar, .topbar, .demo-banner, .toast-stack,
+  .page-header__actions, .scrim, .drawer { display: none !important; }
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .page { padding: 0; max-width: none; }
+  .card { break-inside: avoid; border-color: #ccc; }
+  body { background: #fff; color: #000; }
+  .chart svg { max-height: 320px; }
+}

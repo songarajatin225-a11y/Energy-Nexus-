@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy Reporting · Energy Nexus</title>
+<meta name="description" content="Executive, savings verification, carbon, asset performance and flexibility reports.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Reporting</div>
+        <h1>Energy Reporting</h1>
+        <p class="page-header__sub">Board-ready reporting built from the same model the optimiser uses — no separate spreadsheet to reconcile.</p>
+      </div>
+      <div class="page-header__actions">
+        <select class="select" style="width:auto" data-report-period aria-label="Reporting period">
+          <option>Last 30 days</option>
+          <option>Last quarter</option>
+          <option>Year to date</option>
+          <option>Trailing twelve months</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid--3" data-report-cards></div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Savings verification ledger</h2>
+          <p class="section__desc">Every settled period, its method and the verified figure.</p>
+        </div>
+        <button class="btn btn--sm" data-export-ledger>Export CSV</button>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Transaction</th><th>Site</th><th>Period</th><th>Category</th><th>Method</th>
+        <th class="num">Gross</th><th class="num">Verified</th><th class="num">Nexus fee</th><th class="num">Net benefit</th><th>Status</th></tr></thead>
+        <tbody data-ledger-rows></tbody>
+      </table></div></div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Verified savings by category</div>
+            <div class="card__desc">Where the money actually comes from across the estate</div>
+          </div>
+        </div>
+        <div class="card__body" style="display:flex;align-items:center;justify-content:center;gap:var(--sp-10);flex-wrap:wrap">
+          <div data-category-donut></div>
+          <div style="flex:1;min-width:220px" data-category-legend></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/reports.js" defer></script>
+</body>
+</html>

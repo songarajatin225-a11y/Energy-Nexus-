@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optimisation Studio · Energy Nexus</title>
+<meta name="description" content="Simulate and apply the optimised energy mix: current state against the Nexus plan, with savings, peak reduction and carbon impact.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Optimisation</div>
+        <h1>Optimisation Studio</h1>
+        <p class="page-header__sub" data-opt-sub>Solve the next 24 hours against cost, peak or carbon — inside the signed constraint register.</p>
+      </div>
+      <div class="page-header__actions">
+        <select class="select" style="width:auto" data-objective aria-label="Optimisation objective">
+          <option value="Cost">Objective: cost</option>
+          <option value="Peak">Objective: peak</option>
+          <option value="Carbon">Objective: carbon</option>
+          <option value="Blended">Objective: blended</option>
+        </select>
+        <button class="btn btn--primary" data-run-sim>Run simulation</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:var(--sp-5)">
+      <div class="card__header">
+        <div>
+          <div class="card__title">Current state vs Nexus plan</div>
+          <div class="card__desc">Energy mix now, and the mix the optimiser proposes</div>
+        </div>
+        <span data-sim-status class="pill">Ready</span>
+      </div>
+      <div class="card__body">
+        <div class="compare">
+          <div class="compare__panel">
+            <div class="compare__label">Current state</div>
+            <div data-current-state></div>
+          </div>
+          <div class="compare__arrow" aria-hidden="true">→</div>
+          <div class="compare__panel compare__panel--after">
+            <div class="compare__label">Nexus state</div>
+            <div data-nexus-state></div>
+          </div>
+        </div>
+      </div>
+      <div class="card__footer">
+        <div class="grid grid--3" style="gap:var(--sp-5)">
+          <div>
+            <div class="eyebrow">Projected saving</div>
+            <div class="num text-positive" style="font-size:var(--fs-xl);font-weight:550" data-saving>—</div>
+            <div class="text-tertiary" style="font-size:var(--fs-xs)">per day, at current tariff</div>
+          </div>
+          <div>
+            <div class="eyebrow">Peak reduction</div>
+            <div class="num" style="font-size:var(--fs-xl);font-weight:550" data-peak-red>—</div>
+            <div class="text-tertiary" style="font-size:var(--fs-xs)">maximum demand held below ceiling</div>
+          </div>
+          <div>
+            <div class="eyebrow">Carbon reduction</div>
+            <div class="num text-active" style="font-size:var(--fs-xl);font-weight:550" data-carbon-red>—</div>
+            <div class="text-tertiary" style="font-size:var(--fs-xs)">scope 2, grid intensity weighted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid--sidebar-right">
+      <div class="card">
+        <div class="chart-panel__toolbar">
+          <div>
+            <div class="card__title">Dispatch plan</div>
+            <div class="card__desc">Baseline grid import against the optimised plan over 24 hours</div>
+          </div>
+          <div class="chip-row">
+            <span class="pill pill--simulated">Simulation</span>
+          </div>
+        </div>
+        <div class="chart-panel__body"><div data-opt-chart></div></div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Constraints honoured</div></div>
+          <div class="card__body">
+            <ul class="constraint-list" data-opt-constraints></ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Plan actions</div></div>
+          <div class="card__body card__body--tight" data-opt-actions></div>
+          <div class="card__footer">
+            <button class="btn btn--primary btn--block" data-apply-plan>Apply plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Optimisation history</h2>
+          <p class="section__desc">Every run, its objective and whether it was applied.</p>
+        </div>
+        <button class="btn btn--sm" data-export-runs>Export CSV</button>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Run</th><th>Site</th><th>Objective</th><th class="num">Grid before</th><th class="num">Grid after</th>
+        <th class="num">Saving/day</th><th class="num">Peak ↓</th><th class="num">Carbon ↓</th><th>Status</th></tr></thead>
+        <tbody data-opt-history></tbody>
+      </table></div></div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/optimisation.js" defer></script>
+</body>
+</html>

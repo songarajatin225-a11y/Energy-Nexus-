@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Energy Nexus — design tokens
+   One source of truth for colour, type, spacing, motion and elevation.
+   Dark is the primary industrial environment; light is a first-class mode.
+   ========================================================================== */
+
+:root {
+  /* --- surfaces: deep industrial navy through graphite --- */
+  --bg-base:      #060B14;
+  --bg-sunken:    #04080F;
+  --bg-surface:   #0A111E;
+  --bg-elevated:  #0F1827;
+  --bg-raised:    #142033;
+  --bg-hover:     #1A2739;
+  --bg-input:     #0C1522;
+
+  /* --- borders --- */
+  --border-subtle:  rgba(148, 176, 214, 0.10);
+  --border-default: rgba(148, 176, 214, 0.16);
+  --border-strong:  rgba(148, 176, 214, 0.28);
+
+  /* --- text --- */
+  --text-primary:   #E9EFF8;
+  --text-secondary: #93A6C2;
+  --text-tertiary:  #61748F;
+  --text-inverse:   #060B14;
+
+  /* --- accents: intelligence, data, flow --- */
+  --accent-cyan:  #2FD3C4;
+  --accent-blue:  #2E8BFF;
+  --accent-green: #7DD33F;
+  --accent-amber: #F5A623;
+  --accent-red:   #FF5A65;
+  --accent-violet:#8B6DFF;
+
+  /* semantic aliases — meaning, not hue */
+  --sem-positive: var(--accent-green);
+  --sem-warning:  var(--accent-amber);
+  --sem-critical: var(--accent-red);
+  --sem-active:   var(--accent-cyan);
+  --sem-info:     var(--accent-blue);
+
+  /* tinted washes for badges and fills */
+  --wash-green:  rgba(125, 211, 63, 0.12);
+  --wash-cyan:   rgba(47, 211, 196, 0.12);
+  --wash-blue:   rgba(46, 139, 255, 0.12);
+  --wash-amber:  rgba(245, 166, 35, 0.13);
+  --wash-red:    rgba(255, 90, 101, 0.13);
+  --wash-violet: rgba(139, 109, 255, 0.13);
+
+  /* --- energy-carrier colours: consistent across every chart and topology --- */
+  --e-grid:   #6E8CB5;
+  --e-solar:  #F5A623;
+  --e-bess:   #7DD33F;
+  --e-dg:     #FF8A5A;
+  --e-load:   #2E8BFF;
+  --e-hvac:   #2FD3C4;
+  --e-ev:     #8B6DFF;
+  --e-thermal:#FF6FA5;
+
+  /* --- typography --- */
+  --font-sans: 'Inter', 'IBM Plex Sans', 'Manrope', system-ui, -apple-system,
+               'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular,
+               'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --fs-2xs: 0.6875rem;  /*  11px — eyebrows, table meta */
+  --fs-xs:  0.75rem;    /*  12px — labels, pills */
+  --fs-sm:  0.8125rem;  /*  13px — dense body, tables */
+  --fs-md:  0.875rem;   /*  14px — body */
+  --fs-lg:  1rem;       /*  16px — lead */
+  --fs-xl:  1.25rem;    /*  20px — card titles */
+  --fs-2xl: 1.625rem;   /*  26px — page titles */
+  --fs-3xl: 2.25rem;    /*  36px — KPI values */
+  --fs-4xl: 3rem;       /*  48px — hero KPI */
+  --fs-5xl: 4rem;       /*  64px — landing hero */
+
+  --lh-tight: 1.15;
+  --lh-snug:  1.35;
+  --lh-base:  1.6;
+
+  --tracking-wide:  0.06em;
+  --tracking-wider: 0.13em;
+
+  /* --- spacing (4px base) --- */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+  /* --- radii --- */
+  --r-sm: 4px;  --r-md: 6px;  --r-lg: 10px;  --r-xl: 14px;  --r-full: 999px;
+
+  /* --- elevation: restrained, industrial, never soft-UI --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --shadow-glow-cyan: 0 0 20px rgba(47, 211, 196, 0.28);
+  --shadow-glow-green: 0 0 20px rgba(125, 211, 63, 0.25);
+
+  /* --- motion --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+
+  /* --- layout --- */
+  --sidebar-w: 244px;
+  --sidebar-collapsed-w: 68px;
+  --topbar-h: 56px;
+  --content-max: 1680px;
+
+  --z-drawer: 60;
+  --z-modal: 80;
+  --z-toast: 100;
+  --z-topbar: 40;
+  --z-sidebar: 50;
+}
+
+/* ==========================================================================
+   Light mode — a genuine re-mapping, not an inversion filter.
+   ========================================================================== */
+[data-theme='light'] {
+  --bg-base:      #F4F7FB;
+  --bg-sunken:    #E9EEF6;
+  --bg-surface:   #FFFFFF;
+  --bg-elevated:  #FFFFFF;
+  --bg-raised:    #F7FAFD;
+  --bg-hover:     #EEF3FA;
+  --bg-input:     #FFFFFF;
+
+  --border-subtle:  rgba(19, 42, 76, 0.09);
+  --border-default: rgba(19, 42, 76, 0.15);
+  --border-strong:  rgba(19, 42, 76, 0.26);
+
+  --text-primary:   #0B1A2E;
+  --text-secondary: #465C7A;
+  --text-tertiary:  #7488A5;
+  --text-inverse:   #FFFFFF;
+
+  /* Accents darken slightly so they hold contrast on white. */
+  --accent-cyan:  #0F9C90;
+  --accent-blue:  #1667D6;
+  --accent-green: #4E9B14;
+  --accent-amber: #B87503;
+  --accent-red:   #D4323D;
+  --accent-violet:#5B41C7;
+
+  --wash-green:  rgba(78, 155, 20, 0.11);
+  --wash-cyan:   rgba(15, 156, 144, 0.11);
+  --wash-blue:   rgba(22, 103, 214, 0.10);
+  --wash-amber:  rgba(184, 117, 3, 0.12);
+  --wash-red:    rgba(212, 50, 61, 0.10);
+  --wash-violet: rgba(91, 65, 199, 0.10);
+
+  --e-grid:   #4F6B8E;
+  --e-solar:  #B87503;
+  --e-bess:   #4E9B14;
+  --e-dg:     #C4552A;
+  --e-load:   #1667D6;
+  --e-hvac:   #0F9C90;
+  --e-ev:     #5B41C7;
+  --e-thermal:#C43B70;
+
+  --shadow-sm: 0 1px 2px rgba(19, 42, 76, 0.07);
+  --shadow-md: 0 4px 16px rgba(19, 42, 76, 0.08);
+  --shadow-lg: 0 16px 48px rgba(19, 42, 76, 0.13);
+  --shadow-glow-cyan: 0 0 16px rgba(15, 156, 144, 0.20);
+  --shadow-glow-green: 0 0 16px rgba(78, 155, 20, 0.18);
+}
+
+/* Respect the OS preference until the user makes an explicit choice. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']):not([data-theme='light']) {
+    color-scheme: light;
+  }
+}
+
+/* Reduced motion: hold the information, drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-motion='off'] *, [data-motion='off'] *::before, [data-motion='off'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}

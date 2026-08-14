@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Energy Internet · Energy Nexus</title>
+<meta name="description" content="The long-term vision: electricity, heat, cooling, storage, flexibility and hydrogen coordinated across industrial ecosystems.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">V9 · Long-term vision</div>
+        <h1>The Energy Internet</h1>
+        <p class="page-header__sub">Where the ladder leads: electricity, heat, cooling, storage, flexibility and eventually hydrogen, coordinated across industrial ecosystems under a common protocol.</p>
+      </div>
+      <div class="page-header__actions">
+        <span class="pill pill--future">Long-term vision</span>
+        <a class="btn" href="network.html">Live network</a>
+      </div>
+    </div>
+
+    <div class="callout callout--future" style="margin-bottom:var(--sp-6)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 22a10 10 0 100-20 10 10 0 000 20zM2 12h20M12 2a15 15 0 014 10 15 15 0 01-4 10 15 15 0 01-4-10 15 15 0 014-10z"/></svg>
+      <div><strong>Nothing on this screen is operational.</strong> This is the destination the roadmap points
+      at, not a description of current capability. Multi-energy routing and open settlement depend on
+      regulatory change, physical infrastructure and an installed base that does not yet exist. The
+      operating parts of the platform are the Command Center, Digital Twin, Optimisation and Forecasts.</div>
+    </div>
+
+    <section class="section" style="margin-top:0">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">From factory to network</h2>
+          <p class="section__desc">Each rung is independently saleable and generates the trust the next one needs.</p>
+        </div>
+      </div>
+      <div class="ladder" data-ei-ladder></div>
+    </section>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Energy carriers</h2>
+          <p class="section__desc">What eventually flows across the network — and what the platform handles today.</p>
+        </div>
+      </div>
+      <div class="grid grid--4" data-carriers></div>
+    </section>
+
+    <section class="section grid grid--sidebar-right">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Product roadmap</div>
+            <div class="card__desc">Nine versions, each with a horizon drawn from the staged strategy</div>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="roadmap" data-ei-roadmap></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">What has to be true first</div></div>
+          <div class="card__body">
+            <ul class="constraint-list" data-preconditions></ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Kill criteria</div></div>
+          <div class="card__body card__body--tight" data-kill-criteria></div>
+          <div class="card__footer">
+            <span class="text-tertiary" style="font-size:var(--fs-xs)">Each gate carries an explicit reason to stop.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/energy-internet.js" defer></script>
+</body>
+</html>

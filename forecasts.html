@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forecasts · Energy Nexus</title>
+<meta name="description" content="Seven-day load, solar, price, battery and flexibility forecasts with confidence bands and measured accuracy.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Forecast centre</div>
+        <h1>Forecasts</h1>
+        <p class="page-header__sub" data-fc-sub>Seven-day horizon with P10–P90 confidence bands. Uncertainty widens with distance, as it should.</p>
+      </div>
+      <div class="page-header__actions">
+        <div class="segmented" role="group" aria-label="Forecast horizon">
+          <button aria-pressed="false" data-horizon="24">24H</button>
+          <button aria-pressed="true" data-horizon="72">72H</button>
+          <button aria-pressed="false" data-horizon="168">7D</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="kpi-strip" data-fc-kpis style="margin-bottom:var(--sp-5)"></div>
+
+    <div class="card" style="margin-bottom:var(--sp-5)">
+      <div class="chart-panel__toolbar">
+        <div>
+          <div class="card__title">Site load forecast</div>
+          <div class="card__desc">P50 with P10–P90 band · measured history to the left of NOW</div>
+        </div>
+        <span class="pill pill--active">P10 · P50 · P90</span>
+      </div>
+      <div class="chart-panel__body"><div data-load-forecast></div></div>
+    </div>
+
+    <div class="grid grid--2">
+      <div class="card">
+        <div class="chart-panel__toolbar">
+          <div>
+            <div class="card__title">Solar generation forecast</div>
+            <div class="card__desc">Irradiance-driven, wider band than load</div>
+          </div>
+        </div>
+        <div class="chart-panel__body"><div data-solar-forecast></div></div>
+      </div>
+      <div class="card">
+        <div class="chart-panel__toolbar">
+          <div>
+            <div class="card__title">Tariff and battery plan</div>
+            <div class="card__desc">ToD price against planned state of charge</div>
+          </div>
+        </div>
+        <div class="chart-panel__body"><div data-price-forecast></div></div>
+      </div>
+    </div>
+
+    <section class="section grid grid--sidebar-right">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Forecast accuracy</div>
+            <div class="card__desc">Rolling 30-day performance per site — this is what the optimiser trusts</div>
+          </div>
+        </div>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>Site</th><th class="num">Load MAPE</th><th class="num">Solar MAPE</th><th class="num">Peak hit rate</th><th>Quality</th></tr></thead>
+          <tbody data-accuracy-rows></tbody>
+        </table></div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card__header"><div class="card__title">Forecast horizons</div></div>
+          <div class="card__body card__body--tight" data-fc-horizons></div>
+        </div>
+        <div class="callout callout--info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 22a10 10 0 100-20 10 10 0 000 20zM12 16v-4M12 8h.01"/></svg>
+          <div>The optimiser consumes the P50 forecast but sizes battery reserve against P90, so a
+          forecast miss degrades savings rather than breaching a constraint.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/forecasts.js" defer></script>
+</body>
+</html>

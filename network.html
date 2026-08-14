@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy Nexus Network · Energy Nexus</title>
+<meta name="description" content="The industrial cluster network: sites, energy under management and flexibility across India's industrial belts.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Cluster network</div>
+        <h1>Energy Nexus Network</h1>
+        <p class="page-header__sub">The unit of value is the cluster, not the site. Dense industrial belts share infrastructure, counterparties and reference customers.</p>
+      </div>
+      <div class="page-header__actions">
+        <a class="btn" href="flexibility.html">Flexibility</a>
+        <a class="btn btn--primary" href="energy-internet.html">Energy Internet vision</a>
+      </div>
+    </div>
+
+    <div class="kpi-strip" data-network-kpis style="margin-bottom:var(--sp-5)"></div>
+
+    <div class="grid grid--sidebar-right">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Industrial clusters</div>
+            <div class="card__desc">Select a cluster to inspect its profile. Live links show coordinated clusters.</div>
+          </div>
+          <div class="row" style="gap:var(--sp-3)" data-map-legend></div>
+        </div>
+        <div class="network-map" data-network-map></div>
+      </div>
+
+      <div class="stack">
+        <div class="card" data-cluster-panel>
+          <div class="card__header"><div class="card__title">Cluster detail</div></div>
+          <div class="card__body">
+            <div class="empty-state" style="padding:var(--sp-8) var(--sp-4)">
+              <h3>Select a cluster</h3>
+              <p>Choose a node on the map to see its industries, capacity and expansion status.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Why clusters</div></div>
+          <div class="card__body">
+            <ul class="constraint-list" data-cluster-rationale></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Cluster ranking</h2>
+          <p class="section__desc">Expansion order follows industrial density and state policy posture.</p>
+        </div>
+        <button class="btn btn--sm" data-export-network>Export CSV</button>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th class="num">Priority</th><th>Cluster</th><th>State</th><th>Dominant industries</th>
+        <th class="num">Sites</th><th class="num">EUM</th><th class="num">Flexibility</th><th>Status</th></tr></thead>
+        <tbody data-network-rows></tbody>
+      </table></div></div>
+    </section>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/network.js" defer></script>
+<script src="js/network-page.js" defer></script>
+</body>
+</html>

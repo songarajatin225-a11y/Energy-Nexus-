@@ -1,0 +1,1490 @@
+{
+ "meta": {
+  "generator": "tools/generate-data.js",
+  "description": "Connected energy assets across all demo sites",
+  "disclaimer": "SIMULATED TELEMETRY — demonstration dataset. Not actual customer data.",
+  "version": 1
+ },
+ "assets": [
+  {
+   "assetId": "ENX-HSR-001-GRID-001",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 98.8,
+   "utilisationPct": 85.4,
+   "commissioned": "2020-06-16",
+   "ratedMW": 12.4,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-SOLAR-002",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 99.3,
+   "utilisationPct": 48.8,
+   "commissioned": "2024-03-11",
+   "ratedMW": 4.2,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.79,
+    "prPct": 79.5
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-BESS-003",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "bess",
+   "name": "BESS 5 MW / 10 MWh",
+   "status": "ONLINE",
+   "health": 96.3,
+   "utilisationPct": 71.3,
+   "commissioned": "2020-03-13",
+   "ratedMW": 5,
+   "capacityMWh": 10,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "socPct": 62,
+    "cycles": 646,
+    "sohPct": 94.6
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-DG-004",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "dg",
+   "name": "DG Set 3.5 MW",
+   "status": "ONLINE",
+   "health": 96.5,
+   "utilisationPct": 78.5,
+   "commissioned": "2021-02-16",
+   "ratedMW": 3.5,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 123,
+    "fuelLPerKWh": 0.28
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-CHILLER-005",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 96.7,
+   "utilisationPct": 86.6,
+   "commissioned": "2021-02-11",
+   "ratedMW": 1.63,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "copActual": 4.89,
+    "chwSupplyC": 6.7
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-HVAC-006",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 99.7,
+   "utilisationPct": 72.6,
+   "commissioned": "2023-02-17",
+   "ratedMW": 1.12,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "zoneTempC": 24.6,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-COMPRESSOR-007",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 98.1,
+   "utilisationPct": 76.4,
+   "commissioned": "2020-04-12",
+   "ratedMW": 0.92,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "pressureBar": 6.53,
+    "specificPower": 0.11
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-PRODUCTION-008",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "production",
+   "name": "Auto Components Line",
+   "status": "ONLINE",
+   "health": 98.3,
+   "utilisationPct": 69.1,
+   "commissioned": "2020-04-14",
+   "ratedMW": 4.28,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 76,
+    "energyPerUnit": 1.278
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-EV-009",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "ev",
+   "name": "EV Charging Hub",
+   "status": "WARNING",
+   "health": 98.4,
+   "utilisationPct": 85.7,
+   "commissioned": "2020-04-16",
+   "ratedMW": 0.41,
+   "controllable": true,
+   "tier": 3,
+   "telemetry": {
+    "activeSessions": 4,
+    "connectors": 17
+   }
+  },
+  {
+   "assetId": "ENX-HSR-001-METER-010",
+   "siteId": "ENX-HSR-001",
+   "siteName": "Hosur Manufacturing Cluster",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 99,
+   "utilisationPct": 62.4,
+   "commissioned": "2020-02-11",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 54,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-GRID-011",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 97.2,
+   "utilisationPct": 87.6,
+   "commissioned": "2020-08-18",
+   "ratedMW": 8.6,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-SOLAR-012",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 98.7,
+   "utilisationPct": 72.6,
+   "commissioned": "2024-07-17",
+   "ratedMW": 2.8,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.21,
+    "prPct": 79.7
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-BESS-013",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "bess",
+   "name": "BESS 3 MW / 6 MWh",
+   "status": "WARNING",
+   "health": 96.2,
+   "utilisationPct": 79.3,
+   "commissioned": "2023-05-10",
+   "ratedMW": 3,
+   "capacityMWh": 6,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "socPct": 71,
+    "cycles": 483,
+    "sohPct": 96.7
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-DG-014",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "dg",
+   "name": "DG Set 2 MW",
+   "status": "ONLINE",
+   "health": 99.7,
+   "utilisationPct": 61.4,
+   "commissioned": "2021-04-12",
+   "ratedMW": 2,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 152,
+    "fuelLPerKWh": 0.299
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-CHILLER-015",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 98.6,
+   "utilisationPct": 79.3,
+   "commissioned": "2024-01-11",
+   "ratedMW": 1.1,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "copActual": 5.35,
+    "chwSupplyC": 7.1
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-HVAC-016",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 97.2,
+   "utilisationPct": 90.4,
+   "commissioned": "2021-05-18",
+   "ratedMW": 0.76,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "zoneTempC": 23.7,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-COMPRESSOR-017",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 96.8,
+   "utilisationPct": 61.7,
+   "commissioned": "2022-05-16",
+   "ratedMW": 0.62,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "pressureBar": 6.87,
+    "specificPower": 0.12
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-PRODUCTION-018",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "production",
+   "name": "Electronics / EMS Line",
+   "status": "ONLINE",
+   "health": 96.7,
+   "utilisationPct": 83.5,
+   "commissioned": "2024-06-12",
+   "ratedMW": 2.9,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 87.7,
+    "energyPerUnit": 0.889
+   }
+  },
+  {
+   "assetId": "ENX-BLR-002-METER-019",
+   "siteId": "ENX-BLR-002",
+   "siteName": "Bengaluru Electronics Park",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 97.2,
+   "utilisationPct": 72.1,
+   "commissioned": "2022-03-12",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 52,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-GRID-020",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 96.4,
+   "utilisationPct": 52,
+   "commissioned": "2021-03-14",
+   "ratedMW": 18.2,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-SOLAR-021",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 96.2,
+   "utilisationPct": 72.3,
+   "commissioned": "2023-06-16",
+   "ratedMW": 6.5,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.64,
+    "prPct": 83.5
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-BESS-022",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "bess",
+   "name": "BESS 8 MW / 16 MWh",
+   "status": "ONLINE",
+   "health": 99.8,
+   "utilisationPct": 65.8,
+   "commissioned": "2021-08-15",
+   "ratedMW": 8,
+   "capacityMWh": 16,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "socPct": 48,
+    "cycles": 743,
+    "sohPct": 97.9
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-DG-023",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "dg",
+   "name": "DG Set 6 MW",
+   "status": "ONLINE",
+   "health": 96.3,
+   "utilisationPct": 84.8,
+   "commissioned": "2020-05-14",
+   "ratedMW": 6,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 83,
+    "fuelLPerKWh": 0.304
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-CHILLER-024",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 97.2,
+   "utilisationPct": 53.7,
+   "commissioned": "2021-06-15",
+   "ratedMW": 2.46,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "copActual": 4.42,
+    "chwSupplyC": 6.6
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-HVAC-025",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 98,
+   "utilisationPct": 79.7,
+   "commissioned": "2022-04-18",
+   "ratedMW": 1.69,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "zoneTempC": 23.8,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-COMPRESSOR-026",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 97.8,
+   "utilisationPct": 68.2,
+   "commissioned": "2023-06-11",
+   "ratedMW": 1.39,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "pressureBar": 6.55,
+    "specificPower": 0.116
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-PRODUCTION-027",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "production",
+   "name": "Automotive OEM Line",
+   "status": "ONLINE",
+   "health": 97.8,
+   "utilisationPct": 60.2,
+   "commissioned": "2021-04-17",
+   "ratedMW": 6.47,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 86.2,
+    "energyPerUnit": 0.94
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-EV-028",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "ev",
+   "name": "EV Charging Hub",
+   "status": "ONLINE",
+   "health": 96,
+   "utilisationPct": 63.3,
+   "commissioned": "2020-03-16",
+   "ratedMW": 0.88,
+   "controllable": true,
+   "tier": 3,
+   "telemetry": {
+    "activeSessions": 10,
+    "connectors": 16
+   }
+  },
+  {
+   "assetId": "ENX-CHN-003-METER-029",
+   "siteId": "ENX-CHN-003",
+   "siteName": "Sriperumbudur Auto Plant",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 98.3,
+   "utilisationPct": 65.8,
+   "commissioned": "2021-06-11",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 50,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-GRID-030",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 97.9,
+   "utilisationPct": 73.9,
+   "commissioned": "2020-07-18",
+   "ratedMW": 14.1,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-SOLAR-031",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 96.3,
+   "utilisationPct": 77.9,
+   "commissioned": "2020-05-15",
+   "ratedMW": 3.9,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.18,
+    "prPct": 79.4
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-BESS-032",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "bess",
+   "name": "BESS 4 MW / 8 MWh",
+   "status": "ONLINE",
+   "health": 99.4,
+   "utilisationPct": 87.1,
+   "commissioned": "2024-08-15",
+   "ratedMW": 4,
+   "capacityMWh": 8,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "socPct": 55,
+    "cycles": 379,
+    "sohPct": 95
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-DG-033",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "dg",
+   "name": "DG Set 4.5 MW",
+   "status": "ONLINE",
+   "health": 97.4,
+   "utilisationPct": 63.5,
+   "commissioned": "2022-06-18",
+   "ratedMW": 4.5,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 214,
+    "fuelLPerKWh": 0.303
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-CHILLER-034",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 99.5,
+   "utilisationPct": 54.1,
+   "commissioned": "2023-05-18",
+   "ratedMW": 1.89,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "copActual": 5,
+    "chwSupplyC": 7.5
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-HVAC-035",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "WARNING",
+   "health": 96.9,
+   "utilisationPct": 66.7,
+   "commissioned": "2024-03-10",
+   "ratedMW": 1.3,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "zoneTempC": 24.9,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-COMPRESSOR-036",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 97.1,
+   "utilisationPct": 53.2,
+   "commissioned": "2023-01-10",
+   "ratedMW": 1.06,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "pressureBar": 6.41,
+    "specificPower": 0.129
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-PRODUCTION-037",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "production",
+   "name": "Automotive / Capital Goods Line",
+   "status": "ONLINE",
+   "health": 96.5,
+   "utilisationPct": 57,
+   "commissioned": "2020-06-18",
+   "ratedMW": 4.96,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 85.5,
+    "energyPerUnit": 1.255
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-EV-038",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "ev",
+   "name": "EV Charging Hub",
+   "status": "ONLINE",
+   "health": 96.7,
+   "utilisationPct": 61.3,
+   "commissioned": "2022-01-17",
+   "ratedMW": 1.14,
+   "controllable": true,
+   "tier": 3,
+   "telemetry": {
+    "activeSessions": 2,
+    "connectors": 18
+   }
+  },
+  {
+   "assetId": "ENX-PUN-004-METER-039",
+   "siteId": "ENX-PUN-004",
+   "siteName": "Chakan Powertrain Facility",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 98.3,
+   "utilisationPct": 78.1,
+   "commissioned": "2023-02-12",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 35,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-GRID-040",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 99.4,
+   "utilisationPct": 61.5,
+   "commissioned": "2021-07-11",
+   "ratedMW": 22.5,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-SOLAR-041",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 98.9,
+   "utilisationPct": 88.4,
+   "commissioned": "2023-07-14",
+   "ratedMW": 8.4,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.45,
+    "prPct": 79.2
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-BESS-042",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "bess",
+   "name": "BESS 6 MW / 12 MWh",
+   "status": "ONLINE",
+   "health": 98,
+   "utilisationPct": 53,
+   "commissioned": "2024-01-17",
+   "ratedMW": 6,
+   "capacityMWh": 12,
+   "controllable": true,
+   "tier": 3,
+   "telemetry": {
+    "socPct": 39,
+    "cycles": 320,
+    "sohPct": 98
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-DG-043",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "dg",
+   "name": "DG Set 8 MW",
+   "status": "ONLINE",
+   "health": 99,
+   "utilisationPct": 55.7,
+   "commissioned": "2021-02-10",
+   "ratedMW": 8,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 184,
+    "fuelLPerKWh": 0.275
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-CHILLER-044",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 96.2,
+   "utilisationPct": 56.8,
+   "commissioned": "2022-08-11",
+   "ratedMW": 3.14,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "copActual": 4.44,
+    "chwSupplyC": 7.3
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-HVAC-045",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 99.6,
+   "utilisationPct": 59.7,
+   "commissioned": "2020-03-16",
+   "ratedMW": 2.16,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "zoneTempC": 24.5,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-COMPRESSOR-046",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 98.4,
+   "utilisationPct": 88.2,
+   "commissioned": "2022-07-12",
+   "ratedMW": 1.76,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "pressureBar": 6.74,
+    "specificPower": 0.114
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-PRODUCTION-047",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "production",
+   "name": "Speciality Chemicals Line",
+   "status": "ONLINE",
+   "health": 97.7,
+   "utilisationPct": 81.1,
+   "commissioned": "2021-07-15",
+   "ratedMW": 8.23,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 74,
+    "energyPerUnit": 1.099
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-EV-048",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "ev",
+   "name": "EV Charging Hub",
+   "status": "ONLINE",
+   "health": 96.2,
+   "utilisationPct": 49.5,
+   "commissioned": "2020-08-18",
+   "ratedMW": 1.11,
+   "controllable": true,
+   "tier": 3,
+   "telemetry": {
+    "activeSessions": 10,
+    "connectors": 17
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-THERMAL-049",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "thermal",
+   "name": "Thermal Storage / Process Heat",
+   "status": "ONLINE",
+   "health": 96.3,
+   "utilisationPct": 85.4,
+   "commissioned": "2024-02-12",
+   "ratedMW": 3.53,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "storedMWh": 1.03,
+    "tempC": 126
+   }
+  },
+  {
+   "assetId": "ENX-AHM-005-METER-050",
+   "siteId": "ENX-AHM-005",
+   "siteName": "Sanand Chemical Complex",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "WARNING",
+   "health": 97.4,
+   "utilisationPct": 64,
+   "commissioned": "2022-02-17",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 29,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-GRID-051",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 99.5,
+   "utilisationPct": 56.8,
+   "commissioned": "2023-07-10",
+   "ratedMW": 9.8,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-SOLAR-052",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 98.6,
+   "utilisationPct": 54.4,
+   "commissioned": "2021-06-12",
+   "ratedMW": 2.4,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.66,
+    "prPct": 81.3
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-BESS-053",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "bess",
+   "name": "BESS 3 MW / 9 MWh",
+   "status": "ONLINE",
+   "health": 96.4,
+   "utilisationPct": 71,
+   "commissioned": "2022-02-14",
+   "ratedMW": 3,
+   "capacityMWh": 9,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "socPct": 66,
+    "cycles": 657,
+    "sohPct": 94.4
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-DG-054",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "dg",
+   "name": "DG Set 3 MW",
+   "status": "ONLINE",
+   "health": 99.6,
+   "utilisationPct": 54,
+   "commissioned": "2021-03-13",
+   "ratedMW": 3,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 90,
+    "fuelLPerKWh": 0.294
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-CHILLER-055",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "WARNING",
+   "health": 98.7,
+   "utilisationPct": 74.8,
+   "commissioned": "2023-08-13",
+   "ratedMW": 1.34,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "copActual": 4.74,
+    "chwSupplyC": 7.3
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-HVAC-056",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 98.2,
+   "utilisationPct": 59.8,
+   "commissioned": "2023-06-14",
+   "ratedMW": 0.92,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "zoneTempC": 25,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-COMPRESSOR-057",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 97,
+   "utilisationPct": 66.6,
+   "commissioned": "2021-01-16",
+   "ratedMW": 0.76,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "pressureBar": 6.76,
+    "specificPower": 0.115
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-PRODUCTION-058",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "production",
+   "name": "Pharmaceuticals Line",
+   "status": "ONLINE",
+   "health": 96.7,
+   "utilisationPct": 82.8,
+   "commissioned": "2023-07-18",
+   "ratedMW": 3.53,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 75.6,
+    "energyPerUnit": 1.299
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-THERMAL-059",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "thermal",
+   "name": "Thermal Storage / Process Heat",
+   "status": "ONLINE",
+   "health": 96.4,
+   "utilisationPct": 63.7,
+   "commissioned": "2021-02-11",
+   "ratedMW": 1.51,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "storedMWh": 3.51,
+    "tempC": 138.4
+   }
+  },
+  {
+   "assetId": "ENX-HYD-006-METER-060",
+   "siteId": "ENX-HYD-006",
+   "siteName": "Hyderabad Pharma Campus",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 98.8,
+   "utilisationPct": 58.7,
+   "commissioned": "2020-03-13",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 42,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-GRID-061",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 96.6,
+   "utilisationPct": 89,
+   "commissioned": "2021-06-16",
+   "ratedMW": 11.3,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-SOLAR-062",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 99.4,
+   "utilisationPct": 90,
+   "commissioned": "2022-05-11",
+   "ratedMW": 3.1,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.17,
+    "prPct": 80.2
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-BESS-063",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "bess",
+   "name": "BESS 4 MW / 8 MWh",
+   "status": "ONLINE",
+   "health": 97.6,
+   "utilisationPct": 59.5,
+   "commissioned": "2022-08-12",
+   "ratedMW": 4,
+   "capacityMWh": 8,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "socPct": 58,
+    "cycles": 436,
+    "sohPct": 96.2
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-DG-064",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "dg",
+   "name": "DG Set 4 MW",
+   "status": "WARNING",
+   "health": 99.6,
+   "utilisationPct": 82.9,
+   "commissioned": "2024-07-18",
+   "ratedMW": 4,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 120,
+    "fuelLPerKWh": 0.286
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-CHILLER-065",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 98.3,
+   "utilisationPct": 76.5,
+   "commissioned": "2023-08-15",
+   "ratedMW": 1.46,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "copActual": 4.84,
+    "chwSupplyC": 6.9
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-HVAC-066",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 97.9,
+   "utilisationPct": 71.3,
+   "commissioned": "2021-03-16",
+   "ratedMW": 1,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "zoneTempC": 24,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-COMPRESSOR-067",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 96.6,
+   "utilisationPct": 72.5,
+   "commissioned": "2022-06-16",
+   "ratedMW": 0.82,
+   "controllable": true,
+   "tier": 1,
+   "telemetry": {
+    "pressureBar": 6.48,
+    "specificPower": 0.124
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-PRODUCTION-068",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "production",
+   "name": "Mobile Manufacturing Line",
+   "status": "ONLINE",
+   "health": 97.5,
+   "utilisationPct": 48.7,
+   "commissioned": "2024-03-16",
+   "ratedMW": 3.82,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 80.5,
+    "energyPerUnit": 0.851
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-EV-069",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "ev",
+   "name": "EV Charging Hub",
+   "status": "ONLINE",
+   "health": 98.2,
+   "utilisationPct": 84.4,
+   "commissioned": "2023-06-15",
+   "ratedMW": 0.31,
+   "controllable": true,
+   "tier": 3,
+   "telemetry": {
+    "activeSessions": 5,
+    "connectors": 19
+   }
+  },
+  {
+   "assetId": "ENX-NOI-007-METER-070",
+   "siteId": "ENX-NOI-007",
+   "siteName": "Greater Noida Mobile Plant",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 99,
+   "utilisationPct": 77.2,
+   "commissioned": "2023-08-11",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 37,
+    "pollSeconds": 15
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-GRID-071",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "grid",
+   "name": "Grid Incomer 11 kV",
+   "status": "ONLINE",
+   "health": 98.8,
+   "utilisationPct": 79.6,
+   "commissioned": "2021-08-13",
+   "ratedMW": 7.4,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "voltageKV": 11.02,
+    "frequencyHz": 50.01,
+    "powerFactor": 0.97
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-SOLAR-072",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "solar",
+   "name": "Rooftop + Ground Mount PV",
+   "status": "ONLINE",
+   "health": 98.6,
+   "utilisationPct": 65,
+   "commissioned": "2024-06-18",
+   "ratedMW": 2.2,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "specificYield": 4.59,
+    "prPct": 78.2
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-BESS-073",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "bess",
+   "name": "BESS 2 MW / 4 MWh",
+   "status": "ONLINE",
+   "health": 98.8,
+   "utilisationPct": 62.9,
+   "commissioned": "2024-06-13",
+   "ratedMW": 2,
+   "capacityMWh": 4,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "socPct": 44,
+    "cycles": 609,
+    "sohPct": 97.4
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-DG-074",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "dg",
+   "name": "DG Set 2.5 MW",
+   "status": "ONLINE",
+   "health": 99.1,
+   "utilisationPct": 67.3,
+   "commissioned": "2020-04-18",
+   "ratedMW": 2.5,
+   "controllable": true,
+   "tier": 1,
+   "note": "Diesel dispatch is permanently human-approved",
+   "telemetry": {
+    "runHoursYTD": 152,
+    "fuelLPerKWh": 0.299
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-CHILLER-075",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "chiller",
+   "name": "Chiller Plant",
+   "status": "ONLINE",
+   "health": 99.4,
+   "utilisationPct": 50.1,
+   "commissioned": "2024-04-14",
+   "ratedMW": 1.06,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "copActual": 4.58,
+    "chwSupplyC": 7.6
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-HVAC-076",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "hvac",
+   "name": "HVAC / AHU Network",
+   "status": "ONLINE",
+   "health": 96.4,
+   "utilisationPct": 83.3,
+   "commissioned": "2023-08-14",
+   "ratedMW": 0.73,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "zoneTempC": 23.7,
+    "setpointC": 24
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-COMPRESSOR-077",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "compressor",
+   "name": "Compressed Air System",
+   "status": "ONLINE",
+   "health": 98.8,
+   "utilisationPct": 67.9,
+   "commissioned": "2022-05-15",
+   "ratedMW": 0.59,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "pressureBar": 6.74,
+    "specificPower": 0.111
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-PRODUCTION-078",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "production",
+   "name": "Textiles Line",
+   "status": "ONLINE",
+   "health": 98.7,
+   "utilisationPct": 80.3,
+   "commissioned": "2024-03-15",
+   "ratedMW": 2.77,
+   "controllable": true,
+   "tier": 1,
+   "note": "Production shifting always requires human approval",
+   "telemetry": {
+    "oeePct": 84,
+    "energyPerUnit": 1.176
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-THERMAL-079",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "thermal",
+   "name": "Thermal Storage / Process Heat",
+   "status": "ONLINE",
+   "health": 97.4,
+   "utilisationPct": 67.4,
+   "commissioned": "2020-04-18",
+   "ratedMW": 1.19,
+   "controllable": true,
+   "tier": 2,
+   "telemetry": {
+    "storedMWh": 4.7,
+    "tempC": 101.1
+   }
+  },
+  {
+   "assetId": "ENX-CBE-008-METER-080",
+   "siteId": "ENX-CBE-008",
+   "siteName": "Coimbatore Textile Mill",
+   "type": "meter",
+   "name": "Sub-meter Network",
+   "status": "ONLINE",
+   "health": 96.9,
+   "utilisationPct": 58.7,
+   "commissioned": "2023-02-17",
+   "ratedMW": 0,
+   "controllable": false,
+   "tier": 1,
+   "telemetry": {
+    "meterCount": 31,
+    "pollSeconds": 15
+   }
+  }
+ ]
+}

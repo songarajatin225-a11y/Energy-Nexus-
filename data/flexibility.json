@@ -1,0 +1,152 @@
+{
+ "meta": {
+  "generator": "tools/generate-data.js",
+  "description": "Flexibility portfolio — certified, committed and reserved capacity",
+  "disclaimer": "SIMULATED TELEMETRY — demonstration dataset. Not actual customer data.",
+  "version": 1
+ },
+ "totalMW": 78,
+ "availableMW": 42,
+ "committedMW": 18,
+ "reservedMW": 18,
+ "breakdown": [
+  {
+   "source": "BESS",
+   "mw": 28.4,
+   "responseSeconds": 2,
+   "durationMin": 120,
+   "certainty": "FIRM",
+   "tier": 2
+  },
+  {
+   "source": "HVAC",
+   "mw": 14.2,
+   "responseSeconds": 60,
+   "durationMin": 90,
+   "certainty": "FIRM",
+   "tier": 2
+  },
+  {
+   "source": "Chiller",
+   "mw": 11.8,
+   "responseSeconds": 120,
+   "durationMin": 60,
+   "certainty": "FIRM",
+   "tier": 2
+  },
+  {
+   "source": "Compressor",
+   "mw": 8.1,
+   "responseSeconds": 90,
+   "durationMin": 45,
+   "certainty": "PROBABLE",
+   "tier": 2
+  },
+  {
+   "source": "EV charging",
+   "mw": 6.4,
+   "responseSeconds": 30,
+   "durationMin": 180,
+   "certainty": "FIRM",
+   "tier": 3
+  },
+  {
+   "source": "Thermal storage",
+   "mw": 5.6,
+   "responseSeconds": 300,
+   "durationMin": 240,
+   "certainty": "PROBABLE",
+   "tier": 2
+  },
+  {
+   "source": "Production",
+   "mw": 3.5,
+   "responseSeconds": 1800,
+   "durationMin": 120,
+   "certainty": "HUMAN APPROVAL",
+   "tier": 1
+  }
+ ],
+ "events": [
+  {
+   "eventId": "FLX-7000",
+   "minuteOfDay": 420,
+   "requestedMW": 3.5,
+   "deliveredMW": 1.17,
+   "priceINRPerKWh": 6.04,
+   "durationMin": 30,
+   "status": "PARTIAL",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7001",
+   "minuteOfDay": 540,
+   "requestedMW": 1.89,
+   "deliveredMW": 2.2,
+   "priceINRPerKWh": 4.36,
+   "durationMin": 120,
+   "status": "DELIVERED",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7002",
+   "minuteOfDay": 660,
+   "requestedMW": 4.11,
+   "deliveredMW": 3.7,
+   "priceINRPerKWh": 3.66,
+   "durationMin": 60,
+   "status": "SCHEDULED",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7003",
+   "minuteOfDay": 780,
+   "requestedMW": 2.42,
+   "deliveredMW": 1.78,
+   "priceINRPerKWh": 4.05,
+   "durationMin": 120,
+   "status": "SCHEDULED",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7004",
+   "minuteOfDay": 900,
+   "requestedMW": 4.02,
+   "deliveredMW": 3.67,
+   "priceINRPerKWh": 5.86,
+   "durationMin": 120,
+   "status": "DELIVERED",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7005",
+   "minuteOfDay": 1020,
+   "requestedMW": 3.47,
+   "deliveredMW": 3.76,
+   "priceINRPerKWh": 3.89,
+   "durationMin": 120,
+   "status": "SCHEDULED",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7006",
+   "minuteOfDay": 1140,
+   "requestedMW": 1.76,
+   "deliveredMW": 3.72,
+   "priceINRPerKWh": 6.07,
+   "durationMin": 60,
+   "status": "DELIVERED",
+   "regime": "PILOT"
+  },
+  {
+   "eventId": "FLX-7007",
+   "minuteOfDay": 1260,
+   "requestedMW": 2.07,
+   "deliveredMW": 2.68,
+   "priceINRPerKWh": 4.67,
+   "durationMin": 60,
+   "status": "DELIVERED",
+   "regime": "PILOT"
+  }
+ ]
+}

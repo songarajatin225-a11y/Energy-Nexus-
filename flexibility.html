@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flexibility Command · Energy Nexus</title>
+<meta name="description" content="Certified, committed and reserved flexibility across the estate, with dispatch simulation.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Flexibility</div>
+        <h1>Flexibility Command</h1>
+        <p class="page-header__sub">Idle capability across the estate, certified by response time and duration, and aggregated into a virtual resource.</p>
+      </div>
+      <div class="page-header__actions">
+        <span class="pill pill--pilot">Pilot</span>
+        <button class="btn btn--primary" data-dispatch>Simulate dispatch</button>
+      </div>
+    </div>
+
+    <div class="grid grid--sidebar-right" style="margin-bottom:var(--sp-5)">
+      <div class="card">
+        <div class="card__body" style="display:flex;align-items:center;gap:var(--sp-8);flex-wrap:wrap">
+          <div>
+            <div class="eyebrow">Total flexibility under management</div>
+            <div class="num" style="font-size:var(--fs-4xl);font-weight:500;letter-spacing:-0.04em;line-height:1.05">
+              <span data-flex-total>0</span><span style="font-size:var(--fs-lg);color:var(--text-secondary)"> MW</span>
+            </div>
+            <div class="text-tertiary" style="font-size:var(--fs-xs);margin-top:var(--sp-2)">
+              Aggregated across 108 sites and 10 clusters
+            </div>
+          </div>
+          <div style="flex:1;min-width:260px">
+            <div class="stack-bar" style="margin-bottom:var(--sp-3)" data-flex-bar></div>
+            <div class="row row--wrap" style="gap:var(--sp-5)" data-flex-legend></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__header"><div class="card__title">Dispatch readiness</div></div>
+        <div class="card__body card__body--tight" data-flex-readiness></div>
+      </div>
+    </div>
+
+    <div class="grid grid--2">
+      <div class="card">
+        <div class="card__header">
+          <div>
+            <div class="card__title">Flexibility by source</div>
+            <div class="card__desc">Certified capacity, response time and confidence</div>
+          </div>
+        </div>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>Source</th><th class="num">Capacity</th><th class="num">Response</th><th class="num">Duration</th><th>Certainty</th><th>Tier</th></tr></thead>
+          <tbody data-flex-rows></tbody>
+        </table></div>
+      </div>
+
+      <div class="card">
+        <div class="chart-panel__toolbar">
+          <div>
+            <div class="card__title">Capacity mix</div>
+            <div class="card__desc">Where the megawatts actually come from</div>
+          </div>
+        </div>
+        <div class="card__body" style="display:flex;align-items:center;justify-content:center;gap:var(--sp-8);flex-wrap:wrap">
+          <div data-flex-donut></div>
+          <div style="flex:1;min-width:180px" data-flex-donut-legend></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Dispatch events</h2>
+          <p class="section__desc">Requested against delivered — settlement depends on measured delivery, not offered capacity.</p>
+        </div>
+        <span class="pill pill--pilot">Pilot · regulation dependent</span>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr><th>Event</th><th>Window</th><th class="num">Requested</th><th class="num">Delivered</th>
+        <th class="num">Delivery</th><th class="num">₹/kWh</th><th class="num">Value</th><th>Status</th></tr></thead>
+        <tbody data-flex-events></tbody>
+      </table></div></div>
+    </section>
+
+    <div class="callout callout--warning" style="margin-top:var(--sp-6)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>
+      <div><strong>Flexibility revenue is regulation dependent.</strong> Availability and utilisation payments
+      require a market or a contracted demand-response programme in the relevant state. Where no such
+      mechanism exists, this capacity still has value through peak avoidance on the customer's own bill.</div>
+    </div>
+  </main>
+</div>
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/flexibility.js" defer></script>
+</body>
+</html>
