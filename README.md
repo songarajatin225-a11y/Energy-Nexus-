@@ -66,6 +66,9 @@ Charts and maps re-render on all three.
 | `js/network.js` | India cluster map — shared projection for outline and nodes, with label collision resolution |
 | `js/<page>.js` | One module per screen |
 
+`ENX.auth` (demo gate, see below), `ENX.palette` (⌘K command palette) and `ENX.report` (CSV export
+and print) also live in `js/app.js`.
+
 ---
 
 ## Technology stack
@@ -83,11 +86,59 @@ render-blocking round trip.
 
 ---
 
+## Sign-in — read this before relying on it
+
+The app has a sign-in screen (`login.html`). **It is a demo gate, not security.**
+
+- The password check runs **entirely in the visitor's browser**. Anyone can bypass it from devtools,
+  or by setting a `sessionStorage` key by hand.
+- Every dataset in `/data` is a **public static file**, readable directly whether you sign in or not.
+- The password is stored as a **SHA-256 digest** only so `view-source` does not print it in plain
+  text. That is obfuscation, not protection.
+
+It exists so the prototype demos like a real product. Do not put anything confidential behind it.
+
+| | |
+|---|---|
+| Email | any valid address |
+| Password | `nexus2026` |
+| Bypass | "Continue to demo without signing in" |
+
+Public pages (no session needed): `index.html`, `login.html`, `404.html`. Everything else redirects
+to sign-in with a `?next=` parameter and returns you there afterwards. "Keep me signed in" chooses
+`localStorage` over `sessionStorage`. Sign out from the profile menu in the topbar.
+
+**A real deployment** would authenticate server-side against an identity provider (OIDC/SAML SSO),
+serve datasets from an authenticated API rather than static JSON, and scope every response to the
+tenant. None of that is possible on GitHub Pages, which is why this is labelled as a gate.
+
+Password check needs a secure context (`crypto.subtle`), so it works on HTTPS and `localhost` but
+not over plain HTTP on a LAN address — you'll get a clear error rather than a silent failure.
+
+---
+
+## Keyboard and navigation
+
+| Key | Action |
+|-----|--------|
+| `⌘K` / `Ctrl+K` | Open the command palette |
+| `/` | Open the command palette |
+| `↑` `↓` | Move through palette results |
+| `↵` | Open the highlighted result |
+| `Esc` | Close palette, modal, drawer or mobile nav |
+
+The palette indexes every screen, all 8 sites, all 80 assets and three actions (toggle theme, toggle
+demo mode, sign out). Matching is prefix-first, then substring, then subsequence — so `cmdc` finds
+Command Center.
+
+---
+
 ## Folder structure
 
 ```
 energy-nexus/
 ├── index.html              Public landing page
+├── login.html              Sign-in (demo gate)
 ├── dashboard.html          Energy Command Center
 ├── sites.html              Site network (cards + table)
 ├── site-detail.html        Single-site deep dive (?site=ENX-HSR-001)
@@ -108,7 +159,7 @@ energy-nexus/
 ├── help.html               Screen guide and interface conventions
 ├── 404.html                Not-found page
 │
-├── css/    theme · main · components · dashboard · charts · responsive
+├── css/    theme · main · components · dashboard · charts · auth · responsive
 ├── js/     app · router · data · charts · twin · network + one module per page
 ├── data/   sites · assets · telemetry · forecasts · alerts · agents
 │           optimisation · transactions · network · flexibility · audit · market
@@ -260,8 +311,9 @@ hardware.
 
 This is a front-end prototype, and the boundaries matter:
 
-- **No backend, no persistence.** Preferences live in `localStorage`; approvals and applied plans
-  reset on reload.
+- **No backend, no persistence.** Preferences and the session live in `localStorage`/`sessionStorage`;
+  approvals and applied plans reset on reload.
+- **Sign-in protects nothing.** It is a client-side demo gate — see the sign-in section above.
 - **No real telemetry.** Nothing connects to a meter, gateway, SCADA system or plant network.
 - **The optimiser is illustrative.** It applies weighted heuristics against the constraint list, not
   a real solver. A production system would run a constrained optimisation against the twin.

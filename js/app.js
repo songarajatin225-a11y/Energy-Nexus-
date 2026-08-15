@@ -285,6 +285,83 @@ ENX.ui = (function () {
 })();
 
 /* ==========================================================================
+   Auth — a DEMO GATE, not security.
+
+   This is a static site with no backend. The check below runs entirely in the
+   visitor's browser, so it can be bypassed with devtools, and every dataset in
+   /data is publicly readable regardless. It exists to make the prototype feel
+   like a real product, not to protect anything. A real deployment authenticates
+   server-side (SSO / OIDC) and never ships a credential to the client.
+
+   The password is stored as a SHA-256 digest only so that "view source" does
+   not print it in plain text. That is obfuscation, not protection.
+   ========================================================================== */
+ENX.auth = (function () {
+  const KEY = 'enx.session.v1';
+  const PW_SHA256 = 'ff0a5f39b703f6d02441f3b42aa02af28bc400cd8193ffd8fb1f4c4d245444c5';
+
+  // Pages reachable without a session.
+  const PUBLIC = ['index', 'login', '404'];
+
+  function session() {
+    try {
+      return JSON.parse(sessionStorage.getItem(KEY) || localStorage.getItem(KEY) || 'null');
+    } catch (e) {
+      return null;
+    }
+  }
+
+  const isSignedIn = () => !!session();
+
+  async function digest(text) {
+    if (!window.crypto || !crypto.subtle) {
+      throw new Error('Password checking needs a secure context. Open the site over HTTPS or localhost.');
+    }
+    const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(bytes)).map((b) => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function verify(password) {
+    return (await digest(password)) === PW_SHA256;
+  }
+
+  /** @param {boolean} remember persist across browser restarts rather than the tab session */
+  function start(email, remember) {
+    const value = JSON.stringify({
+      email,
+      name: nameFromEmail(email),
+      since: Date.now(),
+      demo: !email,
+    });
+    try {
+      (remember ? localStorage : sessionStorage).setItem(KEY, value);
+    } catch (e) { /* private mode — the guard simply won't hold */ }
+  }
+
+  function signOut() {
+    try { sessionStorage.removeItem(KEY); localStorage.removeItem(KEY); } catch (e) { /* nothing stored */ }
+    location.href = 'login.html';
+  }
+
+  function nameFromEmail(email) {
+    if (!email) return 'Demo User';
+    const local = String(email).split('@')[0].replace(/[._-]+/g, ' ');
+    return local.replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
+  /** Redirect to the sign-in screen unless this page is public or a session exists. */
+  function guard() {
+    const page = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '') || 'index';
+    if (PUBLIC.includes(page) || isSignedIn()) return true;
+    const back = encodeURIComponent(page);
+    location.replace(`login.html?next=${back}`);
+    return false;
+  }
+
+  return { isSignedIn, session, verify, digest, start, signOut, guard, PUBLIC };
+})();
+
+/* ==========================================================================
    Demo mode — a deterministic clock that advances simulated telemetry
    ========================================================================== */
 ENX.demo = (function () {
@@ -368,8 +445,9 @@ ENX.shell = (function () {
 
   function navItem(item, activeId) {
     const active = item.id === activeId;
+    // data-tip surfaces the label as a hover chip once the sidebar is collapsed.
     return `
-      <a class="nav-item" href="${item.href}"${active ? ' aria-current="page"' : ''}>
+      <a class="nav-item has-tip" href="${item.href}" data-tip="${esc(item.label)}"${active ? ' aria-current="page"' : ''}>
         ${ENX.router.iconHTML(item.icon, 'nav-item__icon')}
         <span class="nav-item__label">${esc(item.label)}</span>
         ${item.badge ? `<span class="nav-item__badge${item.future ? ' nav-item__badge--future' : ''}">${esc(item.badge)}</span>` : ''}
@@ -398,11 +476,11 @@ ENX.shell = (function () {
           </select>
         </div>
 
-        <div class="search" data-topbar-optional>
+        <button class="topbar__search" data-action="open-palette" aria-label="Search sites, assets and screens">
           ${ENX.router.iconHTML('search')}
-          <input class="input" type="search" placeholder="Search sites, assets, screens…"
-                 aria-label="Global search" data-action="global-search" autocomplete="off">
-        </div>
+          <span>Search…</span>
+          <kbd class="topbar__kbd">${navigator.platform.indexOf('Mac') === 0 ? '⌘' : 'Ctrl'} K</kbd>
+        </button>
 
         <div class="topbar__spacer"></div>
 
@@ -456,6 +534,7 @@ ENX.shell = (function () {
     app.innerHTML = `
       ${buildSidebar(activeId)}
       <div class="main">
+        <div class="load-bar" data-load-bar aria-hidden="true"><span></span></div>
         ${buildTopbar(sites)}
         ${demoBanner()}
         ${pageContent}
@@ -474,6 +553,17 @@ ENX.shell = (function () {
     wireTopbar(app, sites);
     startClock();
     updateThemeIcon();
+    wireLoadBar();
+    ENX.palette.install(sites);
+  }
+
+  /** Top progress bar, driven by in-flight dataset fetches. */
+  function wireLoadBar() {
+    const bar = document.querySelector('[data-load-bar]');
+    if (!bar) return;
+    document.addEventListener('enx:loading', (e) => {
+      bar.dataset.active = String(e.detail.pending > 0);
+    });
   }
 
   function wireTopbar(app, sites) {
@@ -517,6 +607,7 @@ ENX.shell = (function () {
 
       if (action === 'notifications') openNotifications();
       if (action === 'profile') openProfile();
+      if (action === 'open-palette') ENX.palette.open();
     });
 
     const siteSelect = app.querySelector('[data-action="site-select"]');
@@ -537,56 +628,16 @@ ENX.shell = (function () {
       });
     }
 
-    const search = app.querySelector('[data-action="global-search"]');
-    if (search) {
-      search.addEventListener('keydown', (e) => { if (e.key === 'Enter') openSearch(search.value, sites); });
-      search.addEventListener('focus', () => { if (search.value.trim()) openSearch(search.value, sites); });
-    }
-
-    // "/" focuses search, the standard power-user shortcut.
+    // "/" and ⌘K / Ctrl+K both open the command palette.
     document.addEventListener('keydown', (e) => {
-      if (e.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+      const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        if (search) search.focus();
+        ENX.palette.open();
+      } else if (e.key === '/' && !typing) {
+        e.preventDefault();
+        ENX.palette.open();
       }
-    });
-  }
-
-  /* ---- global search ---- */
-  function openSearch(query, sites) {
-    const q = String(query || '').trim().toLowerCase();
-    if (!q) return;
-
-    const pages = ENX.router.allPages()
-      .filter((p) => p.label.toLowerCase().includes(q) || p.group.toLowerCase().includes(q))
-      .map((p) => ({ kind: 'Screen', label: p.label, sub: p.group, href: p.href }));
-
-    const siteHits = (sites ? sites.sites : [])
-      .filter((s) => s.name.toLowerCase().includes(q) || s.location.toLowerCase().includes(q) || s.siteId.toLowerCase().includes(q))
-      .map((s) => ({ kind: 'Site', label: s.name, sub: `${s.location} · ${s.siteId}`, href: `site-detail.html?site=${s.siteId}` }));
-
-    const assets = ENX.data.peek('assets');
-    const assetHits = (assets ? assets.assets : [])
-      .filter((a) => a.name.toLowerCase().includes(q) || a.assetId.toLowerCase().includes(q) || a.type.includes(q))
-      .slice(0, 8)
-      .map((a) => ({ kind: 'Asset', label: a.name, sub: `${a.siteName} · ${a.assetId}`, href: `assets.html?asset=${a.assetId}` }));
-
-    const results = [].concat(siteHits, assetHits, pages);
-
-    ENX.ui.modal({
-      eyebrow: 'Global search',
-      title: `“${query}”`,
-      desc: `${results.length} result${results.length === 1 ? '' : 's'}`,
-      body: results.length
-        ? `<div class="stack" style="gap:0">${results.map((r) => `
-            <a class="alert-row" href="${r.href}" style="grid-template-columns:1fr auto">
-              <div>
-                <div class="alert-row__title">${esc(r.label)}</div>
-                <div class="alert-row__detail">${esc(r.sub)}</div>
-              </div>
-              <span class="pill">${esc(r.kind)}</span>
-            </a>`).join('')}</div>`
-        : `<div class="empty-state"><h3>No matches</h3><p>Try a site name, an asset ID such as ENX-HSR-001, or a screen name.</p></div>`,
     });
   }
 
@@ -632,10 +683,11 @@ ENX.shell = (function () {
 
   /* ---- profile ---- */
   function openProfile() {
+    const s = ENX.auth.session();
     ENX.ui.modal({
-      eyebrow: 'Signed in',
-      title: 'A. Kulkarni',
-      desc: 'Energy Manager · Nexus Industrial Group',
+      eyebrow: s && s.demo ? 'Demo session' : 'Signed in',
+      title: s ? s.name : 'Demo User',
+      desc: `${s && s.email ? s.email : 'No account'} · ${ENX.state.get('org')}`,
       body: `
         <div class="stack">
           <div class="metric-row"><span class="metric-row__label">Role</span><span class="metric-row__value">Energy Manager</span></div>
@@ -648,7 +700,12 @@ ENX.shell = (function () {
             customer engineer. Every write is recorded in the command audit.</div>
           </div>
         </div>`,
-      footer: `<a class="btn" href="settings.html">Settings</a><button class="btn btn--primary" data-modal-close>Close</button>`,
+      footer: `<a class="btn" href="settings.html">Settings</a>
+               <button class="btn btn--danger" data-sign-out>Sign out</button>
+               <button class="btn btn--primary" data-modal-close>Close</button>`,
+      onMount: (body, backdrop) => {
+        backdrop.querySelector('[data-sign-out]').addEventListener('click', () => ENX.auth.signOut());
+      },
     });
   }
 
@@ -678,6 +735,175 @@ ENX.shell = (function () {
   }
 
   return { render, applyTheme, alertRowHTML, openNotifications, currentPageId };
+})();
+
+/* ==========================================================================
+   Command palette — ⌘K / Ctrl+K / "/"
+   One index over screens, sites, assets and actions, with keyboard navigation.
+   ========================================================================== */
+ENX.palette = (function () {
+  const esc = (s) => ENX.ui.escapeHTML(s);
+  let el = null;
+  let items = [];
+  let filtered = [];
+  let cursor = 0;
+  let sitesRef = null;
+
+  const ACTIONS = [
+    { kind: 'Action', label: 'Toggle theme', sub: 'Switch between dark and light', run: () => {
+      ENX.state.set('theme', ENX.state.get('theme') === 'dark' ? 'light' : 'dark');
+      ENX.shell.applyTheme();
+      document.dispatchEvent(new CustomEvent('enx:theme'));
+    } },
+    { kind: 'Action', label: 'Toggle demo mode', sub: 'Start or stop simulated telemetry', run: () => {
+      const on = ENX.state.get('demo');
+      ENX.state.set('demo', !on);
+      const btn = document.querySelector('[data-action="toggle-demo"]');
+      if (btn) btn.setAttribute('aria-pressed', String(!on));
+      const banner = document.querySelector('[data-demo-banner]');
+      if (banner) banner.hidden = on;
+      if (!on) ENX.demo.start(); else ENX.demo.stop();
+    } },
+    { kind: 'Action', label: 'Sign out', sub: 'End this session', run: () => ENX.auth.signOut() },
+  ];
+
+  function install(sites) { sitesRef = sites; }
+
+  function buildIndex() {
+    const pages = ENX.router.allPages().map((p) => ({
+      kind: 'Screen', label: p.label, sub: p.group, href: p.href,
+    }));
+    const siteHits = (sitesRef ? sitesRef.sites : []).map((s) => ({
+      kind: 'Site', label: s.name, sub: `${s.location} · ${s.siteId}`,
+      href: `site-detail.html?site=${s.siteId}`,
+    }));
+    const assets = ENX.data.peek('assets');
+    const assetHits = (assets ? assets.assets : []).map((a) => ({
+      kind: 'Asset', label: a.name, sub: `${a.siteName} · ${a.assetId}`,
+      href: `assets.html?asset=${a.assetId}`,
+    }));
+    return [].concat(pages, siteHits, assetHits, ACTIONS);
+  }
+
+  /** Subsequence match, so "cmdc" finds "Command Center". */
+  function score(item, q) {
+    if (!q) return item.kind === 'Screen' ? 1 : 0.5;
+    const hay = `${item.label} ${item.sub}`.toLowerCase();
+    const idx = hay.indexOf(q);
+    if (idx === 0) return 100;
+    if (idx > 0) return 60 - Math.min(idx, 30);
+    let i = 0;
+    for (const ch of hay) { if (ch === q[i]) i += 1; if (i === q.length) return 20; }
+    return 0;
+  }
+
+  function open() {
+    if (el) { el.querySelector('[data-pal-input]').focus(); return; }
+    items = buildIndex();
+
+    el = document.createElement('div');
+    el.className = 'modal-backdrop palette-backdrop';
+    el.innerHTML = `
+      <div class="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div class="palette__search">
+          ${ENX.router.iconHTML('search')}
+          <input class="palette__input" data-pal-input type="text" autocomplete="off" spellcheck="false"
+                 placeholder="Search screens, sites, assets or actions…" aria-label="Search"
+                 aria-controls="palette-list" aria-expanded="true">
+          <kbd class="topbar__kbd">esc</kbd>
+        </div>
+        <ul class="palette__list" id="palette-list" role="listbox" data-pal-list></ul>
+        <div class="palette__foot">
+          <span><kbd class="topbar__kbd">↑</kbd><kbd class="topbar__kbd">↓</kbd> navigate</span>
+          <span><kbd class="topbar__kbd">↵</kbd> open</span>
+          <span><kbd class="topbar__kbd">esc</kbd> close</span>
+        </div>
+      </div>`;
+
+    document.body.appendChild(el);
+    requestAnimationFrame(() => { el.dataset.open = 'true'; });
+
+    const input = el.querySelector('[data-pal-input]');
+    input.addEventListener('input', () => paint(input.value));
+    input.addEventListener('keydown', onKey);
+    el.addEventListener('click', (e) => { if (e.target === el) close(); });
+
+    paint('');
+    input.focus();
+  }
+
+  function paint(query) {
+    const q = String(query || '').trim().toLowerCase();
+    filtered = items
+      .map((it) => ({ it, s: score(it, q) }))
+      .filter((x) => x.s > 0)
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 40)
+      .map((x) => x.it);
+    cursor = 0;
+    renderList();
+  }
+
+  function renderList() {
+    const list = el.querySelector('[data-pal-list]');
+    if (!filtered.length) {
+      list.innerHTML = `<li class="palette__empty">No matches. Try a site name, an asset ID, or a screen.</li>`;
+      return;
+    }
+    list.innerHTML = filtered.map((it, i) => `
+      <li>
+        <button class="palette__item" role="option" data-pal-index="${i}"
+                aria-selected="${i === cursor}">
+          <span class="palette__kind palette__kind--${ENX.fmt.slug(it.kind)}">${esc(it.kind)}</span>
+          <span class="palette__text">
+            <span class="palette__label">${esc(it.label)}</span>
+            <span class="palette__sub">${esc(it.sub)}</span>
+          </span>
+        </button>
+      </li>`).join('');
+
+    list.querySelectorAll('[data-pal-index]').forEach((btn) => {
+      btn.addEventListener('click', () => choose(filtered[Number(btn.dataset.palIndex)]));
+      btn.addEventListener('mousemove', () => {
+        cursor = Number(btn.dataset.palIndex);
+        list.querySelectorAll('[data-pal-index]').forEach((b, i) =>
+          b.setAttribute('aria-selected', String(i === cursor)));
+      });
+    });
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!filtered.length) return;
+      cursor = (cursor + (e.key === 'ArrowDown' ? 1 : -1) + filtered.length) % filtered.length;
+      const list = el.querySelector('[data-pal-list]');
+      list.querySelectorAll('[data-pal-index]').forEach((b, i) =>
+        b.setAttribute('aria-selected', String(i === cursor)));
+      const active = list.querySelector(`[data-pal-index="${cursor}"]`);
+      if (active) active.scrollIntoView({ block: 'nearest' });
+      return;
+    }
+    if (e.key === 'Enter') { e.preventDefault(); choose(filtered[cursor]); }
+  }
+
+  function choose(item) {
+    if (!item) return;
+    close();
+    if (item.run) { item.run(); return; }
+    location.href = item.href;
+  }
+
+  function close() {
+    if (!el) return;
+    const node = el;
+    el = null;
+    node.dataset.open = 'false';
+    setTimeout(() => node.remove(), 180);
+  }
+
+  return { open, close, install };
 })();
 
 /* ==========================================================================
@@ -727,6 +953,9 @@ ENX.report = (function () {
 (function boot() {
   // Theme must apply before first paint to avoid a flash of the wrong mode.
   ENX.shell.applyTheme();
+
+  // Demo gate: redirect before any data loads. Public pages pass straight through.
+  if (!ENX.auth.guard()) return;
 
   document.addEventListener('DOMContentLoaded', () => {
     const app = document.querySelector('.app');
