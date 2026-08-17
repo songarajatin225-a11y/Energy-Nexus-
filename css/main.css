@@ -38,13 +38,13 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
 
 /* Focus: always visible, never removed. */
 :focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid var(--accent-ui);
   outline-offset: 2px;
   border-radius: var(--r-sm);
 }
 :focus:not(:focus-visible) { outline: none; }
 
-::selection { background: rgba(47, 211, 196, 0.3); color: var(--text-primary); }
+::selection { background: var(--wash-ui); color: var(--text-primary); }
 
 /* Scrollbars — slim and industrial. */
 * { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
@@ -82,7 +82,7 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
 
 .skip-link {
   position: absolute; top: -100px; left: var(--sp-4); z-index: var(--z-toast);
-  background: var(--accent-cyan); color: var(--text-inverse);
+  background: var(--accent-ui); color: var(--accent-ui-ink);
   padding: var(--sp-2) var(--sp-4); border-radius: var(--r-md); font-weight: 600;
 }
 .skip-link:focus { top: var(--sp-3); }
@@ -158,10 +158,9 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
   content: ''; position: absolute; left: -12px;
   top: 50%; transform: translateY(-50%);
   width: 3px; height: 18px; border-radius: 0 2px 2px 0;
-  background: linear-gradient(180deg, var(--accent-green), var(--accent-blue));
-  box-shadow: var(--shadow-glow-cyan);
+  background: var(--accent-ui);
 }
-.nav-item[aria-current='page'] .nav-item__icon { opacity: 1; color: var(--accent-cyan); }
+.nav-item[aria-current='page'] .nav-item__icon { opacity: 1; color: var(--accent-ui); }
 
 .nav-item__badge {
   margin-left: auto;
@@ -184,6 +183,26 @@ button { cursor: pointer; background: none; border: none; padding: 0; }
 .app[data-sidebar='collapsed'] .sidebar__group-label { display: none; }
 .app[data-sidebar='collapsed'] .nav-item { justify-content: center; padding: 9px 0; }
 .app[data-sidebar='collapsed'] .sidebar__brand { justify-content: center; padding: 0; }
+
+/* With labels hidden, the icon alone is ambiguous — reveal the name on hover.
+   Suppressed while expanded so the label is never duplicated. */
+.nav-item.has-tip::after { display: none; }
+.app[data-sidebar='collapsed'] .nav-item.has-tip::after {
+  display: block;
+  bottom: auto; top: 50%; left: calc(100% + 10px);
+  transform: translateY(-50%) translateX(-3px);
+}
+.app[data-sidebar='collapsed'] .nav-item.has-tip:hover::after,
+.app[data-sidebar='collapsed'] .nav-item.has-tip:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Content settles in rather than snapping — one rule, every screen. */
+.page { animation: page-in var(--dur-slow) var(--ease-out) both; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
 
 /* --- Main column --- */
 .main { display: flex; flex-direction: column; min-width: 0; }

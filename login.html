@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in · Energy Nexus</title>
+<meta name="description" content="Sign in to the Energy Nexus industrial energy operating system.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="auth-body">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="auth">
+  <!-- Brand side -->
+  <aside class="auth__brand" aria-hidden="true">
+    <div class="auth__brand-inner">
+      <a href="index.html" class="auth__logo">
+        <img src="assets/logo-mark.svg" alt="" width="38" height="38">
+        <span>
+          <strong>ENERGY NEXUS</strong>
+          <small>Industrial Energy OS</small>
+        </span>
+      </a>
+
+      <div>
+        <div class="eyebrow">The intelligence layer for industrial energy</div>
+        <h2 class="auth__headline">Connect. Predict.<br>Optimise. Orchestrate.</h2>
+        <p class="auth__lede">
+          One model across grid, solar, storage and load — forecasting what happens next and
+          acting only inside a safety envelope the plant has signed.
+        </p>
+      </div>
+
+      <div class="auth__stats" data-auth-stats></div>
+
+      <div class="auth__topology" data-auth-topology></div>
+    </div>
+  </aside>
+
+  <!-- Form side -->
+  <main class="auth__panel" id="main">
+    <div class="auth__form-wrap">
+      <a href="index.html" class="auth__logo auth__logo--mobile">
+        <img src="assets/logo-mark.svg" alt="" width="32" height="32">
+        <span><strong>ENERGY NEXUS</strong></span>
+      </a>
+
+      <div class="auth__head">
+        <h1>Sign in</h1>
+        <p>Access the Energy Nexus operating system.</p>
+      </div>
+
+      <form class="auth__form" data-login-form novalidate>
+        <div class="field">
+          <label class="field__label" for="email">Work email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="username"
+                 placeholder="you@company.com" value="a.kulkarni@nexusindustrial.in" required>
+        </div>
+
+        <div class="field">
+          <div class="row row--between">
+            <label class="field__label" for="password">Password</label>
+            <button type="button" class="auth__link" data-toggle-pw aria-pressed="false">Show</button>
+          </div>
+          <input class="input" id="password" name="password" type="password"
+                 autocomplete="current-password" placeholder="••••••••••" required>
+        </div>
+
+        <div class="row row--between auth__row">
+          <label class="switch" style="cursor:pointer">
+            <input type="checkbox" class="sr-only" data-remember checked>
+            <span class="switch__track"><span class="switch__thumb"></span></span>
+            <span class="switch__label">Keep me signed in</span>
+          </label>
+          <button type="button" class="auth__link" data-forgot>Forgot password?</button>
+        </div>
+
+        <p class="auth__error" data-auth-error role="alert" hidden></p>
+
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <span data-submit-label>Sign in</span>
+        </button>
+
+        <div class="auth__divider"><span>Demo access</span></div>
+
+        <button class="btn btn--block" type="button" data-demo-signin>
+          Continue to demo without signing in
+        </button>
+      </form>
+
+      <div class="auth__creds">
+        <div class="eyebrow">Demo credentials</div>
+        <div class="auth__creds-row">
+          <span>Email</span><code>any valid email</code>
+        </div>
+        <div class="auth__creds-row">
+          <span>Password</span><code>nexus2026</code>
+        </div>
+      </div>
+
+      <div class="callout callout--warning auth__notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>
+        <div><strong>This is a demo gate, not security.</strong> Energy Nexus is a static prototype with
+        no backend. The check runs in your browser and can be bypassed — treat nothing here as
+        protected. Real deployments authenticate server-side with SSO.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/twin.js" defer></script>
+<script src="js/login.js" defer></script>
+</body>
+</html>

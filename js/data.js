@@ -9,6 +9,13 @@ window.ENX = window.ENX || {};
 ENX.data = (function () {
   const cache = new Map();
   const inflight = new Map();
+  let pending = 0;
+
+  /** Notify the shell so it can show a top progress bar while data is in flight. */
+  function progress(delta) {
+    pending = Math.max(0, pending + delta);
+    document.dispatchEvent(new CustomEvent('enx:loading', { detail: { pending } }));
+  }
 
   // Datasets are keyed by filename stem; paths stay relative for GitHub Pages.
   const PATH = (name) => `data/${name}.json`;
@@ -22,6 +29,7 @@ ENX.data = (function () {
     if (cache.has(name)) return Promise.resolve(cache.get(name));
     if (inflight.has(name)) return inflight.get(name);
 
+    progress(1);
     const req = fetch(PATH(name), { cache: 'no-cache' })
       .then((res) => {
         if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
@@ -30,10 +38,12 @@ ENX.data = (function () {
       .then((json) => {
         cache.set(name, json);
         inflight.delete(name);
+        progress(-1);
         return json;
       })
       .catch((err) => {
         inflight.delete(name);
+        progress(-1);
         // file:// has no fetch access — the most common local-run mistake.
         const hint = location.protocol === 'file:'
           ? 'Datasets cannot be read over file://. Run a local web server — see the README.'

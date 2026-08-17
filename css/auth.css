@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Energy Nexus — sign-in screen
+   Split layout: brand narrative on the left, the form on the right.
+   ========================================================================== */
+
+.auth-body { background: var(--bg-base); }
+
+.auth {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: 100vh;
+}
+
+/* --- brand side --- */
+.auth__brand {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 12%, rgba(125, 211, 63, 0.10), transparent 62%),
+    radial-gradient(ellipse 70% 60% at 85% 88%, rgba(46, 139, 255, 0.12), transparent 62%),
+    var(--bg-sunken);
+}
+.auth__brand-inner {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-10);
+  height: 100%;
+  padding: var(--sp-12) var(--sp-12) var(--sp-10);
+  max-width: 620px;
+  margin-left: auto;
+}
+
+.auth__logo {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  color: var(--text-primary);
+  align-self: flex-start;
+}
+.auth__logo:hover { color: var(--text-primary); }
+.auth__logo span { display: flex; flex-direction: column; }
+.auth__logo strong {
+  font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.1em; line-height: 1.2;
+}
+.auth__logo small {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+  color: var(--text-tertiary); text-transform: uppercase;
+}
+
+.auth__headline {
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  font-weight: 680; letter-spacing: -0.035em; line-height: 1.08;
+  margin-top: var(--sp-4);
+  background: linear-gradient(115deg, var(--text-primary) 30%, var(--accent-cyan) 78%, var(--accent-green));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.auth__lede {
+  font-size: var(--fs-md); color: var(--text-secondary);
+  line-height: var(--lh-base); margin-top: var(--sp-5); max-width: 46ch;
+}
+
+.auth__stats {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--sp-5);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border-subtle);
+}
+.auth__stat-value {
+  font-family: var(--font-mono); font-size: var(--fs-xl); font-weight: 550;
+  letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+}
+.auth__stat-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--text-tertiary); margin-top: 3px;
+}
+
+.auth__topology {
+  margin-top: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--bg-surface) 70%, transparent);
+  overflow: hidden;
+  /* The live single-line is decoration here — it must never steal the form's focus. */
+  pointer-events: none;
+  opacity: 0.9;
+}
+.auth__topology svg { width: 100%; height: auto; display: block; }
+
+/* --- form side --- */
+.auth__panel {
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-10) var(--sp-8);
+}
+.auth__form-wrap { width: 100%; max-width: 396px; }
+
+.auth__logo--mobile { display: none; margin-bottom: var(--sp-8); }
+
+.auth__head { margin-bottom: var(--sp-8); }
+.auth__head h1 {
+  font-size: var(--fs-2xl); font-weight: 660; letter-spacing: -0.028em;
+}
+.auth__head p {
+  color: var(--text-secondary); font-size: var(--fs-md); margin-top: var(--sp-2);
+}
+
+.auth__form { display: flex; flex-direction: column; gap: var(--sp-5); }
+.auth__form .input { height: 42px; }
+.auth__row { margin-top: calc(var(--sp-1) * -1); }
+
+.auth__link {
+  font-size: var(--fs-xs); font-weight: 500;
+  color: var(--accent-cyan);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.auth__link:hover { color: var(--accent-blue); text-decoration: underline; }
+
+.auth__error {
+  display: flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--wash-red);
+  border: 1px solid rgba(255, 90, 101, 0.3);
+  color: var(--accent-red);
+  font-size: var(--fs-sm);
+  margin: 0;
+  animation: auth-shake 340ms var(--ease-out);
+}
+@keyframes auth-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+.auth__divider {
+  display: flex; align-items: center; gap: var(--sp-4);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono); font-size: var(--fs-2xs);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+}
+.auth__divider::before, .auth__divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border-subtle);
+}
+
+.auth__creds {
+  margin-top: var(--sp-8);
+  padding: var(--sp-4);
+  border: 1px dashed var(--border-default);
+  border-radius: var(--r-md);
+  background: var(--bg-sunken);
+}
+.auth__creds-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4); margin-top: var(--sp-2);
+  font-size: var(--fs-xs); color: var(--text-secondary);
+}
+.auth__creds-row code {
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  padding: 2px 8px; border-radius: var(--r-sm);
+  background: var(--bg-raised); border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.auth__notice { margin-top: var(--sp-5); font-size: var(--fs-xs); }
+
+/* Busy state on the submit button */
+.btn[data-busy='true'] { pointer-events: none; opacity: 0.75; }
+.btn[data-busy='true'] [data-submit-label]::after {
+  content: ''; display: inline-block;
+  width: 12px; height: 12px; margin-left: 8px; vertical-align: -2px;
+  border: 2px solid currentColor; border-right-color: transparent;
+  border-radius: 50%;
+  animation: auth-spin 0.62s linear infinite;
+}
+@keyframes auth-spin { to { transform: rotate(360deg); } }
+
+/* --------------------------------------------------------------------------
+   Responsive — the brand column is the first thing to go
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .auth { grid-template-columns: minmax(0, 1fr); }
+  .auth__brand { display: none; }
+  .auth__logo--mobile { display: inline-flex; }
+  .auth__panel { padding: var(--sp-8) var(--sp-5); align-items: flex-start; }
+  .auth__form-wrap { margin: 0 auto; padding-top: var(--sp-6); }
+}
+
+@media (max-width: 767px) {
+  .auth__panel { padding: var(--sp-6) var(--sp-4); }
+  .auth__head h1 { font-size: 1.5rem; }
+  .auth__creds-row { flex-wrap: wrap; gap: var(--sp-2); }
+}
