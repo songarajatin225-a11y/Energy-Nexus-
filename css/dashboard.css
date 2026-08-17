@@ -487,87 +487,9 @@
 .safety-item__desc { font-size: var(--fs-xs); color: var(--text-tertiary); margin-top: 1px; }
 
 /* --------------------------------------------------------------------------
-   Landing page
+   Feature tile — used by the Energy Internet carriers and the report cards.
+   Landing-page styling now lives in css/landing.css.
    -------------------------------------------------------------------------- */
-.landing { background: var(--bg-base); }
-.landing-nav {
-  position: sticky; top: 0; z-index: var(--z-topbar);
-  display: flex; align-items: center; gap: var(--sp-6);
-  height: 64px; padding: 0 var(--sp-8);
-  background: color-mix(in srgb, var(--bg-base) 86%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-subtle);
-}
-.landing-nav__links { display: flex; gap: var(--sp-5); margin-left: auto; }
-.landing-nav__links a { color: var(--text-secondary); font-size: var(--fs-sm); font-weight: 500; }
-.landing-nav__links a:hover { color: var(--text-primary); }
-
-.hero {
-  position: relative;
-  padding: var(--sp-24) var(--sp-8) var(--sp-20);
-  max-width: var(--content-max); margin: 0 auto;
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--sp-16); align-items: center;
-}
-.hero__eyebrow {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  padding: 4px 11px; border-radius: var(--r-full);
-  border: 1px solid rgba(47, 211, 196, 0.3);
-  background: var(--wash-cyan);
-  font-family: var(--font-mono); font-size: var(--fs-2xs);
-  letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--accent-cyan);
-  margin-bottom: var(--sp-5);
-}
-.hero h1 {
-  font-size: clamp(2.4rem, 5vw, var(--fs-5xl));
-  font-weight: 680; letter-spacing: -0.035em; line-height: 1.03;
-}
-.hero h1 em {
-  font-style: normal;
-  background: linear-gradient(115deg, var(--accent-green), var(--accent-cyan) 48%, var(--accent-blue));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
-.hero__sub {
-  font-size: var(--fs-lg); color: var(--text-secondary);
-  line-height: var(--lh-base); margin-top: var(--sp-5); max-width: 56ch;
-}
-.hero__cta { display: flex; gap: var(--sp-3); margin-top: var(--sp-8); flex-wrap: wrap; }
-.hero__stats {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--sp-5); margin-top: var(--sp-10);
-  padding-top: var(--sp-6); border-top: 1px solid var(--border-subtle);
-}
-.hero__stat-value {
-  font-family: var(--font-mono); font-size: var(--fs-xl); font-weight: 550;
-  letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
-}
-.hero__stat-label {
-  font-family: var(--font-mono); font-size: 9.5px;
-  letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-tertiary);
-  margin-top: 2px;
-}
-.hero__visual {
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--r-xl);
-  background: var(--bg-sunken);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-.landing-section {
-  max-width: var(--content-max); margin: 0 auto;
-  padding: var(--sp-20) var(--sp-8);
-  border-top: 1px solid var(--border-subtle);
-}
-.landing-section__head { max-width: 68ch; margin-bottom: var(--sp-10); }
-.landing-section h2 {
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  font-weight: 650; letter-spacing: -0.03em; margin-top: var(--sp-3);
-}
-.landing-section__lede { font-size: var(--fs-lg); color: var(--text-secondary); margin-top: var(--sp-4); line-height: var(--lh-base); }
-
 .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-5); }
 .feature {
   padding: var(--sp-5);
@@ -585,25 +507,6 @@
 }
 .feature h3 { font-size: var(--fs-md); font-weight: 600; margin-bottom: var(--sp-2); }
 .feature p { font-size: var(--fs-sm); color: var(--text-secondary); line-height: var(--lh-snug); }
-
-.landing-cta {
-  max-width: var(--content-max); margin: 0 auto;
-  padding: var(--sp-24) var(--sp-8);
-  text-align: center;
-  border-top: 1px solid var(--border-subtle);
-}
-.landing-cta h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 680; letter-spacing: -0.035em; }
-
-.landing-footer {
-  border-top: 1px solid var(--border-subtle);
-  padding: var(--sp-10) var(--sp-8);
-  background: var(--bg-sunken);
-}
-.landing-footer__inner {
-  max-width: var(--content-max); margin: 0 auto;
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: var(--sp-8); flex-wrap: wrap;
-}
 
 /* Five questions the OS answers, used on landing and command center */
 .questions { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--sp-3); }

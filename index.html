@@ -11,267 +11,346 @@
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/landing.css">
 <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body class="landing">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<nav class="landing-nav" aria-label="Primary">
-  <a href="index.html" style="display:flex;align-items:center;gap:10px;color:var(--text-primary)">
-    <img src="assets/logo-mark.svg" alt="" width="30" height="30">
-    <span style="font-weight:700;letter-spacing:0.09em;font-size:var(--fs-sm)">ENERGY NEXUS</span>
-  </a>
-  <div class="landing-nav__links">
-    <a href="#problem">Problem</a>
-    <a href="#platform">Platform</a>
-    <a href="#agent">AI Agent</a>
-    <a href="#network">Network</a>
-    <a href="#roadmap">Roadmap</a>
-  </div>
-  <div class="row" style="gap:var(--sp-2)">
-    <button class="btn btn--icon btn--ghost" data-landing-theme aria-label="Toggle colour theme"></button>
-    <a class="btn btn--primary" href="dashboard.html">Explore Energy Nexus</a>
+<nav class="ln-nav" aria-label="Primary" data-ln-nav>
+  <div class="ln-wrap">
+    <div class="ln-nav__inner">
+      <a href="index.html" class="ln-brand">
+        <img src="assets/logo-mark.svg" alt="" width="28" height="28">
+        <span>ENERGY NEXUS</span>
+      </a>
+      <div class="ln-nav__links" data-ln-navlinks>
+        <a href="#problem">Problem</a>
+        <a href="#platform">Platform</a>
+        <a href="#agent">AI Agent</a>
+        <a href="#network">Network</a>
+        <a href="#roadmap">Roadmap</a>
+      </div>
+      <div class="ln-nav__actions">
+        <button class="ln-icon-btn" data-landing-theme aria-label="Toggle colour theme"></button>
+        <a class="ln-btn ln-btn--primary ln-btn--sm" href="dashboard.html">Explore Energy Nexus</a>
+      </div>
+    </div>
   </div>
 </nav>
 
 <main id="main">
 
   <!-- ================= HERO ================= -->
-  <header class="hero">
-    <div>
-      <div class="hero__eyebrow"><span class="pill__dot" style="background:currentColor"></span>The intelligence layer for industrial energy</div>
-      <h1>The operating system for <em>industrial energy</em></h1>
-      <p class="hero__sub">
-        Energy Nexus connects every energy asset, predicts what happens next, and continuously
-        optimises how industrial energy is generated, stored and consumed — with a safety
-        envelope the plant signs before anything moves.
-      </p>
-      <div class="hero__cta">
-        <a class="btn btn--primary btn--lg" href="dashboard.html">Explore Energy Nexus</a>
-        <a class="btn btn--lg" href="digital-twin.html">View platform</a>
-      </div>
-      <div class="hero__stats" data-hero-stats></div>
-    </div>
-    <div class="hero__visual">
-      <div style="padding:var(--sp-4) var(--sp-5);border-bottom:1px solid var(--border-subtle);
-                  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3)">
-        <div>
-          <div class="eyebrow">Live single-line</div>
-          <div style="font-size:var(--fs-sm);font-weight:600;margin-top:2px" data-hero-site>—</div>
+  <header class="ln-hero">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-hero__grid">
+        <div class="ln-hero__copy">
+          <span class="ln-eyebrow ln-hero__eyebrow">The intelligence layer for industrial energy</span>
+          <h1 class="ln-display">The operating system for <em>industrial energy</em></h1>
+          <p class="ln-lede ln-hero__sub">
+            Energy Nexus connects every energy asset, predicts what happens next, and continuously
+            optimises how industrial energy is generated, stored and consumed — with a safety
+            envelope the plant signs before anything moves.
+          </p>
+          <div class="ln-hero__actions">
+            <a class="ln-btn ln-btn--primary" href="dashboard.html">Explore Energy Nexus</a>
+            <a class="ln-link-cta" href="digital-twin.html">
+              View platform
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
         </div>
-        <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>Streaming</span>
+
+        <div class="ln-hero__figure">
+          <figure class="ln-figure" style="margin:0">
+            <figcaption class="ln-figure__bar">
+              <div>
+                <span class="ln-eyebrow">Live single-line</span>
+                <div class="ln-figure__title" data-hero-site>—</div>
+              </div>
+              <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>Streaming</span>
+            </figcaption>
+            <div class="topology" data-hero-topology></div>
+            <div class="telemetry-ribbon" data-hero-ribbon></div>
+          </figure>
+        </div>
       </div>
-      <div class="topology" data-hero-topology style="border-radius:0"></div>
-      <div class="telemetry-ribbon" data-hero-ribbon></div>
+    </div>
+
+    <div class="ln-wrap ln-stats">
+      <div class="ln-grid">
+        <div class="ln-stats__grid" data-hero-stats></div>
+      </div>
     </div>
   </header>
 
   <!-- ================= PROBLEM ================= -->
-  <section class="landing-section" id="problem">
-    <div class="landing-section__head">
-      <div class="eyebrow">01 · The problem</div>
-      <h2>Industrial energy is fragmented by default</h2>
-      <p class="landing-section__lede">
-        A single plant runs a grid connection, a solar plant, a battery, diesel backup, chillers,
-        compressors and production lines — each with its own controller, its own vendor portal and
-        its own data model. Nothing sees the whole picture, so nothing can optimise it.
-      </p>
+  <section class="ln-section" id="problem">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--sticky ln-reveal">
+          <span class="ln-eyebrow">01 · The problem</span>
+          <h2 class="ln-h2">Industrial energy is fragmented by default</h2>
+          <p class="ln-lede">
+            A single plant runs a grid connection, a solar plant, a battery, diesel backup, chillers,
+            compressors and production lines — each with its own controller, its own vendor portal and
+            its own data model. Nothing sees the whole picture, so nothing can optimise it.
+          </p>
+        </div>
+        <div class="ln-body-col ln-reveal">
+          <div class="ln-list" data-problem-grid></div>
+        </div>
+      </div>
     </div>
-    <div class="feature-grid" data-problem-grid></div>
   </section>
 
   <!-- ================= WHY NOW ================= -->
-  <section class="landing-section" id="why-now">
-    <div class="landing-section__head">
-      <div class="eyebrow">02 · Why now</div>
-      <h2>Four curves crossed at once</h2>
+  <section class="ln-section ln-section--tight" id="why-now">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--wide ln-reveal">
+          <span class="ln-eyebrow">02 · Why now</span>
+          <h2 class="ln-h2 ln-h2--wide">Four curves crossed at once</h2>
+        </div>
+        <div class="ln-full ln-reveal">
+          <div class="ln-strip ln-strip--4 ln-strip--count" data-whynow-grid></div>
+        </div>
+      </div>
     </div>
-    <div class="feature-grid" data-whynow-grid></div>
   </section>
 
   <!-- ================= PLATFORM ================= -->
-  <section class="landing-section" id="platform">
-    <div class="landing-section__head">
-      <div class="eyebrow">03 · Energy Nexus</div>
-      <h2>One model. Every asset. Continuous decisions.</h2>
-      <p class="landing-section__lede">
-        Energy Nexus resolves five questions at all times — and every screen in the OS answers
-        one of them.
-      </p>
-    </div>
-    <div class="questions" data-landing-questions></div>
+  <section class="ln-section" id="platform">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--wide ln-reveal">
+          <span class="ln-eyebrow">03 · Energy Nexus</span>
+          <h2 class="ln-h2 ln-h2--wide">One model. Every asset. Continuous decisions.</h2>
+          <p class="ln-lede">
+            Energy Nexus resolves five questions at all times — and every screen in the OS answers
+            one of them.
+          </p>
+        </div>
 
-    <div class="section" style="margin-top:var(--sp-10)">
-      <div class="ladder" data-architecture-ladder></div>
+        <div class="ln-full ln-reveal">
+          <div class="ln-strip ln-strip--5" data-landing-questions></div>
+        </div>
+
+        <div class="ln-full ln-reveal" style="margin-top:clamp(32px,4vw,56px)">
+          <div class="ln-rail" data-architecture-ladder></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ================= DIGITAL TWIN ================= -->
-  <section class="landing-section" id="twin">
-    <div class="landing-section__head">
-      <div class="eyebrow">04 · Digital twin</div>
-      <h2>A machine-readable model of the plant, reconciled continuously</h2>
-      <p class="landing-section__lede">
-        Not a decorative 3D factory. The twin holds topology, asset models, load, production,
-        commercial terms, environmental conditions, grid state, carbon and — critically — the
-        constraint register the customer signs at commissioning.
-      </p>
+  <section class="ln-section" id="twin">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--sticky ln-reveal">
+          <span class="ln-eyebrow">04 · Digital twin</span>
+          <h2 class="ln-h2">A machine-readable model of the plant, reconciled continuously</h2>
+          <p class="ln-lede">
+            Not a decorative 3D factory. The twin holds topology, asset models, load, production,
+            commercial terms, environmental conditions, grid state, carbon and — critically — the
+            constraint register the customer signs at commissioning.
+          </p>
+        </div>
+        <div class="ln-body-col ln-reveal">
+          <div class="ln-list" data-twin-grid></div>
+        </div>
+      </div>
     </div>
-    <div class="feature-grid" data-twin-grid></div>
   </section>
 
   <!-- ================= AGENT ================= -->
-  <section class="landing-section" id="agent">
-    <div class="landing-section__head">
-      <div class="eyebrow">05 · AI energy agent</div>
-      <h2>A constrained agent that explains itself</h2>
-      <p class="landing-section__lede">
-        Every site gets a persistent software entity that owns its energy decisions, quantifies
-        the value of each one, and escalates anything it should not do alone.
-      </p>
-    </div>
-    <div class="grid grid--2" style="gap:var(--sp-5)">
-      <div class="card">
-        <div class="card__header"><div class="card__title">Every action carries its reasoning</div></div>
-        <div class="card__body">
-          <div class="explain-grid" data-landing-explain></div>
+  <section class="ln-section" id="agent">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--wide ln-reveal">
+          <span class="ln-eyebrow">05 · AI energy agent</span>
+          <h2 class="ln-h2 ln-h2--wide">A constrained agent that explains itself</h2>
+          <p class="ln-lede">
+            Every site gets a persistent software entity that owns its energy decisions, quantifies
+            the value of each one, and escalates anything it should not do alone.
+          </p>
         </div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <div class="card__header"><div class="card__title">Autonomy is earned, not assumed</div></div>
-          <div class="card__body">
-            <div class="autonomy-ladder" data-landing-autonomy></div>
+
+        <div class="ln-col-main ln-reveal">
+          <h3 class="ln-eyebrow ln-eyebrow--accent" style="margin-bottom:20px">Every action carries its reasoning</h3>
+          <div class="ln-defs" data-landing-explain></div>
+        </div>
+
+        <div class="ln-col-side ln-reveal">
+          <h3 class="ln-eyebrow ln-eyebrow--accent" style="margin-bottom:20px">Autonomy is earned, not assumed</h3>
+          <div data-landing-autonomy></div>
+        </div>
+
+        <div class="ln-full ln-reveal" style="margin-top:clamp(24px,3vw,40px)">
+          <div class="ln-note">
+            <div class="ln-note__bar"></div>
+            <p class="ln-note__text"><strong>Two decisions are permanently human.</strong> Diesel dispatch and any regulated
+            energy transaction stay recommend-and-approve for the life of the product, regardless of
+            autonomy tier. Both carry statutory and counterparty exposure the customer holds, not us.</p>
           </div>
-        </div>
-        <div class="callout callout--warning">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z"/></svg>
-          <div><strong>Two decisions are permanently human.</strong> Diesel dispatch and any regulated
-          energy transaction stay recommend-and-approve for the life of the product, regardless of
-          autonomy tier. Both carry statutory and counterparty exposure the customer holds, not us.</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ================= OPTIMISATION ================= -->
-  <section class="landing-section" id="optimisation">
-    <div class="landing-section__head">
-      <div class="eyebrow">06 · Optimisation</div>
-      <h2>Verified savings, not a slide deck of theoretical potential</h2>
-      <p class="landing-section__lede">
-        The commercial wedge is measured cost reduction, settled against a baseline the customer
-        agrees to. The savings ledger below is how value reaches the plant's P&amp;L.
-      </p>
-    </div>
-    <div class="card">
-      <div class="card__header">
-        <div>
-          <div class="card__title">Annual savings bridge</div>
-          <div class="card__desc">Representative 5 MW site · modelled</div>
+  <section class="ln-section" id="optimisation">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--wide ln-reveal">
+          <span class="ln-eyebrow">06 · Optimisation</span>
+          <h2 class="ln-h2 ln-h2--wide">Verified savings, not a slide deck of theoretical potential</h2>
+          <p class="ln-lede">
+            The commercial wedge is measured cost reduction, settled against a baseline the customer
+            agrees to. The savings ledger below is how value reaches the plant's P&amp;L.
+          </p>
         </div>
-        <span class="pill pill--simulated">Illustrative</span>
+        <div class="ln-full ln-reveal">
+          <div class="ln-panel">
+            <div class="ln-panel__bar">
+              <div>
+                <h3 class="ln-figure__title" style="margin:0">Annual savings bridge</h3>
+                <div class="ln-meta" style="margin-top:5px">Representative 5 MW site · modelled</div>
+              </div>
+              <span class="ln-state"><span class="ln-state__text">Illustrative</span></span>
+            </div>
+            <div class="ln-panel__body"><div data-landing-waterfall></div></div>
+          </div>
+        </div>
       </div>
-      <div class="card__body"><div data-landing-waterfall></div></div>
     </div>
   </section>
 
   <!-- ================= NETWORK ================= -->
-  <section class="landing-section" id="network">
-    <div class="landing-section__head">
-      <div class="eyebrow">07 · Industrial network</div>
-      <h2>Clusters first, not consumers</h2>
-      <p class="landing-section__lede">
-        The unit of value is the cluster, not the site. Dense industrial belts give shared
-        infrastructure, shared counterparties and reference customers who talk to each other.
-      </p>
-    </div>
-    <div class="card">
-      <div class="network-map" data-landing-map></div>
+  <section class="ln-section" id="network">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--wide ln-reveal">
+          <span class="ln-eyebrow">07 · Industrial network</span>
+          <h2 class="ln-h2 ln-h2--wide">Clusters first, not consumers</h2>
+          <p class="ln-lede">
+            The unit of value is the cluster, not the site. Dense industrial belts give shared
+            infrastructure, shared counterparties and reference customers who talk to each other.
+          </p>
+        </div>
+        <div class="ln-full ln-reveal">
+          <div class="ln-panel">
+            <div class="ln-panel__body ln-panel__body--flush">
+              <div class="network-map" data-landing-map></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ================= ENERGY INTERNET ================= -->
-  <section class="landing-section" id="energy-internet">
-    <div class="landing-section__head">
-      <div class="eyebrow">08 · Long-term vision</div>
-      <h2>Toward an energy internet</h2>
-      <p class="landing-section__lede">
-        Electricity, heat, cooling, storage, flexibility and eventually hydrogen, coordinated
-        across industrial ecosystems under a common protocol.
-      </p>
+  <section class="ln-section" id="energy-internet">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--sticky ln-reveal">
+          <span class="ln-eyebrow">08 · Long-term vision</span>
+          <h2 class="ln-h2">Toward an energy internet</h2>
+          <p class="ln-lede">
+            Electricity, heat, cooling, storage, flexibility and eventually hydrogen, coordinated
+            across industrial ecosystems under a common protocol.
+          </p>
+        </div>
+        <div class="ln-body-col ln-reveal">
+          <div class="ln-note ln-note--accent" style="margin-bottom:clamp(28px,3.5vw,44px)">
+            <div class="ln-note__bar"></div>
+            <p class="ln-note__text"><strong>This is a long-term vision, not an operating capability.</strong> Energy trading and
+            multi-energy routing depend on regulatory change and are shown throughout the platform as
+            simulation, pilot or regulation-dependent. Nothing here represents a live public electricity
+            trading network.</p>
+          </div>
+          <div class="ln-rail" data-landing-internet></div>
+        </div>
+      </div>
     </div>
-    <div class="callout callout--future" style="margin-bottom:var(--sp-8)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 22a10 10 0 100-20 10 10 0 000 20zM2 12h20"/></svg>
-      <div><strong>This is a long-term vision, not an operating capability.</strong> Energy trading and
-      multi-energy routing depend on regulatory change and are shown throughout the platform as
-      simulation, pilot or regulation-dependent. Nothing here represents a live public electricity
-      trading network.</div>
-    </div>
-    <div class="ladder" data-landing-internet></div>
   </section>
 
   <!-- ================= ROADMAP ================= -->
-  <section class="landing-section" id="roadmap">
-    <div class="landing-section__head">
-      <div class="eyebrow">09 · Roadmap</div>
-      <h2>Nine rungs, each independently saleable</h2>
-      <p class="landing-section__lede">
-        The company does not attempt the energy internet on day one. Each rung generates the data,
-        the trust and the installed base the next one needs.
-      </p>
+  <section class="ln-section" id="roadmap">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-section__grid">
+        <div class="ln-head ln-head--wide ln-reveal">
+          <span class="ln-eyebrow">09 · Roadmap</span>
+          <h2 class="ln-h2 ln-h2--wide">Nine rungs, each independently saleable</h2>
+          <p class="ln-lede">
+            The company does not attempt the energy internet on day one. Each rung generates the data,
+            the trust and the installed base the next one needs.
+          </p>
+        </div>
+        <div class="ln-full ln-reveal">
+          <div data-landing-roadmap></div>
+          <p class="ln-meta" style="margin-top:24px;line-height:1.6;max-width:70ch">
+            Horizons follow the staged strategy in the business case. The Energy Router and flexibility
+            aggregation tracks run in parallel from roughly month 26 onward.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="roadmap" data-landing-roadmap></div>
-    <p class="text-tertiary" style="font-size:var(--fs-xs);margin-top:var(--sp-4)">
-      Horizons follow the staged strategy in the business case. The Energy Router and flexibility
-      aggregation tracks run in parallel from roughly month 26 onward.
-    </p>
   </section>
 
   <!-- ================= CTA ================= -->
-  <section class="landing-cta">
-    <div class="eyebrow">Connect. Predict. Optimise. Orchestrate.</div>
-    <h2 style="margin-top:var(--sp-4)">See the energy OS running</h2>
-    <p class="landing-section__lede" style="margin:var(--sp-4) auto 0;max-width:56ch">
-      A fully interactive prototype with simulated telemetry across eight industrial sites,
-      eighty connected assets and a live AI agent.
-    </p>
-    <div class="row" style="justify-content:center;margin-top:var(--sp-8);gap:var(--sp-3);flex-wrap:wrap">
-      <a class="btn btn--primary btn--lg" href="dashboard.html">Enter the platform</a>
-      <a class="btn btn--lg" href="onboarding.html">See onboarding</a>
+  <section class="ln-section ln-close">
+    <div class="ln-wrap">
+      <div class="ln-grid ln-close__grid">
+        <div class="ln-close__copy ln-reveal">
+          <span class="ln-eyebrow ln-eyebrow--accent">Connect. Predict. Optimise. Orchestrate.</span>
+          <h2>See the energy OS running</h2>
+          <p class="ln-lede">
+            A fully interactive prototype with simulated telemetry across eight industrial sites,
+            eighty connected assets and a live AI agent.
+          </p>
+        </div>
+        <div class="ln-close__actions ln-reveal">
+          <a class="ln-btn ln-btn--primary" href="dashboard.html">Enter the platform</a>
+          <a class="ln-btn" href="onboarding.html">See onboarding</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="landing-footer">
-  <div class="landing-footer__inner">
-    <div style="max-width:38ch">
-      <img src="assets/logo.svg" alt="Energy Nexus" style="height:34px;width:auto;color:var(--text-primary)">
-      <p class="text-tertiary" style="font-size:var(--fs-xs);margin-top:var(--sp-4);line-height:var(--lh-snug)">
-        The intelligence layer for industrial energy. This is a demonstration prototype built on
-        simulated data — it is not connected to live plant equipment.
-      </p>
-    </div>
-    <div class="row" style="gap:var(--sp-8);align-items:flex-start;flex-wrap:wrap">
-      <div class="stack" style="gap:var(--sp-2)">
-        <div class="eyebrow">Platform</div>
-        <a href="dashboard.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Command Center</a>
-        <a href="digital-twin.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Digital Twin</a>
-        <a href="agent.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Nexus Intelligence</a>
-        <a href="optimisation.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Optimisation</a>
+<footer class="ln-footer">
+  <div class="ln-wrap">
+    <div class="ln-grid ln-footer__grid">
+      <div class="ln-footer__brand">
+        <img src="assets/logo.svg" alt="Energy Nexus">
+        <p class="ln-footer__note">
+          The intelligence layer for industrial energy. This is a demonstration prototype built on
+          simulated data — it is not connected to live plant equipment.
+        </p>
       </div>
-      <div class="stack" style="gap:var(--sp-2)">
-        <div class="eyebrow">Network</div>
-        <a href="network.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Industrial network</a>
-        <a href="flexibility.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Flexibility</a>
-        <a href="marketplace.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Nexus Market</a>
-        <a href="energy-internet.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Energy Internet</a>
-      </div>
-      <div class="stack" style="gap:var(--sp-2)">
-        <div class="eyebrow">Assurance</div>
-        <a href="safety.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Safety centre</a>
-        <a href="reports.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Reports</a>
-        <a href="settings.html" style="font-size:var(--fs-sm);color:var(--text-secondary)">Settings</a>
+      <div class="ln-footer__cols">
+        <div class="ln-footer__col">
+          <span class="ln-eyebrow">Platform</span>
+          <a href="dashboard.html">Command Center</a>
+          <a href="digital-twin.html">Digital Twin</a>
+          <a href="agent.html">Nexus Intelligence</a>
+          <a href="optimisation.html">Optimisation</a>
+        </div>
+        <div class="ln-footer__col">
+          <span class="ln-eyebrow">Network</span>
+          <a href="network.html">Industrial network</a>
+          <a href="flexibility.html">Flexibility</a>
+          <a href="marketplace.html">Nexus Market</a>
+          <a href="energy-internet.html">Energy Internet</a>
+        </div>
+        <div class="ln-footer__col">
+          <span class="ln-eyebrow">Assurance</span>
+          <a href="safety.html">Safety centre</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </div>
       </div>
     </div>
   </div>

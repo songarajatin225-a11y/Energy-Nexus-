@@ -18,9 +18,6 @@
   .grid--sidebar-left { grid-template-columns: minmax(0, 1fr); }
   .grid--6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .questions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero { grid-template-columns: minmax(0, 1fr); gap: var(--sp-10); padding: var(--sp-16) var(--sp-6) var(--sp-12); }
 }
 
 /* --------------------------------------------------------------------------
@@ -35,8 +32,6 @@
   .agent-metric:nth-child(-n + 2) { border-bottom: 1px solid var(--border-subtle); }
   .compare { grid-template-columns: minmax(0, 1fr); gap: var(--sp-3); }
   .compare__arrow { transform: rotate(90deg); height: 26px; }
-  .landing-section, .landing-cta { padding-left: var(--sp-6); padding-right: var(--sp-6); }
-  .landing-nav { padding: 0 var(--sp-5); }
 
   /* The staircase flattens — the ascent metaphor breaks below this width. */
   .roadmap__step { margin-top: 0 !important; }
@@ -104,7 +99,6 @@
 
   /* Everything stacks. */
   .grid--2, .grid--3, .grid--4, .grid--6,
-  .questions, .feature-grid,
   .site-card__metrics { grid-template-columns: minmax(0, 1fr); }
   .site-card__metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
@@ -147,12 +141,6 @@
   .network-map svg { min-width: 520px; }
   .telemetry-ribbon { gap: var(--sp-4); padding: var(--sp-3) var(--sp-4); }
 
-  .hero { padding: var(--sp-12) var(--sp-4) var(--sp-10); }
-  .hero__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
-  .hero__cta .btn { flex: 1; }
-  .landing-section, .landing-cta { padding: var(--sp-12) var(--sp-4); }
-  .landing-nav { padding: 0 var(--sp-4); }
-  .landing-nav__links { display: none; }
 
   .safety-hero { flex-direction: column; text-align: center; gap: var(--sp-4); padding: var(--sp-5); }
 
