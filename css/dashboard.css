@@ -41,6 +41,8 @@
   color: var(--text-primary);
 }
 .kpi__unit { font-size: var(--fs-md); font-weight: 500; color: var(--text-secondary); letter-spacing: 0; }
+/* A currency prefix belongs against its number, not a gap away from it. */
+.kpi__value .kpi__unit:first-child { margin-right: -3px; }
 .kpi__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: auto; }
 .kpi__note { font-size: var(--fs-2xs); color: var(--text-tertiary); font-family: var(--font-mono); }
 .kpi__spark { height: 26px; margin-top: var(--sp-2); }
@@ -50,9 +52,7 @@
    -------------------------------------------------------------------------- */
 .topology {
   position: relative;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 42%, rgba(47, 211, 196, 0.055), transparent 72%),
-    var(--bg-sunken);
+  background: var(--bg-sunken);
   border-radius: var(--r-lg);
   overflow: hidden;
 }
@@ -145,11 +145,9 @@
    Nexus Intelligence — the agent panel
    -------------------------------------------------------------------------- */
 .agent-panel {
-  border: 1px solid rgba(47, 211, 196, 0.24);
+  border: 1px solid var(--border-default);
   border-radius: var(--r-lg);
-  background:
-    linear-gradient(160deg, rgba(47, 211, 196, 0.07), transparent 46%),
-    var(--bg-surface);
+  background: var(--bg-surface);
   overflow: hidden;
 }
 .agent-panel__header {
@@ -300,9 +298,7 @@
    -------------------------------------------------------------------------- */
 .network-map {
   position: relative;
-  background:
-    radial-gradient(ellipse 60% 55% at 46% 50%, rgba(46, 139, 255, 0.07), transparent 70%),
-    var(--bg-sunken);
+  background: var(--bg-sunken);
   border-radius: var(--r-lg);
   overflow: hidden;
 }
@@ -463,9 +459,10 @@
 .safety-hero {
   display: flex; align-items: center; gap: var(--sp-5);
   padding: var(--sp-6);
-  border: 1px solid rgba(125, 211, 63, 0.3);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--accent-green);
   border-radius: var(--r-lg);
-  background: linear-gradient(135deg, var(--wash-green), transparent 62%), var(--bg-surface);
+  background: var(--bg-surface);
 }
 .safety-hero__shield {
   width: 52px; height: 52px; flex-shrink: 0;

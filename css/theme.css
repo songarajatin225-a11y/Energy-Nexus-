@@ -6,24 +6,24 @@
 
 :root {
   /* --- surfaces: deep industrial navy through graphite --- */
-  --bg-base:      #060B14;
-  --bg-sunken:    #04080F;
-  --bg-surface:   #0A111E;
-  --bg-elevated:  #0F1827;
-  --bg-raised:    #142033;
-  --bg-hover:     #1A2739;
-  --bg-input:     #0C1522;
+  --bg-base:      #0A0B0D;
+  --bg-sunken:    #07080A;
+  --bg-surface:   #0E1013;
+  --bg-elevated:  #121417;
+  --bg-raised:    #16191D;
+  --bg-hover:     #1B1F24;
+  --bg-input:     #0E1013;
 
   /* --- borders --- */
-  --border-subtle:  rgba(148, 176, 214, 0.10);
-  --border-default: rgba(148, 176, 214, 0.16);
-  --border-strong:  rgba(148, 176, 214, 0.28);
+  --border-subtle:  rgba(255, 255, 255, 0.09);
+  --border-default: rgba(255, 255, 255, 0.16);
+  --border-strong:  rgba(255, 255, 255, 0.26);
 
   /* --- text --- */
-  --text-primary:   #E9EFF8;
-  --text-secondary: #93A6C2;
-  --text-tertiary:  #61748F;
-  --text-inverse:   #060B14;
+  --text-primary:   #ECEEF1;
+  --text-secondary: #9AA0A8;
+  --text-tertiary:  #7C828A;
+  --text-inverse:   #0A0B0D;
 
   /* --- accents: intelligence, data, flow --- */
   --accent-cyan:  #2FD3C4;
@@ -32,6 +32,12 @@
   --accent-amber: #F5A623;
   --accent-red:   #FF5A65;
   --accent-violet:#8B6DFF;
+
+  /* The single accent for interface chrome — primary actions, active state,
+     focus. Carrier colours below stay reserved for data, never for chrome. */
+  --accent-ui:      #7DD33F;
+  --accent-ui-ink:  #07120A;
+  --wash-ui:        rgba(125, 211, 63, 0.12);
 
   /* semantic aliases — meaning, not hue */
   --sem-positive: var(--accent-green);
@@ -88,12 +94,12 @@
   --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
 
   /* --- radii --- */
-  --r-sm: 4px;  --r-md: 6px;  --r-lg: 10px;  --r-xl: 14px;  --r-full: 999px;
+  --r-sm: 2px;  --r-md: 2px;  --r-lg: 3px;   --r-xl: 4px;   --r-full: 999px;
 
   /* --- elevation: restrained, industrial, never soft-UI --- */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 18px 52px rgba(0, 0, 0, 0.55);
   --shadow-glow-cyan: 0 0 20px rgba(47, 211, 196, 0.28);
   --shadow-glow-green: 0 0 20px rgba(125, 211, 63, 0.25);
 
@@ -121,21 +127,21 @@
    Light mode — a genuine re-mapping, not an inversion filter.
    ========================================================================== */
 [data-theme='light'] {
-  --bg-base:      #F4F7FB;
-  --bg-sunken:    #E9EEF6;
+  --bg-base:      #F6F6F4;
+  --bg-sunken:    #EDEDEA;
   --bg-surface:   #FFFFFF;
   --bg-elevated:  #FFFFFF;
-  --bg-raised:    #F7FAFD;
-  --bg-hover:     #EEF3FA;
+  --bg-raised:    #F4F4F1;
+  --bg-hover:     #EDEDEA;
   --bg-input:     #FFFFFF;
 
-  --border-subtle:  rgba(19, 42, 76, 0.09);
-  --border-default: rgba(19, 42, 76, 0.15);
-  --border-strong:  rgba(19, 42, 76, 0.26);
+  --border-subtle:  rgba(15, 20, 26, 0.12);
+  --border-default: rgba(15, 20, 26, 0.18);
+  --border-strong:  rgba(15, 20, 26, 0.30);
 
-  --text-primary:   #0B1A2E;
-  --text-secondary: #465C7A;
-  --text-tertiary:  #7488A5;
+  --text-primary:   #14161A;
+  --text-secondary: #52585F;
+  --text-tertiary:  #5F666E;
   --text-inverse:   #FFFFFF;
 
   /* Accents darken slightly so they hold contrast on white. */
@@ -145,6 +151,10 @@
   --accent-amber: #B87503;
   --accent-red:   #D4323D;
   --accent-violet:#5B41C7;
+
+  --accent-ui:      #3F8F12;
+  --accent-ui-ink:  #FFFFFF;
+  --wash-ui:        rgba(63, 143, 18, 0.11);
 
   --wash-green:  rgba(78, 155, 20, 0.11);
   --wash-cyan:   rgba(15, 156, 144, 0.11);
@@ -162,9 +172,9 @@
   --e-ev:     #5B41C7;
   --e-thermal:#C43B70;
 
-  --shadow-sm: 0 1px 2px rgba(19, 42, 76, 0.07);
-  --shadow-md: 0 4px 16px rgba(19, 42, 76, 0.08);
-  --shadow-lg: 0 16px 48px rgba(19, 42, 76, 0.13);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 18px 52px rgba(15, 20, 26, 0.16);
   --shadow-glow-cyan: 0 0 16px rgba(15, 156, 144, 0.20);
   --shadow-glow-green: 0 0 16px rgba(78, 155, 20, 0.18);
 }

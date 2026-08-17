@@ -111,12 +111,22 @@ ENX.ui = (function () {
     }
     const el = document.createElement('div');
     el.className = `toast${kind ? ` toast--${kind}` : ''}`;
-    el.textContent = message;
+    el.innerHTML = '<span></span>'
+      + '<button class="toast__close" aria-label="Dismiss notification">'
+      + ENX.router.iconHTML('close') + '</button>';
+    el.firstElementChild.textContent = message;
     stack.appendChild(el);
-    setTimeout(() => {
+
+    const dismiss = () => {
+      if (el.dataset.leaving) return;
       el.dataset.leaving = 'true';
       setTimeout(() => el.remove(), 260);
-    }, ms || 3400);
+    };
+    el.querySelector('.toast__close').addEventListener('click', dismiss);
+    let timer = setTimeout(dismiss, ms || 3400);
+    // Hovering holds the message — 3.4s is not long enough for a long one.
+    el.addEventListener('pointerenter', () => clearTimeout(timer));
+    el.addEventListener('pointerleave', () => { timer = setTimeout(dismiss, 1200); });
   }
 
   /* ---- modal ---- */
@@ -741,6 +751,82 @@ ENX.shell = (function () {
    Command palette — ⌘K / Ctrl+K / "/"
    One index over screens, sites, assets and actions, with keyboard navigation.
    ========================================================================== */
+/* ==========================================================================
+   Table sorting
+   Every data table in the OS sorts by clicking or keying a header. Delegated,
+   so tables rendered later are covered without re-initialising anything.
+   ========================================================================== */
+ENX.tables = (function () {
+  /** Numbers hide behind ₹, %, MW and thousands separators — dig them out. */
+  function cellValue(row, index) {
+    const cell = row.cells[index];
+    if (!cell) return '';
+    const text = cell.textContent.replace(/\s+/g, ' ').trim();
+    if (!/\d/.test(text)) return text.toLowerCase();
+    const numeric = parseFloat(text.replace(/[^0-9.\-]/g, ''));
+    return Number.isFinite(numeric) ? numeric : text.toLowerCase();
+  }
+
+  function sort(th) {
+    const table = th.closest('table');
+    const body = table && table.tBodies[0];
+    if (!body) return;
+
+    // An empty-state row spans the table; there is nothing to order.
+    const rows = Array.from(body.rows).filter((r) => !r.querySelector('td[colspan]'));
+    if (rows.length < 2) return;
+
+    const index = Array.from(th.parentNode.children).indexOf(th);
+    const ascending = th.getAttribute('aria-sort') !== 'ascending';
+
+    th.parentNode.querySelectorAll('th').forEach((h) => h.removeAttribute('aria-sort'));
+    th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+
+    const dir = ascending ? 1 : -1;
+    rows.sort((a, b) => {
+      const x = cellValue(a, index);
+      const y = cellValue(b, index);
+      if (typeof x === 'number' && typeof y === 'number') return (x - y) * dir;
+      return String(x).localeCompare(String(y)) * dir;
+    });
+    rows.forEach((r) => body.appendChild(r));
+  }
+
+  document.addEventListener('click', (e) => {
+    const th = e.target.closest && e.target.closest('.table thead th');
+    if (th) sort(th);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const th = e.target.closest && e.target.closest('.table thead th');
+    if (!th) return;
+    e.preventDefault();
+    sort(th);
+  });
+
+  /** Headers are not focusable by default; make them reachable as they appear. */
+  function makeFocusable(root) {
+    if (!root.querySelectorAll) return;
+    root.querySelectorAll('.table thead th').forEach((th) => {
+      if (th.hasAttribute('tabindex')) return;
+      th.tabIndex = 0;
+      th.setAttribute('role', 'columnheader');
+      if (!th.title) th.title = 'Sort by this column';
+    });
+  }
+
+  new MutationObserver((records) => {
+    records.forEach((r) => r.addedNodes.forEach((n) => {
+      if (n.nodeType === 1) makeFocusable(n);
+    }));
+  }).observe(document.documentElement, { childList: true, subtree: true });
+
+  document.addEventListener('DOMContentLoaded', () => makeFocusable(document));
+
+  return { sort };
+})();
+
 ENX.palette = (function () {
   const esc = (s) => ENX.ui.escapeHTML(s);
   let el = null;
