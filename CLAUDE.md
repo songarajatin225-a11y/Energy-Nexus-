@@ -10,6 +10,12 @@ http.server`); `file://` breaks the JSON fetches.
 
 - 21 screens, flat at root. `index.html` is the marketing landing; everything
   else is the product.
+- The landing hero is a scroll-tied video scene (`js/hero-scroll.js`,
+  `css/hero-scroll.css`): a 300vh track with a sticky viewport. Scroll drives
+  `video.currentTime` through an exponential lerp — the clip is never played.
+  Approved hero copy is split across three stages that fade sequentially. If the
+  remote clip fails to load, the scene falls back to the ink ground and holds
+  white type; never assume the video is available.
 - `css/` theme · main · components · dashboard · charts · landing · responsive.
   `theme.css` holds every design token — colour, radius, spacing, elevation.
   Retune tokens rather than editing screens.

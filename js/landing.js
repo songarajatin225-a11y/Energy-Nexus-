@@ -27,6 +27,7 @@
   document.addEventListener('enx:ready', () => {
     wireTheme();
     wireNav();
+    ENX.heroScroll.init();
     renderStatic();
     observeReveal();
 

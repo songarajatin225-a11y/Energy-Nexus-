@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/dashboard.css">
 <link rel="stylesheet" href="css/landing.css">
+<link rel="stylesheet" href="css/hero-scroll.css">
 <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body class="landing">
@@ -41,46 +42,63 @@
 
 <main id="main">
 
-  <!-- ================= HERO ================= -->
-  <header class="ln-hero">
-    <div class="ln-wrap">
-      <div class="ln-grid ln-hero__grid">
-        <div class="ln-hero__copy">
-          <span class="ln-eyebrow ln-hero__eyebrow">The intelligence layer for industrial energy</span>
-          <h1 class="ln-display">The operating system for <em>industrial energy</em></h1>
-          <p class="ln-lede ln-hero__sub">
-            Energy Nexus connects every energy asset, predicts what happens next, and continuously
-            optimises how industrial energy is generated, stored and consumed — with a safety
-            envelope the plant signs before anything moves.
-          </p>
-          <div class="ln-hero__actions">
-            <a class="ln-btn ln-btn--primary" href="dashboard.html">Explore Energy Nexus</a>
-            <a class="ln-link-cta" href="digital-twin.html">
-              View platform
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
+  <!-- ================= HERO (scroll-tied scene) ================= -->
+  <header class="ln-scene" data-ln-scene>
+    <div class="ln-scene__sticky">
+      <video class="ln-scene__video" data-ln-video muted playsinline preload="auto"></video>
+
+      <div class="ln-scene__overlay">
+        <!-- Stage 1 -->
+        <div class="ln-scene__stage" data-ln-stage="1">
+          <div class="ln-wrap" style="width:100%">
+            <div class="ln-grid">
+              <div class="ln-hero__copy">
+                <span class="ln-eyebrow ln-hero__eyebrow" data-rise="0">The intelligence layer for industrial energy</span>
+                <h1 class="ln-display" data-rise="1">The operating system for <em>industrial energy</em></h1>
+                <p class="ln-lede ln-hero__sub" data-rise="2">
+                  Energy Nexus connects every energy asset, predicts what happens next, and continuously
+                  optimises how industrial energy is generated, stored and consumed — with a safety
+                  envelope the plant signs before anything moves.
+                </p>
+                <div class="ln-hero__actions" data-rise="3">
+                  <a class="ln-btn ln-btn--primary" href="dashboard.html">Explore Energy Nexus</a>
+                  <a class="ln-link-cta" href="digital-twin.html">
+                    View platform
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="ln-hero__figure">
-          <figure class="ln-figure" style="margin:0">
-            <figcaption class="ln-figure__bar">
-              <div>
-                <span class="ln-eyebrow">Live single-line</span>
-                <div class="ln-figure__title" data-hero-site>—</div>
+        <!-- Stage 2 -->
+        <div class="ln-scene__stage" data-ln-stage="2">
+          <div class="ln-wrap" style="width:100%">
+            <div class="ln-grid">
+              <div class="ln-full ln-scene__stats" data-rise="0">
+                <div class="ln-stats__grid" data-hero-stats></div>
               </div>
-              <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>Streaming</span>
-            </figcaption>
-            <div class="topology" data-hero-topology></div>
-            <div class="telemetry-ribbon" data-hero-ribbon></div>
-          </figure>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="ln-wrap ln-stats">
-      <div class="ln-grid">
-        <div class="ln-stats__grid" data-hero-stats></div>
+        <!-- Stage 3 -->
+        <div class="ln-scene__stage" data-ln-stage="3">
+          <div class="ln-wrap" style="width:100%;display:flex;justify-content:center">
+            <figure class="ln-figure ln-scene__figure" style="margin:0" data-rise="0">
+              <figcaption class="ln-figure__bar">
+                <div>
+                  <span class="ln-eyebrow">Live single-line</span>
+                  <div class="ln-figure__title" data-hero-site>—</div>
+                </div>
+                <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>Streaming</span>
+              </figcaption>
+              <div class="topology" data-hero-topology></div>
+              <div class="telemetry-ribbon" data-hero-ribbon></div>
+            </figure>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -362,6 +380,7 @@
 <script src="js/charts.js" defer></script>
 <script src="js/twin.js" defer></script>
 <script src="js/network.js" defer></script>
+<script src="js/hero-scroll.js" defer></script>
 <script src="js/landing.js" defer></script>
 </body>
 </html>
