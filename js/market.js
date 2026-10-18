@@ -139,7 +139,7 @@
 
     if (!list.length) {
       host.innerHTML = `<tr><td colspan="10"><div class="empty-state">
-        <h3>No records in this regime</h3><p>Choose another regulatory regime to see its records.</p>
+        <p class="empty-state__title">No records in this regime</p><p>Choose another regulatory regime to see its records.</p>
       </div></td></tr>`;
       return;
     }

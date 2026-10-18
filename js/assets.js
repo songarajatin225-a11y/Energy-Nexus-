@@ -91,7 +91,7 @@
 
     if (!list.length) {
       host.innerHTML = `<tr><td colspan="9">
-        <div class="empty-state"><h3>No assets match</h3>
+        <div class="empty-state"><p class="empty-state__title">No assets match</p>
         <p>Adjust the filters or clear the search to see the full register.</p></div></td></tr>`;
       return;
     }

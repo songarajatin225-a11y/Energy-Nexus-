@@ -167,7 +167,7 @@
     const list = D.agents.decisions.filter((d) => d.siteId === siteId);
     const host = document.querySelector('[data-site-decisions]');
     if (!list.length) {
-      host.innerHTML = `<div class="empty-state"><h3>No agent activity yet</h3>
+      host.innerHTML = `<div class="empty-state"><p class="empty-state__title">No agent activity yet</p>
         <p>This site is in monitoring mode. Decisions appear once the agent is commissioned.</p></div>`;
       return;
     }
@@ -194,7 +194,7 @@
     const list = D.alerts.alerts.filter((a) => a.siteId === siteId);
     const host = document.querySelector('[data-site-alerts]');
     if (!list.length) {
-      host.innerHTML = `<div class="empty-state"><h3>No open alerts</h3>
+      host.innerHTML = `<div class="empty-state"><p class="empty-state__title">No open alerts</p>
         <p>Everything at this site is inside its normal operating band.</p></div>`;
       return;
     }
