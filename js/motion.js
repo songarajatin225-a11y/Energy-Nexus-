@@ -58,16 +58,17 @@ ENX.motion = (function () {
   }
 
   /**
-   * Safety net. A fast programmatic scroll can carry an element through the
-   * viewport between two observer deliveries, which would strand it at opacity
-   * zero forever. Anything already on screen is simply marked arrived.
+   * Safety net. A scrollbar drag, an anchor jump or a load with a hash can
+   * carry the reader past an element between two observer deliveries, which
+   * would strand it at opacity zero. Anything the reader has reached — on
+   * screen or already behind them — is marked arrived; only what is still
+   * below the fold waits for the observer.
    */
   function sweep() {
     const h = window.innerHeight;
     document.querySelectorAll('[data-anim]:not([data-in]), .ln-reveal:not([data-visible])')
       .forEach((el) => {
-        const box = el.getBoundingClientRect();
-        if (box.bottom < 0 || box.top > h) return;
+        if (el.getBoundingClientRect().top > h) return;
         el.dataset.in = 'true';
         if (el.classList.contains('ln-reveal')) el.dataset.visible = 'true';
         if (el.classList.contains('ln-stat')) countUpStats();
