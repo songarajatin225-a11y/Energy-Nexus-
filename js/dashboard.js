@@ -410,7 +410,7 @@
 
     const host = document.querySelector('[data-alert-list]');
     if (!list.length) {
-      host.innerHTML = `<div class="empty-state"><h3>Nothing in this category</h3>
+      host.innerHTML = `<div class="empty-state"><p class="empty-state__title">Nothing in this category</p>
         <p>No ${esc(alertFilter.toLowerCase())} alerts are currently open across the estate.</p></div>`;
       return;
     }

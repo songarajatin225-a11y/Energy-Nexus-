@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Energy Nexus — landing motion system
+   Scroll-driven choreography scoped to .landing. Every transform is composited
+   (opacity / transform / clip-path only) and every effect is removed wholesale
+   under reduced motion.
+   ========================================================================== */
+
+.landing {
+  --anim-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --anim-dur: 900ms;
+}
+
+/* --------------------------------------------------------------------------
+   Reveal variants — set by js/motion.js, triggered by data-in
+   -------------------------------------------------------------------------- */
+.landing [data-anim] {
+  transition:
+    opacity var(--anim-dur) var(--anim-ease),
+    transform var(--anim-dur) var(--anim-ease),
+    clip-path var(--anim-dur) var(--anim-ease);
+  transition-delay: var(--anim-delay, 0ms);
+  will-change: opacity, transform;
+}
+.landing [data-anim][data-in='true'] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* A heading wipes up from its own baseline rather than simply fading. */
+.landing [data-anim='mask'] {
+  opacity: 1;
+  clip-path: inset(0 0 105% 0);
+  transform: translateY(14px);
+}
+
+.landing [data-anim='rise'] { opacity: 0; transform: translateY(26px); }
+.landing [data-anim='rise-sm'] { opacity: 0; transform: translateY(14px); }
+.landing [data-anim='fade'] { opacity: 0; }
+
+/* Panels settle in from very slightly back, never a bounce. */
+.landing [data-anim='panel'] {
+  opacity: 0;
+  transform: translateY(28px) scale(0.988);
+  transform-origin: 50% 0;
+}
+
+/* Column strips wipe in from the left edge of their own cell. */
+.landing [data-anim='wipe'] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translateY(8px);
+}
+
+/* The rail's connecting line draws downward as the section arrives. */
+.landing .ln-rail__step::before {
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  transition: transform 700ms var(--anim-ease);
+  transition-delay: var(--anim-delay, 0ms);
+}
+.landing .ln-rail__step[data-in='true']::before { transform: scaleY(1); }
+
+.landing .ln-rail__dot {
+  transform: scale(0.1);
+  transition: transform 600ms var(--anim-ease), background 300ms linear;
+  transition-delay: calc(var(--anim-delay, 0ms) + 120ms);
+}
+.landing .ln-rail__step[data-in='true'] .ln-rail__dot { transform: scale(1); }
+
+.landing .ln-timeline__marker {
+  transform: scale(0.1);
+  transition: transform 520ms var(--anim-ease);
+  transition-delay: var(--anim-delay, 0ms);
+}
+.landing .ln-timeline__step[data-in='true'] .ln-timeline__marker { transform: scale(1); }
+
+/* --------------------------------------------------------------------------
+   Read-progress rail — a hairline across the top of the viewport
+   -------------------------------------------------------------------------- */
+.ln-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 70;
+  pointer-events: none;
+  background: transparent;
+}
+.ln-progress__fill {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: var(--ln-accent);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Section index — a fixed rail of ticks, one per section
+   -------------------------------------------------------------------------- */
+.ln-dots {
+  position: fixed;
+  right: clamp(14px, 1.6vw, 26px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms var(--anim-ease);
+}
+.ln-dots[data-visible='true'] { opacity: 1; }
+.ln-dots span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--ln-rule-2);
+  transform-origin: 100% 50%;
+  transition: transform 420ms var(--anim-ease), background 420ms var(--anim-ease);
+}
+.ln-dots span[data-on='true'] {
+  background: var(--ln-accent);
+  transform: scaleX(1.7);
+}
+
+@media (max-width: 1100px) {
+  .ln-dots { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Parallax — layers drift at a fraction of scroll
+   -------------------------------------------------------------------------- */
+.landing [data-parallax] { will-change: transform; }
+
+/* --------------------------------------------------------------------------
+   Pointer-reactive primary action. Translation only, a few pixels, and it
+   returns to centre on leave — no spring, no rotation.
+   -------------------------------------------------------------------------- */
+.landing [data-magnetic] {
+  transition: transform 420ms var(--anim-ease), filter 200ms linear;
+}
+.landing [data-magnetic][data-pulling='true'] { transition: transform 120ms linear; }
+
+/* Hover affordances that read as motion design rather than decoration. */
+.landing .ln-list__item {
+  transition: background 320ms var(--anim-ease), padding-left 320ms var(--anim-ease);
+}
+.landing .ln-list__item:hover { padding-left: 10px; }
+
+.landing .ln-strip__cell { transition: background 320ms var(--anim-ease); }
+
+.landing .ln-footer__col a {
+  background-image: linear-gradient(var(--ln-accent), var(--ln-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 320ms var(--anim-ease), color 200ms linear;
+  text-decoration: none;
+}
+.landing .ln-footer__col a:hover { background-size: 100% 1px; text-decoration: none; }
+
+/* The statistic band counts up, so hold the glyph box steady while it runs. */
+.landing .ln-stat__value { font-variant-numeric: tabular-nums; }
+
+/* --------------------------------------------------------------------------
+   Nothing above survives a reduced-motion preference.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .landing [data-anim],
+  .landing [data-anim='mask'],
+  .landing [data-anim='rise'],
+  .landing [data-anim='rise-sm'],
+  .landing [data-anim='fade'],
+  .landing [data-anim='panel'],
+  .landing [data-anim='wipe'] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+  .landing .ln-rail__step::before,
+  .landing .ln-rail__dot,
+  .landing .ln-timeline__marker {
+    transform: none !important;
+    transition: none !important;
+  }
+  .landing [data-parallax] { transform: none !important; }
+  .ln-progress, .ln-dots { display: none; }
+}
+
+[data-motion='off'] .landing [data-anim],
+[data-motion='off'] .landing [data-parallax] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  transition: none !important;
+}
+[data-motion='off'] .ln-progress,
+[data-motion='off'] .ln-dots { display: none; }

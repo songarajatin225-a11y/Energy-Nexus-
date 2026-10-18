@@ -69,7 +69,7 @@
     const list = filtered();
 
     if (!list.length) {
-      host.innerHTML = `<div class="empty-state"><h3>No sites match</h3>
+      host.innerHTML = `<div class="empty-state"><p class="empty-state__title">No sites match</p>
         <p>Clear the search or choose a different cluster.</p>
         <button class="btn" data-clear>Clear filters</button></div>`;
       host.querySelector('[data-clear]').addEventListener('click', () => {

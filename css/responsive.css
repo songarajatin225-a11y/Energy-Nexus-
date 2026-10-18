@@ -21,6 +21,39 @@
 }
 
 /* --------------------------------------------------------------------------
+   Topbar — tablet and small laptop (768 to 1319)
+   At full width the bar carries ten controls. Between the mobile layout and a
+   wide desktop there is not enough room for all of them, so it sheds the least
+   essential first instead of pushing the viewport sideways.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1319px) {
+  /* The search trigger keeps its action, loses its label and keycap. */
+  .topbar__search {
+    min-width: 0; width: 34px; padding: 0; justify-content: center;
+    flex-shrink: 0;
+  }
+  .topbar__search span, .topbar__search .topbar__kbd { display: none; }
+
+  /* The clock is ambience; the LIVE pill carries the signal that matters. */
+  .topbar__clock { display: none; }
+
+  /* Selectors truncate rather than widen the bar. */
+  .topbar > .row[data-topbar-optional] { min-width: 0; }
+  .topbar .select { max-width: 150px; min-width: 0; }
+}
+
+@media (max-width: 1100px) {
+  .topbar .switch__label { display: none; }
+  .topbar .select { max-width: 124px; }
+}
+
+@media (max-width: 900px) {
+  /* Only the active site is needed at this width. The organisation selector
+     stays reachable from the command palette. */
+  .topbar [data-action='org-select'] { display: none; }
+}
+
+/* --------------------------------------------------------------------------
    Tablet — 768 to 1439
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
@@ -72,13 +105,7 @@
   .topbar [data-topbar-optional] { display: none; }
   .topbar .search { min-width: 0; }
 
-  /* The palette trigger collapses to its icon — at 220px wide it overflows the
-     bar and pushes the nav toggle off-screen. */
-  .topbar__search {
-    min-width: 0; width: 34px; padding: 0; justify-content: center;
-    flex-shrink: 0;
-  }
-  .topbar__search span, .topbar__search .topbar__kbd { display: none; }
+  /* The palette trigger is already collapsed to its icon by the ladder above. */
 
   .page-header { flex-direction: column; align-items: stretch; gap: var(--sp-4); }
   .page-header h1 { font-size: 1.375rem; }

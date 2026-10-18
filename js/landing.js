@@ -27,8 +27,9 @@
   document.addEventListener('enx:ready', () => {
     wireTheme();
     wireNav();
+    ENX.heroScroll.init();
     renderStatic();
-    observeReveal();
+    ENX.motion.init();
 
     ENX.data.loadAll(['sites', 'assets', 'telemetry', 'agents', 'network'])
       .then((D) => {
@@ -86,23 +87,6 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach((s) => spy.observe(s));
-  }
-
-  /** One-shot reveal — no repeat, no parallax. */
-  function observeReveal() {
-    const targets = document.querySelectorAll('.ln-reveal');
-    if (!('IntersectionObserver' in window)) {
-      targets.forEach((t) => { t.dataset.visible = 'true'; });
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.dataset.visible = 'true';
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
-    targets.forEach((t) => io.observe(t));
   }
 
   /* ------------------------------------------------------------- hero */

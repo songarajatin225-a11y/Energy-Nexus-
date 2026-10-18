@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Energy Nexus — cinematic scroll-tied hero
+   A tall track with a sticky scene. Type sits directly on the footage; no
+   colour overlays, no gradients.
+   ========================================================================== */
+
+.ln-scene {
+  position: relative;
+  height: 300vh;               /* the scroll distance the scene consumes */
+  background: var(--ln-ink);
+}
+
+.ln-scene__sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ln-scene__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+.ln-scene[data-video='ready'] .ln-scene__video { opacity: 1; }
+
+.ln-scene__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ln-scene__stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.1s ease-out;
+}
+
+/* Stage children rise as their stage becomes legible. */
+.ln-scene__stage [data-rise] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ln-scene__stage[data-visible='true'] [data-rise] {
+  opacity: 1;
+  transform: none;
+}
+.ln-scene__stage [data-rise='1'] { transition-delay: 150ms; }
+.ln-scene__stage [data-rise='2'] { transition-delay: 300ms; }
+.ln-scene__stage [data-rise='3'] { transition-delay: 450ms; }
+
+/* --------------------------------------------------------------------------
+   Type colour follows the footage, not the site theme: the early frames are
+   pale cloud, the later ones dark landscape.
+   -------------------------------------------------------------------------- */
+:root[data-hero-phase='light'] .ln-scene { --scene-fg: #14161A; --scene-fg-2: #14161ACC; --scene-rule: rgba(20, 22, 26, 0.28); }
+:root[data-hero-phase='dark']  .ln-scene { --scene-fg: #FFFFFF; --scene-fg-2: #FFFFFFB3; --scene-rule: rgba(255, 255, 255, 0.34); }
+.ln-scene { --scene-fg: #FFFFFF; --scene-fg-2: #FFFFFFB3; --scene-rule: rgba(255, 255, 255, 0.34); }
+
+.ln-scene .ln-display,
+.ln-scene .ln-eyebrow,
+.ln-scene .ln-lede,
+.ln-scene .ln-stat__value,
+.ln-scene .ln-stat__label,
+.ln-scene .ln-figure__title {
+  color: var(--scene-fg);
+  transition: color 500ms var(--ease-out);
+}
+.ln-scene .ln-lede,
+.ln-scene .ln-stat__label,
+.ln-scene .ln-eyebrow { color: var(--scene-fg-2); }
+.ln-scene .ln-display em { color: var(--ln-accent); }
+
+.ln-scene .ln-hero__eyebrow::before { background: var(--ln-accent); }
+
+.ln-scene .ln-btn,
+.ln-scene .ln-link-cta {
+  pointer-events: auto;
+  color: var(--scene-fg);
+  border-color: var(--scene-rule);
+}
+.ln-scene .ln-btn--primary {
+  background: var(--ln-accent);
+  border-color: var(--ln-accent);
+  color: #07120A;
+}
+
+/* Stage 2 — the estate figures, spread on a hairline band. */
+.ln-scene__stats { border-top: 1px solid var(--scene-rule); padding-top: 28px; }
+.ln-scene__stats .ln-stat { border-left-color: var(--scene-rule); }
+.ln-scene__stats .ln-stat:first-child { border-left: 0; }
+
+/* Stage 3 — the live single-line, framed against the dark footage. */
+.ln-scene__figure {
+  width: min(880px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(7, 8, 10, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--ln-r);
+  overflow: hidden;
+}
+.ln-scene__figure .ln-figure__bar { border-bottom-color: rgba(255, 255, 255, 0.18); }
+.ln-scene__figure .topology { background: none; }
+.ln-scene__figure .telemetry-ribbon {
+  background: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  gap: 10px 18px;
+  padding: 14px 18px;
+}
+.ln-scene__figure .telemetry-ribbon__item { min-width: 0; flex: 1 1 auto; }
+
+/* The sticky navigation sits over the footage and follows the same phase. */
+:root[data-hero-phase='dark'] .ln-nav:not([data-scrolled='true']) { color: #FFFFFF; }
+:root[data-hero-phase='dark'] .ln-nav:not([data-scrolled='true']) .ln-brand,
+:root[data-hero-phase='dark'] .ln-nav:not([data-scrolled='true']) .ln-nav__links a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ln-scene__stage [data-rise] { opacity: 1; transform: none; transition: none; }
+}
+
+@media (max-width: 767px) {
+  .ln-scene { height: 260vh; }
+  .ln-scene__figure { width: 100%; }
+  .ln-scene__stats { padding-top: 20px; }
+}

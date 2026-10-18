@@ -33,7 +33,7 @@
       <div class="card">
         <div class="card__body">
           <div class="feature__icon">${ENX.router.iconHTML(r[0])}</div>
-          <h3 style="font-size:var(--fs-md);font-weight:600;margin-bottom:var(--sp-2)">${esc(r[1])}</h3>
+          <h2 style="font-size:var(--fs-md);font-weight:600;margin-bottom:var(--sp-2)">${esc(r[1])}</h2>
           <p style="font-size:var(--fs-sm);color:var(--text-secondary);line-height:var(--lh-snug);min-height:56px">${esc(r[2])}</p>
           <div class="row row--between" style="margin-top:var(--sp-4);padding-top:var(--sp-3);
                border-top:1px solid var(--border-subtle)">

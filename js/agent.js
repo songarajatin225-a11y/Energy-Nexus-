@@ -131,7 +131,7 @@
 
     const host = document.querySelector('[data-decision-list]');
     if (!list.length) {
-      host.innerHTML = `<div class="empty-state"><h3>Nothing in this state</h3>
+      host.innerHTML = `<div class="empty-state"><p class="empty-state__title">Nothing in this state</p>
         <p>No decisions currently match this filter.</p></div>`;
       return;
     }

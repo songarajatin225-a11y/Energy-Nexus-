@@ -127,7 +127,7 @@
 
     if (!list.length) {
       host.innerHTML = `<tr><td colspan="9"><div class="empty-state">
-        <h3>No audit entries match</h3><p>Adjust the filters to see more of the trail.</p>
+        <p class="empty-state__title">No audit entries match</p><p>Adjust the filters to see more of the trail.</p>
       </div></td></tr>`;
       return;
     }
