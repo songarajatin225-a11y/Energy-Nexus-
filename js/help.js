@@ -19,15 +19,28 @@
     ['Network', 'How the cluster-first expansion is progressing', 'OPERATING'],
     ['Energy Internet', 'Where the roadmap leads in the long term', 'VISION'],
     ['Safety', 'Whether it is safe, and what happens when things fail', 'OPERATING'],
+    ['Carbon & ESG', 'What the estate emits, what solar avoids, and when the grid is cleanest', 'OPERATING'],
     ['Reports', 'What to hand the board, the auditor or the utility', 'OPERATING'],
   ];
 
   const KEYS = [
-    ['/', 'Focus global search'],
-    ['Enter', 'Open search results'],
-    ['Esc', 'Close modal, drawer or mobile navigation'],
-    ['Tab', 'Move through interactive elements'],
+    ['⌘K · /', 'Open the command palette'],
+    ['?', 'Show every keyboard shortcut'],
+    ['G, then a letter', 'Go to a screen — G D for the Command Center'],
+    ['P', 'Pin or unpin the current screen'],
+    ['N', 'Open notifications'],
+    ['[', 'Collapse or expand the sidebar'],
+    ['Esc', 'Close modal, drawer, tour or mobile navigation'],
     ['Space / Enter', 'Activate a focused topology or map node'],
+  ];
+
+  const WORKSPACE = [
+    ['Pin screens', 'The star beside any screen title keeps it at the top of the sidebar.'],
+    ['Share a view', 'Filters on Sites, Assets and Nexus Intelligence live in the address bar. The link icon copies it.'],
+    ['Compare sites', 'On Sites, Compare lets you pick up to three and see them side by side — and share that comparison.'],
+    ['Alert rules', 'Set your own thresholds in Settings. A breach lands in notifications once, and again on recovery.'],
+    ['Undo', 'Approvals wait eight seconds before dispatch, and deleted rules can be restored, from the confirmation.'],
+    ['Density', 'Compact density in Settings, or from the palette, fits more rows on screen.'],
   ];
 
   const CONVENTIONS = [
@@ -55,6 +68,13 @@
         <span class="metric-row__value"><kbd style="font-family:var(--font-mono);padding:2px 7px;
           border:1px solid var(--border-default);border-radius:4px;font-size:var(--fs-xs)">${esc(k[0])}</kbd></span>
       </div>`).join('');
+
+    document.querySelector('[data-help-workspace]').innerHTML = WORKSPACE.map((w) => `
+      <div class="explain-item" style="margin-bottom:var(--sp-3)">
+        <div class="explain-item__q">${esc(w[0])}</div>
+        <div class="explain-item__a">${esc(w[1])}</div>
+      </div>`).join('');
+    document.querySelector('[data-help-tour]').addEventListener('click', () => ENX.tour.start());
 
     document.querySelector('[data-help-conventions]').innerHTML = CONVENTIONS.map((c) => `
       <div class="explain-item" style="margin-bottom:var(--sp-4)">

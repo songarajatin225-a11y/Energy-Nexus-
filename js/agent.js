@@ -50,6 +50,8 @@
     if (e.detail && e.detail.error) return;
     ENX.data.loadAll(['sites', 'agents', 'telemetry', 'assets']).then((data) => {
       D = data;
+      const f = ENX.workspace.readParam('status');
+      if (['PENDING APPROVAL', 'EXECUTED', 'DECLINED'].includes(f)) filter = f;
       renderHero(); renderFilters(); renderQueue();
       renderLadder(); renderScope(); renderMatrix();
     }).catch((err) => ENX.ui.toast(err.message, 'critical', 8000));
@@ -115,6 +117,7 @@
         document.querySelectorAll('[data-dfilter]').forEach((b) =>
           b.setAttribute('aria-pressed', String(b.dataset.dfilter === filter)));
         renderQueue();
+        ENX.workspace.writeParams({ status: filter === 'ALL' ? '' : filter });
       });
     });
   }
@@ -218,20 +221,43 @@
         const approve = backdrop.querySelector('[data-approve]');
         const reject = backdrop.querySelector('[data-reject]');
         const simulate = backdrop.querySelector('[data-simulate]');
-        if (approve) approve.addEventListener('click', () => {
-          d.status = 'EXECUTED';
-          ENX.ui.closeModal();
-          ENX.ui.toast(`Approved — ${d.title}. Two-key write recorded.`, 'positive');
-          renderFilters(); renderQueue(); renderHero();
-        });
+        if (approve) approve.addEventListener('click', () => { ENX.ui.closeModal(); approveWithGrace(d); });
         if (reject) reject.addEventListener('click', () => {
           d.status = 'DECLINED';
           ENX.ui.closeModal();
-          ENX.ui.toast(`Rejected — the agent holds the current plan.`, 'warning');
-          renderFilters(); renderQueue(); renderHero();
+          refresh();
+          ENX.notify.push({ severity: 'info', source: 'Nexus Intelligence', title: `Rejected: ${d.title}`,
+            detail: 'The agent holds the current plan.', href: 'agent.html?status=DECLINED' });
+          ENX.ui.toast('Rejected — the agent holds the current plan.', 'warning', 6000, {
+            label: 'Undo', run: () => { d.status = 'PENDING APPROVAL'; refresh(); ENX.ui.toast('Rejection withdrawn — back in the queue'); },
+          });
         });
         if (simulate) simulate.addEventListener('click', () => { window.location.href = 'optimisation.html'; });
       },
+    });
+  }
+
+  function refresh() { renderFilters(); renderQueue(); renderHero(); }
+
+  /**
+   * An approved write is held for a short grace window before dispatch. Undo
+   * cancels it inside that window; after dispatch it is a recorded control
+   * action and only a new, opposite decision can reverse it — as on a plant.
+   */
+  const GRACE_MS = 8000;
+  function approveWithGrace(d) {
+    d.status = 'QUEUED';
+    refresh();
+    const timer = setTimeout(() => {
+      d.status = 'EXECUTED';
+      refresh();
+      ENX.notify.push({ severity: 'positive', source: 'Nexus Intelligence', title: `Dispatched: ${d.title}`,
+        detail: 'Two-key write recorded in the command audit.', href: 'agent.html?status=EXECUTED' });
+      ENX.ui.toast(`Dispatched — ${d.title}. Two-key write recorded.`, 'positive');
+    }, GRACE_MS);
+    ENX.ui.toast(`Approved — dispatching in ${GRACE_MS / 1000} s.`, 'positive', GRACE_MS, {
+      label: 'Undo',
+      run: () => { clearTimeout(timer); d.status = 'PENDING APPROVAL'; refresh(); ENX.ui.toast('Approval cancelled before dispatch — nothing was written'); },
     });
   }
 

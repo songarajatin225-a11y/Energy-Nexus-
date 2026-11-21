@@ -68,6 +68,13 @@ ENX.state = (function () {
     siteId: 'ENX-HSR-001',
     org: 'Nexus Industrial Group',
     sidebar: 'expanded',
+    density: 'comfortable',
+    pins: [],             // screen ids pinned to the top of the sidebar
+    recents: [],          // most recently visited screen ids, newest first
+    notifications: [],    // the activity feed behind the bell
+    rules: null,          // alert rules; null until seeded with defaults
+    ruleState: {},        // last known breach state per rule and site
+    tourDone: false,
   };
 
   let state;
@@ -99,8 +106,9 @@ ENX.state = (function () {
    Overlay primitives
    ========================================================================== */
 ENX.ui = (function () {
-  /* ---- toast ---- */
-  function toast(message, kind, ms) {
+  /* ---- toast ----
+     An optional action ({ label, run }) adds a button — used for undo. */
+  function toast(message, kind, ms, action) {
     let stack = document.querySelector('.toast-stack');
     if (!stack) {
       stack = document.createElement('div');
@@ -122,6 +130,13 @@ ENX.ui = (function () {
       el.dataset.leaving = 'true';
       setTimeout(() => el.remove(), 260);
     };
+    if (action) {
+      const btn = document.createElement('button');
+      btn.className = 'toast__action';
+      btn.textContent = action.label;
+      btn.addEventListener('click', () => { dismiss(); action.run(); });
+      el.insertBefore(btn, el.querySelector('.toast__close'));
+    }
     el.querySelector('.toast__close').addEventListener('click', dismiss);
     let timer = setTimeout(dismiss, ms || 3400);
     // Hovering holds the message — 3.4s is not long enough for a long one.
@@ -426,13 +441,28 @@ ENX.shell = (function () {
     return file.replace(/\.html$/, '') || 'index';
   }
 
-  function buildSidebar(activeId) {
-    const groups = ENX.router.NAV.map((group) => `
+  function buildNav(activeId) {
+    const pinned = (ENX.state.get('pins') || []).map((id) => ENX.router.page(id)).filter(Boolean);
+    const pinnedGroup = pinned.length ? `
+      <div class="sidebar__group" data-pinned-group>
+        <div class="sidebar__group-label">Pinned</div>
+        ${pinned.map((item) => navItem(item, activeId)).join('')}
+      </div>` : '';
+    return pinnedGroup + ENX.router.NAV.map((group) => `
       <div class="sidebar__group">
         <div class="sidebar__group-label">${esc(group.label)}</div>
         ${group.items.map((item) => navItem(item, activeId)).join('')}
       </div>`).join('');
+  }
 
+  /** Re-render the nav in place — after a pin changes, say. */
+  function refreshNav() {
+    const nav = document.querySelector('.sidebar__nav');
+    if (nav) nav.innerHTML = buildNav(currentPageId());
+  }
+
+  function buildSidebar(activeId) {
+    const groups = buildNav(activeId);
     const footer = ENX.router.FOOTER.map((item) => navItem(item, activeId)).join('');
 
     return `
@@ -653,6 +683,7 @@ ENX.shell = (function () {
 
   /* ---- notifications ---- */
   function openNotifications() {
+    if (ENX.notify) { ENX.notify.open(); return; }
     const alerts = ENX.data.peek('alerts');
     if (!alerts) { ENX.ui.toast('Alerts still loading…'); return; }
 
@@ -734,6 +765,7 @@ ENX.shell = (function () {
   function applyTheme() {
     document.documentElement.dataset.theme = ENX.state.get('theme');
     document.documentElement.dataset.motion = ENX.state.get('motion');
+    document.documentElement.dataset.density = ENX.state.get('density');
   }
 
   function updateThemeIcon() {
@@ -744,7 +776,7 @@ ENX.shell = (function () {
     btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
   }
 
-  return { render, applyTheme, alertRowHTML, openNotifications, currentPageId };
+  return { render, applyTheme, alertRowHTML, openNotifications, currentPageId, refreshNav };
 })();
 
 /* ==========================================================================
@@ -792,15 +824,18 @@ ENX.tables = (function () {
     rows.forEach((r) => body.appendChild(r));
   }
 
+  /* A table marked data-nosort (a transposed comparison, say) has no sortable axis. */
+  const sortable = (th) => th && !th.closest('[data-nosort]');
+
   document.addEventListener('click', (e) => {
     const th = e.target.closest && e.target.closest('.table thead th');
-    if (th) sort(th);
+    if (sortable(th)) sort(th);
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     const th = e.target.closest && e.target.closest('.table thead th');
-    if (!th) return;
+    if (!sortable(th)) return;
     e.preventDefault();
     sort(th);
   });
@@ -809,7 +844,7 @@ ENX.tables = (function () {
   function makeFocusable(root) {
     if (!root.querySelectorAll) return;
     root.querySelectorAll('.table thead th').forEach((th) => {
-      if (th.hasAttribute('tabindex')) return;
+      if (th.hasAttribute('tabindex') || !sortable(th)) return;
       th.tabIndex = 0;
       th.setAttribute('role', 'columnheader');
       if (!th.title) th.title = 'Sort by this column';
@@ -854,6 +889,9 @@ ENX.palette = (function () {
   ];
 
   function install(sites) { sitesRef = sites; }
+
+  /** Other modules add their own actions without editing this list. */
+  function register(actions) { actions.forEach((a) => ACTIONS.push(Object.assign({ kind: 'Action' }, a))); }
 
   function buildIndex() {
     const pages = ENX.router.allPages().map((p) => ({
@@ -918,8 +956,23 @@ ENX.palette = (function () {
     input.focus();
   }
 
+  /** With nothing typed, lead with where the user has been and what they pinned. */
+  function starters() {
+    const seen = new Set();
+    const pick = (ids, kind, sub) => ids
+      .map((id) => ENX.router.page(id)).filter(Boolean)
+      .filter((p) => !seen.has(p.id) && seen.add(p.id))
+      .map((p) => ({ kind, label: p.label, sub, href: p.href }));
+    const here = ENX.shell.currentPageId();
+    const recent = pick((ENX.state.get('recents') || []).filter((id) => id !== here).slice(0, 4), 'Recent', 'Recently viewed');
+    const pinned = pick(ENX.state.get('pins') || [], 'Pinned', 'Pinned to sidebar');
+    const rest = items.filter((it) => !(it.kind === 'Screen' && [...seen].some((id) => ENX.router.page(id).href === it.href)));
+    return recent.concat(pinned, rest.filter((it) => it.kind === 'Screen' || it.kind === 'Action'));
+  }
+
   function paint(query) {
     const q = String(query || '').trim().toLowerCase();
+    if (!q) { filtered = starters().slice(0, 40); cursor = 0; renderList(); return; }
     filtered = items
       .map((it) => ({ it, s: score(it, q) }))
       .filter((x) => x.s > 0)
@@ -989,7 +1042,7 @@ ENX.palette = (function () {
     setTimeout(() => node.remove(), 180);
   }
 
-  return { open, close, install };
+  return { open, close, install, register };
 })();
 
 /* ==========================================================================

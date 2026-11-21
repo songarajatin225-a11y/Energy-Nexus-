@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carbon &amp; ESG · Energy Nexus</title>
+<meta name="description" content="Scope 2 emissions, renewable share, carbon-aware scheduling and BRSR-structured export across the flagship estate.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/workspace.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <main class="page" id="main">
+    <div class="page-header">
+      <div class="page-header__text">
+        <div class="eyebrow">Assurance</div>
+        <h1>Carbon &amp; ESG</h1>
+        <p class="page-header__sub">Scope 2 emissions from purchased electricity across the flagship estate, what on-site
+          solar avoids, and when the grid is cleanest to run flexible load.</p>
+      </div>
+      <div class="page-header__actions">
+        <button class="btn" data-export-brsr>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="15" height="15"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Export BRSR data
+        </button>
+      </div>
+    </div>
+
+    <div class="callout callout--info" style="margin-bottom:var(--sp-5)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a10 10 0 100-20 10 10 0 000 20zM12 16v-4M12 8h.01"/></svg>
+      <div><span class="pill pill--simulated">SIMULATION</span>
+        <strong>Modelled emissions, not a verified disclosure.</strong> Scope 2 is location-based: metered grid
+        import multiplied by a flat modelled grid factor of <span data-factor>0.71</span> tCO₂e per MWh. The live
+        intensity curve varies through the day; reported totals use the flat factor. Scope 1 (diesel generation) is
+        not yet included. A BRSR filing needs assured data.</div>
+    </div>
+
+    <div class="kpi-strip" data-carbon-kpis></div>
+
+    <section class="section" aria-labelledby="trend-title">
+      <div class="grid grid--sidebar-right">
+        <div class="card">
+          <div class="card__header">
+            <div>
+              <h2 class="card__title" id="trend-title">Daily Scope 2 emissions</h2>
+              <div class="card__desc">Flagship estate, last 30 days — grid emissions against what on-site solar avoided</div>
+            </div>
+          </div>
+          <div class="card__body"><div data-carbon-trend></div></div>
+        </div>
+        <div class="card">
+          <div class="card__header">
+            <div>
+              <h2 class="card__title" id="mix-title">Electricity by source</h2>
+              <div class="card__desc">Share of 30-day supply</div>
+            </div>
+          </div>
+          <div class="card__body stack" style="gap:var(--sp-4)">
+            <div data-carbon-mix></div>
+            <div data-carbon-mix-legend></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="intensity-title">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title" id="intensity-title">Carbon-aware scheduling</h2>
+          <p class="section__desc">Grid carbon intensity at the active site through today. Flexible load moved into the
+            cleanest window cuts Scope 2 without cutting output.</p>
+        </div>
+      </div>
+      <div class="grid grid--sidebar-right">
+        <div class="card">
+          <div class="card__header">
+            <div>
+              <div class="card__title" data-intensity-site>Grid intensity today</div>
+              <div class="card__desc">gCO₂ per kWh, 15-minute resolution</div>
+            </div>
+            <span class="pill pill--live pill--pulse"><span class="pill__dot"></span>LIVE</span>
+          </div>
+          <div class="card__body"><div data-carbon-intensity></div></div>
+        </div>
+        <div class="card">
+          <div class="card__header"><div class="card__title">Cleanest window</div></div>
+          <div class="card__body stack" data-carbon-window></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sites-title">
+      <div class="section__header">
+        <div>
+          <h2 class="section__title" id="sites-title">Site emissions league</h2>
+          <p class="section__desc">30-day totals per site. Select a row to open the site.</p>
+        </div>
+      </div>
+      <div class="card"><div class="table-wrap"><table class="table">
+        <thead><tr>
+          <th>Site</th><th class="num">Supplied</th><th class="num">Grid</th><th class="num">Solar</th>
+          <th class="num">Renewable</th><th class="num">Scope 2</th><th class="num">Intensity</th><th class="num">Avoided by solar</th>
+        </tr></thead>
+        <tbody data-carbon-rows></tbody>
+      </table></div></div>
+    </section>
+
+    <section class="section" aria-labelledby="method-title">
+      <div class="grid grid--2">
+        <div class="card">
+          <div class="card__header"><h2 class="card__title" id="method-title">Methodology</h2></div>
+          <div class="card__body"><dl class="dl" data-carbon-method></dl></div>
+        </div>
+        <div class="card">
+          <div class="card__header"><h2 class="card__title">BRSR export</h2></div>
+          <div class="card__body stack" style="gap:var(--sp-4)">
+            <p class="text-secondary" style="font-size:var(--fs-sm);margin:0">One row per site plus an estate total,
+              structured for the energy and emissions fields of SEBI's Business Responsibility and Sustainability
+              Report (Principle 6): electricity from renewable and non-renewable sources, Scope 2 emissions and
+              intensity, with the factor and method stated on every row.</p>
+            <p class="text-secondary" style="font-size:var(--fs-sm);margin:0">Every row is marked
+              <strong>SIMULATED — not assured</strong>. The export is a working draft for a sustainability team, not a
+              filing.</p>
+            <div><button class="btn btn--primary" data-export-brsr>Export BRSR data (CSV)</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="js/router.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script src="js/workspace.js" defer></script>
+<script src="js/charts.js" defer></script>
+<script src="js/carbon.js" defer></script>
+</body>
+</html>

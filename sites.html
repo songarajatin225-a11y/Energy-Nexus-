@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/workspace.css">
 <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -28,6 +29,10 @@
           <button aria-pressed="true" data-view="cards">Cards</button>
           <button aria-pressed="false" data-view="table">Table</button>
         </div>
+        <button class="btn" data-compare-mode aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="15" height="15"><path d="M3 3h18v18H3zM9 3v18M15 3v18"/></svg>
+          Compare sites
+        </button>
         <a class="btn btn--primary" href="onboarding.html">Connect a site</a>
       </div>
     </div>
@@ -54,6 +59,7 @@
 <script src="js/router.js" defer></script>
 <script src="js/data.js" defer></script>
 <script src="js/app.js" defer></script>
+<script src="js/workspace.js" defer></script>
 <script src="js/charts.js" defer></script>
 <script src="js/sites.js" defer></script>
 </body>

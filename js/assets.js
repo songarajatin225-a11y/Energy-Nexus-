@@ -13,14 +13,19 @@
     if (e.detail && e.detail.error) return;
     ENX.data.loadAll(['sites', 'assets', 'telemetry', 'alerts', 'agents']).then((data) => {
       D = data;
-      // Deep link from global search: assets.html?asset=ID
-      const params = new URLSearchParams(location.search);
-      if (params.get('asset')) query = params.get('asset');
+      // Deep link from global search (?asset=ID), or a shared filtered view.
+      const P = ENX.workspace.readParam;
+      query = P('asset') || P('q') || '';
+      if (TYPES.includes(P('type'))) typeFilter = P('type');
+      if (D.sites.sites.some((s) => s.siteId === P('site'))) siteFilter = P('site');
+      if (['ONLINE', 'WARNING', 'OFFLINE'].includes(P('status'))) statusFilter = P('status');
       const search = document.querySelector('[data-asset-search]');
       if (query) search.value = query;
 
       renderKPIs();
       renderFilters();
+      document.querySelector('[data-site-filter]').value = siteFilter;
+      document.querySelector('[data-status-filter]').value = statusFilter;
       renderRows();
       wire();
     }).catch((err) => ENX.ui.toast(err.message, 'critical', 8000));
@@ -81,13 +86,27 @@
         document.querySelectorAll('[data-type]').forEach((b) =>
           b.setAttribute('aria-pressed', String(b.dataset.type === typeFilter)));
         renderRows();
+        writeURL();
       });
+    });
+  }
+
+  /* The query string mirrors the filters; ?asset= from search gives way to ?q=. */
+  function writeURL() {
+    ENX.workspace.writeParams({
+      asset: '', q: query,
+      type: typeFilter === 'ALL' ? '' : typeFilter,
+      site: siteFilter === 'ALL' ? '' : siteFilter,
+      status: statusFilter === 'ALL' ? '' : statusFilter,
     });
   }
 
   function renderRows() {
     const list = filtered();
     const host = document.querySelector('[data-asset-rows]');
+    const total = D.assets.assets.length;
+    document.querySelector('[data-asset-count]').textContent = list.length === total
+      ? `All ${total} assets` : `Showing ${list.length} of ${total} assets`;
 
     if (!list.length) {
       host.innerHTML = `<tr><td colspan="9">
@@ -134,13 +153,13 @@
 
   function wire() {
     document.querySelector('[data-asset-search]').addEventListener('input', (e) => {
-      query = e.target.value; renderRows();
+      query = e.target.value; renderRows(); writeURL();
     });
     document.querySelector('[data-site-filter]').addEventListener('change', (e) => {
-      siteFilter = e.target.value; renderRows();
+      siteFilter = e.target.value; renderRows(); writeURL();
     });
     document.querySelector('[data-status-filter]').addEventListener('change', (e) => {
-      statusFilter = e.target.value; renderRows();
+      statusFilter = e.target.value; renderRows(); writeURL();
     });
     document.querySelector('[data-export-assets]').addEventListener('click', () => {
       ENX.report.exportCSV('energy-nexus-assets', filtered().map((a) => ({

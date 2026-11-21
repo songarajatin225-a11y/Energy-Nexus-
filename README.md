@@ -8,7 +8,7 @@ energy-consuming asset on a plant into one model, forecasts what happens next, c
 optimises generation, storage and consumption, and acts only inside a safety envelope the customer
 has signed.
 
-This repository contains a **fully interactive front-end prototype** of that platform — 20 screens,
+This repository contains a **fully interactive front-end prototype** of that platform — 21 product screens,
 80 connected assets across 8 industrial sites, a live AI agent, a working optimisation studio and a
 cluster network map. It runs as a static site with no backend.
 
@@ -125,11 +125,41 @@ not over plain HTTP on a LAN address — you'll get a clear error rather than a 
 | `/` | Open the command palette |
 | `↑` `↓` | Move through palette results |
 | `↵` | Open the highlighted result |
-| `Esc` | Close palette, modal, drawer or mobile nav |
+| `?` | Show every keyboard shortcut |
+| `G` then a letter | Go to a screen — `G D` Command Center, `G C` Carbon & ESG, `G S` Sites… |
+| `P` | Pin or unpin the current screen |
+| `N` | Open notifications |
+| `[` | Collapse or expand the sidebar |
+| `Esc` | Close palette, modal, drawer, tour or mobile nav |
 
-The palette indexes every screen, all 8 sites, all 80 assets and three actions (toggle theme, toggle
-demo mode, sign out). Matching is prefix-first, then substring, then subsequence — so `cmdc` finds
-Command Center.
+The palette indexes every screen, all 8 sites, all 80 assets and its actions (theme, demo mode,
+density, pin, copy link, shortcuts, notifications, product tour, sign out). With nothing typed it
+leads with recently viewed and pinned screens. Matching is prefix-first, then substring, then
+subsequence — so `cmdc` finds Command Center.
+
+## Workspace
+
+- **Pinned screens** — the star beside a screen title pins it to the top of the sidebar.
+- **Shareable views** — filters on Sites, Assets and Nexus Intelligence live in the URL; the link icon
+  copies it. A site comparison is shareable too.
+- **Site comparison** — on Sites, *Compare sites* selects up to three for a side-by-side table and a
+  24-hour demand overlay.
+- **Notifications and alert rules** — set thresholds in Settings (demand, grid import, battery charge,
+  power factor, carbon intensity, tariff). They are checked against live telemetry on every demo tick
+  and are edge-triggered: a breach notifies once, and again on recovery.
+- **Undo** — an approved agent decision waits eight seconds before dispatch and can be cancelled in
+  that window. Once dispatched it is a recorded control write; undo never pretends otherwise.
+- **Density** — compact or comfortable, from Settings or the palette.
+- **Product tour** — offered once on a first visit, replayable from Help or the palette.
+
+## Carbon & ESG
+
+`carbon.html` reports location-based Scope 2 emissions from metered grid import at a flat modelled
+factor of 0.71 tCO₂e/MWh (the factor the data generator uses, so totals reconcile), renewable share
+from on-site solar, a carbon-aware scheduling view with the day's cleanest four-hour window, a site
+league table, and a CSV export structured for the energy and emissions fields of SEBI's BRSR
+(Principle 6). Every figure is simulated and every export row says so — it is a working draft, not
+a disclosure. Scope 1 (diesel) is not yet included.
 
 ---
 
@@ -154,13 +184,14 @@ energy-nexus/
 ├── analytics.html          Energy intelligence, savings engine, benchmarking
 ├── reports.html            Report catalogue and savings ledger
 ├── safety.html             Safety centre and command audit
+├── carbon.html             Carbon & ESG — Scope 2, renewable share, BRSR export
 ├── settings.html           Appearance, demo mode, integrations
 ├── onboarding.html         Seven-step commissioning wizard
 ├── help.html               Screen guide and interface conventions
 ├── 404.html                Not-found page
 │
-├── css/    theme · main · components · dashboard · charts · auth · responsive
-├── js/     app · router · data · charts · twin · network + one module per page
+├── css/    theme · main · components · dashboard · charts · auth · landing · motion · workspace · responsive
+├── js/     app · workspace · router · data · charts · twin · network + one module per page
 ├── data/   sites · assets · telemetry · forecasts · alerts · agents
 │           optimisation · transactions · network · flexibility · audit · market
 ├── assets/ logo.svg · logo-mark.svg · favicon.svg
@@ -303,7 +334,7 @@ hardware.
 - Total JS is roughly 120 KB unminified across 25 modules; CSS roughly 60 KB
 - Charts render into sized SVG and re-render only on resize, theme change or data tick
 - Datasets are fetched once per session and cached in memory
-- Zero console errors across all 20 screens
+- Zero console errors across all 22 pages
 
 ---
 

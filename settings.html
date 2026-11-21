@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/workspace.css">
 <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -45,6 +46,14 @@
                 <option value="off">Reduced motion</option>
               </select>
               <span class="field__hint">Reduced motion stops flow animation, pulses and counters. Your OS preference is respected automatically.</span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="density-select">Density</label>
+              <select class="select" id="density-select" data-set-density>
+                <option value="comfortable">Comfortable — room to read</option>
+                <option value="compact">Compact — more rows and cards per screen</option>
+              </select>
+              <span class="field__hint">Tightens spacing across every screen. Type size is unchanged.</span>
             </div>
           </div>
         </div>
@@ -110,18 +119,31 @@
           <div class="card__header"><div class="card__title">Reset</div></div>
           <div class="card__body">
             <p class="text-secondary" style="font-size:var(--fs-sm);margin-bottom:var(--sp-4)">
-              Clears locally stored preferences — theme, demo mode, default site — and reloads.
+              Clears locally stored preferences — theme, density, demo mode, default site, pins, alert rules — and reloads.
             </p>
             <button class="btn btn--danger" data-reset>Reset local preferences</button>
           </div>
         </div>
       </div>
     </div>
+
+    <section class="card ws-rules-card" id="rules" aria-labelledby="rules-title">
+      <div class="card__header">
+        <div>
+          <h2 class="card__title" id="rules-title">Alert rules</h2>
+          <p class="card__desc">Your own thresholds, checked against live telemetry on every update. A breach
+            lands in notifications once, and again when the site recovers.</p>
+        </div>
+        <span class="pill pill--simulated">SIMULATION</span>
+      </div>
+      <div class="card__body" data-rules-mount></div>
+    </section>
   </main>
 </div>
 <script src="js/router.js" defer></script>
 <script src="js/data.js" defer></script>
 <script src="js/app.js" defer></script>
+<script src="js/workspace.js" defer></script>
 <script src="js/charts.js" defer></script>
 <script src="js/settings.js" defer></script>
 </body>

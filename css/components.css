@@ -133,6 +133,7 @@
 /* Tier badge */
 .tier-badge {
   display: inline-flex; align-items: center; gap: 5px;
+  white-space: nowrap; flex-shrink: 0;
   font-family: var(--font-mono); font-size: var(--fs-2xs); font-weight: 600;
   padding: 2px 7px; border-radius: var(--r-sm);
   letter-spacing: var(--tracking-wide);
@@ -172,6 +173,10 @@
 .table thead th[aria-sort='descending']::after { opacity: 1; }
 .table thead th[aria-sort='ascending']::after { content: ' ↑'; color: var(--accent-ui); }
 .table thead th[aria-sort='descending']::after { content: ' ↓'; color: var(--accent-ui); }
+/* Opted out of sorting: no arrow, no pointer — the header promises nothing. */
+.table[data-nosort] thead th { cursor: default; }
+.table[data-nosort] thead th:hover { color: var(--text-tertiary); }
+.table[data-nosort] thead th::after { content: none; }
 
 .table tbody td {
   padding: var(--sp-3) var(--sp-4);
@@ -405,6 +410,7 @@
 .callout svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
 .callout--warning { background: var(--wash-amber); border-color: rgba(245, 166, 35, 0.26); color: var(--text-primary); }
 .callout--info { background: var(--wash-blue); border-color: rgba(46, 139, 255, 0.24); color: var(--text-primary); }
+.callout--positive { background: var(--wash-green); border-color: rgba(125, 211, 63, 0.26); color: var(--text-primary); }
 .callout--future { background: var(--wash-violet); border-color: rgba(139, 109, 255, 0.24); color: var(--text-primary); }
 .callout strong { color: var(--text-primary); font-weight: 600; }
 
@@ -475,20 +481,25 @@
 /* --------------------------------------------------------------------------
    Tooltip (hover hint, distinct from chart tooltips)
    -------------------------------------------------------------------------- */
+/* The tip exists only while shown. An invisible-but-laid-out tip still counts
+   towards the page's scroll width, so a control near the right edge — the LIVE
+   pill on a 320px phone, say — would push the whole page sideways. */
 .has-tip { position: relative; }
-.has-tip::after {
+.has-tip:hover::after, .has-tip:focus-visible::after {
   content: attr(data-tip);
   position: absolute; bottom: calc(100% + 7px); left: 50%;
-  transform: translateX(-50%) translateY(3px);
+  transform: translateX(-50%);
   padding: 5px 9px; border-radius: var(--r-sm);
   background: var(--bg-raised); border: 1px solid var(--border-default);
   color: var(--text-primary);
   font-family: var(--font-mono); font-size: var(--fs-2xs);
   white-space: nowrap; pointer-events: none;
-  opacity: 0; transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
   z-index: var(--z-toast); box-shadow: var(--shadow-md);
+  animation: tip-in var(--dur-fast) var(--ease-out);
 }
-.has-tip:hover::after, .has-tip:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+@keyframes tip-in { from { opacity: 0; translate: 0 3px; } }
+/* Controls at the right edge grow their tip leftwards, so even a shown tip stays on screen. */
+.has-tip--end:hover::after, .has-tip--end:focus-visible::after { left: auto; right: 0; transform: none; }
 
 /* --------------------------------------------------------------------------
    Progress / capacity bars

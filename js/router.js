@@ -39,48 +39,56 @@ ENX.router = (function () {
     internet: 'M12 22a10 10 0 100-20 10 10 0 000 20zM2 12h20M12 2a15 15 0 014 10 15 15 0 01-4 10 15 15 0 01-4-10 15 15 0 014-10z',
     bolt: 'M13 2L4 14h6l-1 8 9-12h-6z',
     alert: 'M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L14.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01',
+    star: 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z',
+    keyboard: 'M2 6h20v12H2zM6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10',
+    link: 'M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7',
+    leaf: 'M11 20A7 7 0 014 13c0-6 5-10 16-10 0 11-4 16-9 17zM4 21c3-5 7-8 11-10',
+    columns: 'M3 3h18v18H3zM9 3v18M15 3v18',
+    rule: 'M4 6h16M4 12h10M4 18h6M17 15l2 2 3-4',
+    route: 'M6 19a2 2 0 100-4 2 2 0 000 4zM18 9a2 2 0 100-4 2 2 0 000 4zM6 15V9a4 4 0 014-4h6M18 9v6a4 4 0 01-4 4H8',
   };
 
   const NAV = [
     {
       label: 'Operate',
       items: [
-        { id: 'dashboard', href: 'dashboard.html', label: 'Command Center', icon: 'command' },
-        { id: 'sites', href: 'sites.html', label: 'Sites', icon: 'sites' },
-        { id: 'digital-twin', href: 'digital-twin.html', label: 'Digital Twin', icon: 'twin' },
-        { id: 'assets', href: 'assets.html', label: 'Assets', icon: 'assets' },
+        { id: 'dashboard', href: 'dashboard.html', label: 'Command Center', icon: 'command', key: 'd' },
+        { id: 'sites', href: 'sites.html', label: 'Sites', icon: 'sites', key: 's' },
+        { id: 'digital-twin', href: 'digital-twin.html', label: 'Digital Twin', icon: 'twin', key: 't' },
+        { id: 'assets', href: 'assets.html', label: 'Assets', icon: 'assets', key: 'a' },
       ],
     },
     {
       label: 'Intelligence',
       items: [
-        { id: 'agent', href: 'agent.html', label: 'Nexus Intelligence', icon: 'agent', badge: 'AI' },
-        { id: 'optimisation', href: 'optimisation.html', label: 'Optimisation', icon: 'optimise' },
-        { id: 'forecasts', href: 'forecasts.html', label: 'Forecasts', icon: 'forecast' },
-        { id: 'analytics', href: 'analytics.html', label: 'Analytics', icon: 'analytics' },
+        { id: 'agent', href: 'agent.html', label: 'Nexus Intelligence', icon: 'agent', badge: 'AI', key: 'i' },
+        { id: 'optimisation', href: 'optimisation.html', label: 'Optimisation', icon: 'optimise', key: 'o' },
+        { id: 'forecasts', href: 'forecasts.html', label: 'Forecasts', icon: 'forecast', key: 'f' },
+        { id: 'analytics', href: 'analytics.html', label: 'Analytics', icon: 'analytics', key: 'y' },
       ],
     },
     {
       label: 'Network',
       items: [
-        { id: 'flexibility', href: 'flexibility.html', label: 'Flexibility', icon: 'flex' },
-        { id: 'marketplace', href: 'marketplace.html', label: 'Nexus Market', icon: 'market', badge: 'V7', future: true },
-        { id: 'network', href: 'network.html', label: 'Network', icon: 'network' },
-        { id: 'energy-internet', href: 'energy-internet.html', label: 'Energy Internet', icon: 'internet', badge: 'V9', future: true },
+        { id: 'flexibility', href: 'flexibility.html', label: 'Flexibility', icon: 'flex', key: 'x' },
+        { id: 'marketplace', href: 'marketplace.html', label: 'Nexus Market', icon: 'market', badge: 'V7', future: true, key: 'm' },
+        { id: 'network', href: 'network.html', label: 'Network', icon: 'network', key: 'w' },
+        { id: 'energy-internet', href: 'energy-internet.html', label: 'Energy Internet', icon: 'internet', badge: 'V9', future: true, key: 'e' },
       ],
     },
     {
       label: 'Assurance',
       items: [
-        { id: 'safety', href: 'safety.html', label: 'Safety', icon: 'safety' },
-        { id: 'reports', href: 'reports.html', label: 'Reports', icon: 'reports' },
+        { id: 'safety', href: 'safety.html', label: 'Safety', icon: 'safety', key: 'k' },
+        { id: 'carbon', href: 'carbon.html', label: 'Carbon & ESG', icon: 'leaf', key: 'c' },
+        { id: 'reports', href: 'reports.html', label: 'Reports', icon: 'reports', key: 'r' },
       ],
     },
   ];
 
   const FOOTER = [
-    { id: 'settings', href: 'settings.html', label: 'Settings', icon: 'settings' },
-    { id: 'help', href: 'help.html', label: 'Help', icon: 'help' },
+    { id: 'settings', href: 'settings.html', label: 'Settings', icon: 'settings', key: ',' },
+    { id: 'help', href: 'help.html', label: 'Help', icon: 'help', key: 'h' },
   ];
 
   /** All navigable pages, flattened — used by global search. */
@@ -90,6 +98,9 @@ ENX.router = (function () {
     FOOTER.forEach((i) => pages.push(Object.assign({ group: 'System' }, i)));
     return pages;
   }
+
+  /** The page record for an id, or undefined for pages outside the nav. */
+  function page(id) { return allPages().find((p) => p.id === id); }
 
   /** Build an inline SVG icon element. */
   function icon(name, size) {
@@ -116,5 +127,5 @@ ENX.router = (function () {
       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${cls ? ` class="${cls}"` : ''}><path d="${d}"/></svg>`;
   }
 
-  return { NAV, FOOTER, ICONS, icon, iconHTML, allPages };
+  return { NAV, FOOTER, ICONS, icon, iconHTML, allPages, page };
 })();

@@ -70,6 +70,12 @@
   .roadmap__step { margin-top: 0 !important; }
 }
 
+/* The five questions held five columns at every width — 48px each on a 320px
+   phone, clipping words mid-letter. They step down instead. */
+@media (max-width: 960px) {
+  .questions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 /* --------------------------------------------------------------------------
    Mobile — below 768
    -------------------------------------------------------------------------- */
@@ -178,6 +184,10 @@
 
   .dl { grid-template-columns: minmax(0, 1fr); gap: var(--sp-1); }
   .dl dd { text-align: left; padding-bottom: var(--sp-2); }
+
+  .questions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Five in two columns leaves one alone — let it take the full row. */
+  .questions > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 
 @media (max-width: 400px) {

@@ -53,6 +53,12 @@
       ENX.ui.toast(e.target.value === 'off' ? 'Reduced motion enabled' : 'Full motion enabled', 'positive');
     });
 
+    const densitySel = document.querySelector('[data-set-density]');
+    densitySel.value = ENX.state.get('density');
+    densitySel.addEventListener('change', (e) => ENX.workspace.setDensity(e.target.value));
+    // The palette and keyboard can change density too; keep the control honest.
+    document.addEventListener('enx:density', (e) => { densitySel.value = e.detail.density; });
+
     const demoBtn = document.querySelector('[data-set-demo]');
     demoBtn.setAttribute('aria-pressed', String(ENX.state.get('demo')));
     demoBtn.addEventListener('click', () => {
@@ -96,7 +102,7 @@
       ENX.ui.modal({
         eyebrow: 'Reset',
         title: 'Clear local preferences?',
-        desc: 'Theme, motion, demo mode, default site and organisation return to their defaults.',
+        desc: 'Theme, motion, density, demo mode, default site, organisation, pinned screens, alert rules and notifications return to their defaults.',
         body: `<p style="font-size:var(--fs-sm);color:var(--text-secondary)">
           No data leaves this browser either way — this only clears what is stored locally.</p>`,
         footer: `<button class="btn" data-modal-close>Cancel</button>
